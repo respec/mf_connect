@@ -42,7 +42,7 @@
     "sortOrder": "desc"
   },
   "marker": {
-    "titleField": "Damage Area",
+    "titleField": "Damage Severity",
     "cluster": true,
     "layer": {
       "name": "Issues"
@@ -54,7 +54,7 @@
       "popupAnchor": [0, -20]
     },
     "status": {
-      "field": "Damage Area",
+      "field": "Damage Severity",
       "values": [{
         "name": "Destroyed",
         "icon": {
