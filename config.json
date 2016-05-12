@@ -42,7 +42,7 @@
     "sortOrder": "desc"
   },
   "marker": {
-    "titleField": "Damage Severity",
+    "titleField": "Damage Area",
     "cluster": true,
     "layer": {
       "name": "Issues"
