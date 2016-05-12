@@ -6,7 +6,7 @@
       "strftime('%Y-%m-%d %H:%M',datetime(timestamp, 'localtime')) AS Timestamp",
       "structure_type AS 'Structure Type'",
       "damage_severity AS 'Damage Severity'",
-      "reporter_name" AS 'Reporter Name'",
+      "reporter_name AS 'Reporter Name'",
       "damage_area AS 'Damage Area'",
       "damage_type AS 'Damage Type'",
       "uploads AS Photos",
