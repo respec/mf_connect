@@ -54,7 +54,7 @@
       "popupAnchor": [0, -20]
     },
     "status": {
-      "field": "Damage Severity",
+      "field": "Damage Area",
       "values": [{
         "name": "Destroyed",
         "icon": {
