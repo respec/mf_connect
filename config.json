@@ -1,6 +1,6 @@
 {
   "data": {
-    "table": "mapfeeder",
+    "table": "data",
     "fields": [
       "id",
       "strftime('%Y-%m-%d %H:%M',datetime(timestamp, 'localtime')) AS Timestamp",
