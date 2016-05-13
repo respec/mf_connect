@@ -72,7 +72,7 @@
         }
       },
       {
-        "name": "Garbage/Trash",
+        "name": "Garbage",
         "icon": {
           "iconUrl": "assets/img/markers/1891c9.png",
           "iconSize": [30, 40],
@@ -91,7 +91,7 @@
           
       },
        {
-        "name": "Park/Playground",
+        "name": "Park",
         "icon": {
           "iconUrl": "assets/img/markers/ffd300.png",
           "iconSize": [30, 40],
