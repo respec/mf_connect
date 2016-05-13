@@ -1,13 +1,12 @@
 {
   "data": {
-    "table": "data",
+    "table": "mapfeeder",
     "fields": [
       "id",
       "strftime('%Y-%m-%d %H:%M',datetime(timestamp, 'localtime')) AS Timestamp",
-      "structure_type AS 'Structure Type'",
-      "damage_severity AS 'Damage Severity'",
-      "damage_area AS 'Damage Area'",
-      "damage_type AS 'Damage Type'",
+      "issue_type AS 'Issue Type'",
+      "issue_city AS 'City'",
+      "issue_state AS 'State'",
       "uploads AS Photos",
       "lat || ', ' || lng AS Location",
       "lng AS x",
@@ -41,7 +40,7 @@
     "sortOrder": "desc"
   },
   "marker": {
-    "titleField": "Damage Severity",
+    "titleField": "Issue Type",
     "cluster": true,
     "layer": {
       "name": "Issues"
@@ -53,9 +52,9 @@
       "popupAnchor": [0, -20]
     },
     "status": {
-      "field": "Damage Severity",
+      "field": "Issue Type",
       "values": [{
-        "name": "Destroyed",
+        "name": "Graffiti",
         "icon": {
           "iconUrl": "assets/img/markers/87d30f.png",
           "iconSize": [30, 40],
@@ -64,7 +63,7 @@
         }
       },
       {
-        "name": "Major",
+        "name": "Pothole",
         "icon": {
           "iconUrl": "assets/img/markers/cb0d0c.png",
           "iconSize": [30, 40],
@@ -73,7 +72,7 @@
         }
       },
       {
-        "name": "Minor",
+        "name": "Garbage/Trash",
         "icon": {
           "iconUrl": "assets/img/markers/1891c9.png",
           "iconSize": [30, 40],
@@ -82,14 +81,34 @@
         }
       },
       {
-        "name": "None",
+        "name": "Sidewalk Damage",
         "icon": {
           "iconUrl": "assets/img/markers/ff8819.png",
           "iconSize": [30, 40],
           "iconAnchor": [15, 32],
           "popupAnchor": [0, -20]
         }
-      }]
+          
+      },
+       {
+        "name": "Park/Playground",
+        "icon": {
+          "iconUrl": "assets/img/markers/ffd300.png",
+          "iconSize": [30, 40],
+          "iconAnchor": [15, 32],
+          "popupAnchor": [0, -20]
+        }
+       },
+                
+       {
+        "name": "Other",
+        "icon": {
+          "iconUrl": "assets/img/markers/704b10.png",
+          "iconSize": [30, 40],
+          "iconAnchor": [15, 32],
+          "popupAnchor": [0, -20]
+          }
+        }]
     }
   }
 }
