@@ -1,67 +1,44 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Damage Information</h3>
+    <h3 class="panel-title">Issue Information</h3>
   </div>
   <div class="panel-body">
     <div class="form-group" data-role="fieldcontain">
-      <label for="structure_type">Structure Type</label>
-      <select class="form-control" name="structure_type" data-errormessage='{"valueMissing": "This is a required field"}' required>
+      <label for="issue_type">Issue Type</label>
+      <select class="form-control" name="issue_type" data-errormessage='{"valueMissing": "This is a required field"}' required>
         <option value=""></option>
-        <option value="Single Family Home">Single Family Home</option>
-        <option value="Multi-Family Home">Multi-Family Home</option>
-        <option value="Mobile Home">Mobile Home</option>
-        <option value="Business">Business</option>
-      </select>
-    </div>
-    <div class="form-group" data-role="fieldcontain">
-      <label for="damage_severity">Overall Damage Severity</label>
-      <select class="form-control" name="damage_severity" data-errormessage='{"valueMissing": "This is a required field"}' required>
-        <option value=""></option>
-        <option value="Destroyed">Destroyed</option>
-        <option value="Major">Major</option>
-        <option value="Minor">Minor</option>
-        <option value="None">None</option>
-      </select>
-    </div>
-    <div class="form-group" data-role="fieldcontain">
-      <label for="damage_area[]">Area(s) of Damage</label>
-      <select class="form-control" name="damage_area[]" data-errormessage='{"valueMissing": "This is a required field"}' multiple required>
-        <option value="Doors">Doors</option>
-        <option value="Floors">Floors</option>
-        <option value="Foundation">Foundation</option>
-        <option value="Pool">Pool</option>
-        <option value="Roof">Roof</option>
-        <option value="Walls">Walls</option>
-        <option value="Windows">Windows</option>
-      </select>
-    </div>
-    <div class="form-group" data-role="fieldcontain">
-      <label for="damage_type[]">Type(s) of Damage</label>
-      <select class="form-control" name="damage_type[]" data-errormessage='{"valueMissing": "This is a required field"}' multiple required>
-        <option value="Fire">Fire</option>
-        <option value="Projectile">Projectile</option>
-        <option value="Water">Water</option>
-        <option value="Wind">Wind</option>
+        <option value="Graffiti">Graffiti</option>
+        <option value="Pothole">Pothole</option>
+        <option value="Garbage">Garbage</option>
+        <option value="Sidewalk Damage">Sidewalk Damage</option>
+        <option value="Park">Park</option>
         <option value="Other">Other</option>
       </select>
     </div>
+      <div class="panel-body">
     <div class="form-group" data-role="fieldcontain">
-      <label for="structure_accessable">Is the structure accessable?</label>
-      <select class="form-control" name="structure_accessable" data-errormessage='{"valueMissing": "This is a required field"}' required>
+      <label for="date_reported">Date Reported</label>
+      <input type="date" class="form-control" name="date_reported" data-errormessage='{"valueMissing": "This is a required field"}' required>
+    </div>
+    <div class="form-group" data-role="fieldcontain">
+      <label for="issue_address">Issue Address</label>
+      <input class="form-control" type="text" name="issue_address">
+    </div>
+    <div class="form-group" data-role="fieldcontain">
+      <label for="issue_city">Issue City</label>
+      <select class="form-control" name="issue_city">
         <option value=""></option>
-        <option value="Maybe">Maybe</option>
-        <option value="No">No</option>
-        <option value="Yes">Yes</option>
+        <option value="Andover">Andover</option>
+        <option value="Fridley">Fridley</option>
       </select>
     </div>
     <div class="form-group" data-role="fieldcontain">
-      <label for="residence_habitable">Is the residence habitable?</label>
-      <select class="form-control" name="residence_habitable" data-errormessage='{"valueMissing": "This is a required field"}' required>
-        <option value=""></option>
-        <option value="Maybe">Maybe</option>
-        <option value="No">No</option>
-        <option value="Yes">Yes</option>
-      </select>
+      <label for="issue_state">Issue State</label>
+      <input class="form-control" type="text" name="issue_state" value="MN">
+    </div>
+    <div class="form-group" data-role="fieldcontain">
+      <label for="notes">Notes</label>
+      <textarea class="form-control" rows="3" name="notes"></textarea>
     </div>
     <div class="form-group">
       <label for="uploads">Photos</label>
@@ -71,47 +48,29 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Basic Information</h3>
+    <h3 class="panel-title">Submitter Information</h3>
   </div>
   <div class="panel-body">
     <div class="form-group" data-role="fieldcontain">
-      <label for="storm_date">Storm Date</label>
-      <input type="date" class="form-control" name="storm_date" data-errormessage='{"valueMissing": "This is a required field"}'>
+      <label for="submitter_name">Submitter Name</label>
+      <input class="form-control" type="text" name="submitter_name" placeholder="(Optional)">
     </div>
     <div class="form-group" data-role="fieldcontain">
-      <label for="survey_date">Survey Date</label>
-      <input type="date" class="form-control" name="survey_date" data-errormessage='{"valueMissing": "This is a required field"}' required>
+      <label for="submitter_phone">Submitter Phone</label>
+      <input class="form-control" type="text" name="submitter_phone" placeholder="(Optional)" >
     </div>
     <div class="form-group" data-role="fieldcontain">
-      <label for="building_name">Building Name</label>
-      <input class="form-control" type="text" name="building_name">
+      <label for="submitter_email">Submitter Email</label>
+      <input class="form-control" type="email" name="submitter_email" placeholder="(Optional)" >
     </div>
     <div class="form-group" data-role="fieldcontain">
-      <label for="building_address">Building Address</label>
-      <input class="form-control" type="text" name="building_address">
+      <label for="is_resident">Are you a resident?</label>
+      <select class="form-control" name="is_resident" >
+        <option value=""></option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
     </div>
   </div>
 </div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Reporter Information</h3>
-  </div>
-  <div class="panel-body">
-    <div class="form-group" data-role="fieldcontain">
-      <label for="reporter_name">Name</label>
-      <input class="form-control" type="text" name="reporter_name">
-    </div>
-    <div class="form-group" data-role="fieldcontain">
-      <label for="reporter_phone">Phone Number</label>
-      <input class="form-control" type="number" name="reporter_phone">
-    </div>
-    <div class="form-group" data-role="fieldcontain">
-      <label for="reporter_email">Email</label>
-      <input class="form-control" type="email" name="reporter_email">
-    </div>
-    <div class="form-group">
-      <label for="comments">Additional Comments</label>
-      <textarea class="form-control" rows="3" name="comments"></textarea>
-    </div>
-  </div>
-</div>
+
