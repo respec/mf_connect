@@ -100,10 +100,10 @@
                 <thead class="hidden">
                   <tr>
                     <th>Name</th>
-                  <tr>
+                  </tr>
                   <tr>
                     <th>Icon</th>
-                  <tr>
+                  </tr>
                 </thead>
                 <tbody class="list"></tbody>
               </table>
