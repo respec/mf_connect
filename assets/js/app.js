@@ -122,6 +122,12 @@ function buildApp() {
   });
 
   $(".new-item-btn").click(function() {
+    $("#questionModal").modal("show");
+    return false;
+  });
+
+  $(".yes-new-item-btn").click(function() {
+    $("#questionModal").modal("hide");
     newItem();
     return false;
   });
