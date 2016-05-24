@@ -93,6 +93,7 @@ function buildApp() {
 
   $(document).on("click", ".new-marker-popup", function(e) {
     $("#formModal").modal("show");
+    $(editLocation).show();
   });
 
   $("#about-btn").click(function() {
@@ -122,8 +123,33 @@ function buildApp() {
   });
 
   $(".new-item-btn").click(function() {
+    $("#questionModal").modal("show");
+    return false;
+  });
+
+  // Fire new item when Yes button click on use current location prompt
+  $(".yes-new-item-btn").click(function() {
+    $("#questionModal").modal("hide");
     newItem();
     return false;
+  });
+
+  // Open new issue modal without location when no button clicked
+  $(".no-new-item-btn").click(function() {
+    $("#questionModal").modal("hide");
+    $("#formModal").modal("show");
+    $(editLocation).hide();
+  });
+
+  // Reverse geocode marker location when form modal is opened and prepopulate address fields
+  $("#formModal").on("shown.bs.modal", function (e) {
+    if($(lat).val()!== "" && $(lng).val() !== ""){
+      reverseGeo($(lat).val(),$(lng).val());
+    }
+  });
+
+  $("#issue_address, #issue_city, #issue_state").on("change", function (){
+    geocodeAddress();
   });
 
   $("#nav-btn").click(function() {
@@ -464,7 +490,6 @@ function buildApp() {
     success: function (data) {
       markers.addData(data);
       markerClusters.addLayer(markers);
-      $("#loading").hide();
       featureList = new List("features", {valueNames: ["feature-name"]});
       featureList.sort("feature-name", {order: sortOrder});
       /* If id param passed in URL, zoom to feature, else fit to cluster bounds or fitWorld if no data */
@@ -481,7 +506,9 @@ function buildApp() {
         }
       }
     }
-  });
+  }).always(function () {
+      $("#loading").hide();
+    });
 
   map = L.map("map", {
     layers: [mapquestOSM, highlight],

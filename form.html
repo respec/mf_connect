@@ -5,7 +5,7 @@
   <div class="panel-body">
     <div class="form-group" data-role="fieldcontain">
       <label for="issue_type">Issue Type</label>
-      <select class="form-control" name="issue_type" data-errormessage='{"valueMissing": "This is a required field"}' required>
+      <select class="form-control" name="issue_type" id="issue_type" data-errormessage='{"valueMissing": "This is a required field"}' required>
         <option value=""></option>
         <option value="Graffiti">Graffiti</option>
         <option value="Pothole">Pothole</option>
@@ -15,18 +15,18 @@
         <option value="Other">Other</option>
       </select>
     </div>
-      <div class="panel-body">
+
     <div class="form-group" data-role="fieldcontain">
       <label for="date_reported">Date Reported</label>
-      <input type="date" class="form-control" name="date_reported" data-errormessage='{"valueMissing": "This is a required field"}' required>
+      <input type="date" class="form-control" name="date_reported" id="date_reported" data-errormessage='{"valueMissing": "This is a required field"}' required>
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="issue_address">Issue Address</label>
-      <input class="form-control" type="text" name="issue_address">
+      <input class="form-control" type="text" name="issue_address" id="issue_address">
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="issue_city">Issue City</label>
-      <select class="form-control" name="issue_city">
+      <select class="form-control" name="issue_city" id="issue_city">
         <option value=""></option>
         <option value="Andover">Andover</option>
         <option value="Fridley">Fridley</option>
@@ -34,11 +34,11 @@
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="issue_state">Issue State</label>
-      <input class="form-control" type="text" name="issue_state" value="MN">
+      <input class="form-control" type="text" name="issue_state" id="issue_state" value="MN">
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="notes">Notes</label>
-      <textarea class="form-control" rows="3" name="notes"></textarea>
+      <textarea class="form-control" rows="3" name="notes" id="notes"></textarea>
     </div>
     <div class="form-group">
       <label for="uploads">Photos</label>
@@ -53,19 +53,19 @@
   <div class="panel-body">
     <div class="form-group" data-role="fieldcontain">
       <label for="submitter_name">Submitter Name</label>
-      <input class="form-control" type="text" name="submitter_name" placeholder="(Optional)">
+      <input class="form-control" type="text" name="submitter_name" id="submitter_name" placeholder="(Optional)">
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="submitter_phone">Submitter Phone</label>
-      <input class="form-control" type="text" name="submitter_phone" placeholder="(Optional)" >
+      <input class="form-control" type="text" name="submitter_phone" id="submitter_phone" placeholder="(Optional)" >
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="submitter_email">Submitter Email</label>
-      <input class="form-control" type="email" name="submitter_email" placeholder="(Optional)" >
+      <input class="form-control" type="email" name="submitter_email" id="submitter_email" placeholder="(Optional)" >
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="is_resident">Are you a resident?</label>
-      <select class="form-control" name="is_resident" >
+      <select class="form-control" name="is_resident" id="is_resident" >
         <option value=""></option>
         <option value="No">No</option>
         <option value="Yes">Yes</option>

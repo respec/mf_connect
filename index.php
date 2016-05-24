@@ -139,6 +139,25 @@
       </div>
     </div>
 
+    <div class="modal fade" id="questionModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-primary">Submit a New Issue</h4>
+          </div>
+          <div class="modal-body">
+            <div><strong>Is the issue at your current location?</strong></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default cancel-new-item-btn" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-default no-new-item-btn" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-default yes-new-item-btn" data-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="modal fade" id="formModal" data-backdrop="static" tabindex="-1" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -177,13 +196,13 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" id="cancel-btn">Cancel</button>
-              <button type="submit" class="btn btn-default" data-dismiss="modal" title="Edit location"><i class="fa fa-map-marker"></i>&nbsp;Edit</button>
+              <button type="submit" class="btn btn-default" id="editLocation" data-dismiss="modal" title="Edit location"><i class="fa fa-map-marker"></i>&nbsp;Edit</button>
               <button type="submit" class="btn btn-primary pull-right" title="Submit form">Submit</button>
             </div>
           </form>
         </div>
       </div>
-    </div>
+    </div> <!-- /#formModal -->
 
     <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
       <div class="modal-dialog">
@@ -200,7 +219,8 @@
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
-              <div class="tab-pane active" id="info-tab"></div>
+              <div class="tab-pane active" id="info-tab">
+              </div>
               <div class="tab-pane" id="comments-tab">
                 <div id="comment-panes"></div>
                 <div class="panel panel-primary">
@@ -239,11 +259,11 @@
                       </div>
                       <button type="submit" class="btn btn-primary pull-right">Submit Comment</button>
                     </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                  </div> <!-- /.panel-body -->
+                </div> <!-- /.panel-primary -->
+              </div> <!-- /.tab-pane -->
+            </div> <!-- /.tab-content -->
+          </div> <!-- /.modal-body -->
           <div class="modal-footer">
             <div class="btn-group dropup pull-left">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="share-btn">
@@ -256,11 +276,11 @@
               </ul>
             </div>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+          </div> <!-- /.modal-footer -->
         </div>
       </div>
     </div>
-
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/webshim/1.15.7/minified/polyfiller.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -269,6 +289,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
+    <script src="assets/js/geocode.js"></script>
     <script src="assets/js/app.js"></script>
   </body>
 </html>
