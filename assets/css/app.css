@@ -108,6 +108,10 @@ body {
 .modal-dialog {
   z-index: 100000;
 }*/
+.modal {
+  overflow-y:auto;
+}
+
 .leaflet-control-layers-list input[type="radio"], input[type="checkbox"] {
   margin: 2px;
 }
