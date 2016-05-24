@@ -80,6 +80,7 @@ function formatGeoJSON($sql) {
     $db = null;
     echo json_encode($geojson, JSON_NUMERIC_CHECK);
   } catch(PDOException $e) {
+    error_log('ERROR: '. $e->getMessage(), 0);
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 }
@@ -115,6 +116,7 @@ function getCSV() {
     //header('Content-Disposition: attachment; filename="'.$table.'.csv"');
     $db = null;
   } catch(PDOException $e) {
+    error_log('ERROR: '. $e->getMessage(), 0);
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 }
@@ -174,6 +176,7 @@ function getKML() {
     $db = null;
     echo $kmlOutput;
   } catch(PDOException $e) {
+    error_log('ERROR: '. $e->getMessage(), 0);
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 }
@@ -206,6 +209,7 @@ function getGPX() {
     $db = null;
     echo $gpxOutput;
   } catch(PDOException $e) {
+    error_log('ERROR: '. $e->getMessage(), 0);
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 }
@@ -220,6 +224,7 @@ function getComments($id) {
     echo '{"comments": ' . json_encode($comments) . '}';
     $db = null;
   } catch(PDOException $e) {
+    error_log('ERROR: '. $e->getMessage(), 0);
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 }
@@ -242,6 +247,7 @@ function newComment() {
       $db = null;
       echo "Success";
     } catch(PDOException $e) {
+      error_log('ERROR: '. $e->getMessage(), 0);
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
   }
@@ -290,6 +296,7 @@ function newFeature() {
       echo $db->lastInsertId();
       $db = null;
     } catch(PDOException $e) {
+      error_log('ERROR: '. $e->getMessage(), 0);
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
   }

@@ -93,6 +93,7 @@ function buildApp() {
 
   $(document).on("click", ".new-marker-popup", function(e) {
     $("#formModal").modal("show");
+    $(editLocation).show();
   });
 
   $("#about-btn").click(function() {
@@ -122,8 +123,33 @@ function buildApp() {
   });
 
   $(".new-item-btn").click(function() {
+    $("#questionModal").modal("show");
+    return false;
+  });
+
+  // Fire new item when Yes button click on use current location prompt
+  $(".yes-new-item-btn").click(function() {
+    $("#questionModal").modal("hide");
     newItem();
     return false;
+  });
+
+  // Open new issue modal without location when no button clicked
+  $(".no-new-item-btn").click(function() {
+    $("#questionModal").modal("hide");
+    $("#formModal").modal("show");
+    $(editLocation).hide();
+  });
+
+  // Reverse geocode marker location when form modal is opened and prepopulate address fields
+  $("#formModal").on("shown.bs.modal", function (e) {
+    if($(lat).val()!== "" && $(lng).val() !== ""){
+      reverseGeo($(lat).val(),$(lng).val());
+    }
+  });
+
+  $("#issue_address, #issue_city, #issue_state").on("change", function (){
+    geocodeAddress();
   });
 
   $("#nav-btn").click(function() {
@@ -320,12 +346,12 @@ function buildApp() {
   }
 
   /* Basemap Layers */
-  var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
+  var mapquestOSM = L.tileLayer("https://{s}-s.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
     maxZoom: 18,
     subdomains: ["otile1", "otile2", "otile3", "otile4"],
-    attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
+    attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
   });
-  var mapquestHYB = L.layerGroup([L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
+  var mapquestHYB = L.layerGroup([L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
     maxZoom: 18,
     subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"]
   }), L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png", {
@@ -333,13 +359,13 @@ function buildApp() {
     subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"],
     attribution: "Labels courtesy of <a href='http://www.mapquest.com/' target='_blank'>MapQuest</a> <img src='http://developer.mapquest.com/content/osm/mq_logo.png'>. Map data (c) <a href='http://www.openstreetmap.org/' target='_blank'>OpenStreetMap</a> contributors, CC-BY-SA. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency"
   })]);
-  var nysdop = L.tileLayer.wms("http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer", {
+  var nysdop = L.tileLayer.wms("https://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer", {
     layers: "0,1,2,3,4,5,6",
     format: "image/jpeg",
     transparent: true,
     attribution: "<a href='http://www.orthos.dhses.ny.gov/' target='_blank'>NYS Orthos Online</a>"
   });
-  var nauticalCharts = L.tileLayer.wms("http://egisws02.nos.noaa.gov/ArcGIS/services/RNC/NOAA_RNC/ImageServer/WMSServer?", {
+  var nauticalCharts = L.tileLayer.wms("https://egisws02.nos.noaa.gov/ArcGIS/services/RNC/NOAA_RNC/ImageServer/WMSServer?", {
     layers: "RNC/NOAA_RNC",
     format: "image/jpeg",
     transparent: false,
@@ -464,7 +490,6 @@ function buildApp() {
     success: function (data) {
       markers.addData(data);
       markerClusters.addLayer(markers);
-      $("#loading").hide();
       featureList = new List("features", {valueNames: ["feature-name"]});
       featureList.sort("feature-name", {order: sortOrder});
       /* If id param passed in URL, zoom to feature, else fit to cluster bounds or fitWorld if no data */
@@ -481,7 +506,9 @@ function buildApp() {
         }
       }
     }
-  });
+  }).always(function () {
+      $("#loading").hide();
+    });
 
   map = L.map("map", {
     layers: [mapquestOSM, highlight],
