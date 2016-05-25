@@ -37,7 +37,7 @@ function reverseGeo(lat,lng) {
 }
 
 /**
- * geocodeAddress - set lat/long based on address entered in form
+ * Geocode Address - set lat/long based on address entered in form
  */
 function geocodeAddress() {
 
