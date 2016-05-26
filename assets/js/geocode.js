@@ -1,4 +1,7 @@
-
+/**
+ * Reverse Geocode Lat/Long (i.e. Current Lcoation) and prepopulate address fields
+ * @type {google}
+ */
 var geocoder=new google.maps.Geocoder();
 function reverseGeo(lat,lng) {
     var latlng = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
@@ -9,10 +12,23 @@ function reverseGeo(lat,lng) {
             var format_address = results[0].formatted_address;
             var part = format_address.split(',');
 
-            $(issue_city).val(part[1].replace(/^\s+/,""));
-            $(issue_state).val(part[2].split(' ')[1].replace(/^\s+/,""));
-            var zip = part[2].split(' ')[2];
-            $(issue_address).val(part[0]);
+            var city = part[1].replace(/^\s+/,"");
+
+            // Check if result city is allowed:
+            var allowed_cities = new Array;
+            $("#issue_city option").each  ( function() {
+               allowed_cities.push ( $(this).val() );
+            });
+            if(allowed_cities.indexOf(city) > -1){
+                // City is allowed
+                $(issue_city).val(city);
+                $(issue_state).val(part[2].split(' ')[1].replace(/^\s+/,""));
+                var zip = part[2].split(' ')[2];
+                $(issue_address).val(part[0]);
+            } else {
+                alert("Warning: MapFeeder Connect has not been deployed for " + city + ".");
+            }
+
 
         } else {
             console.log("Geocoder failed due to: " + status);
@@ -20,7 +36,9 @@ function reverseGeo(lat,lng) {
     });
 }
 
-
+/**
+ * Geocode Address - set lat/long based on address entered in form
+ */
 function geocodeAddress() {
 
     // Check that all fields are filled
