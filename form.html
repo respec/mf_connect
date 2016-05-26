@@ -22,19 +22,26 @@
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="issue_address">Issue Address</label>
-      <input class="form-control" type="text" name="issue_address" id="issue_address">
+      <input class="form-control" type="text" name="issue_address" id="issue_address" data-errormessage='{"valueMissing": "This is a required field"}' required>
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="issue_city">Issue City</label>
-      <select class="form-control" name="issue_city" id="issue_city">
+      <select class="form-control" name="issue_city" id="issue_city" data-errormessage='{"valueMissing": "This is a required field"}' required>
         <option value=""></option>
         <option value="Andover">Andover</option>
         <option value="Fridley">Fridley</option>
       </select>
+
+      <label for="issue_state">Issue State</label>
+      <input class="form-control" type="text" name="issue_state" id="issue_state" value="MN" data-errormessage='{"valueMissing": "This is a required field"}' required>
     </div>
     <div class="form-group" data-role="fieldcontain">
-      <label for="issue_state">Issue State</label>
-      <input class="form-control" type="text" name="issue_state" id="issue_state" value="MN">
+      <label for="is_resident">Are you a resident of the city?</label>
+      <select class="form-control" name="is_resident" id="is_resident" data-errormessage='{"valueMissing": "This is a required field"}' required>
+        <option value=""></option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="notes">Notes</label>
@@ -48,7 +55,7 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Submitter Information</h3>
+    <h3 class="panel-title">Submitter Information (optional)</h3>
   </div>
   <div class="panel-body">
     <div class="form-group" data-role="fieldcontain">
@@ -62,14 +69,6 @@
     <div class="form-group" data-role="fieldcontain">
       <label for="submitter_email">Submitter Email</label>
       <input class="form-control" type="email" name="submitter_email" id="submitter_email" placeholder="(Optional)" >
-    </div>
-    <div class="form-group" data-role="fieldcontain">
-      <label for="is_resident">Are you a resident?</label>
-      <select class="form-control" name="is_resident" id="is_resident" >
-        <option value=""></option>
-        <option value="No">No</option>
-        <option value="Yes">Yes</option>
-      </select>
     </div>
   </div>
 </div>
