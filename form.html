@@ -46,8 +46,8 @@
       </select>
     </div>
     <div class="form-group" data-role="fieldcontain">
-      <label for="notes">Notes</label>
-      <textarea class="form-control" rows="3" name="notes" id="notes"></textarea>
+      <label for="notes">Describe the Issue</label>
+      <textarea class="form-control" rows="3" name="notes" id="notes" data-errormessage='{"valueMissing": "This is a required field"}' required></textarea>
     </div>
     <div class="form-group">
       <label for="uploads">Photos</label>
@@ -60,17 +60,18 @@
     <h3 class="panel-title">Submitter Information (optional)</h3>
   </div>
   <div class="panel-body">
-    <div class="form-group" data-role="fieldcontain">
-      <label for="submitter_name">Submitter Name</label>
+    <p>Please provide your name and contact information. Everything is confidential and will never be shared.</p>
+	<div class="form-group" data-role="fieldcontain">
+      <label for="submitter_name">Name</label>
       <input class="form-control" type="text" name="submitter_name" id="submitter_name" placeholder="(Optional)">
     </div>
     <div class="form-group" data-role="fieldcontain">
-      <label for="submitter_phone">Submitter Phone</label>
-      <input class="form-control" type="text" name="submitter_phone" id="submitter_phone" placeholder="(Optional)" >
-    </div>
-    <div class="form-group" data-role="fieldcontain">
-      <label for="submitter_email">Submitter Email</label>
+      <label for="submitter_email">Email</label>
       <input class="form-control" type="email" name="submitter_email" id="submitter_email" placeholder="(Optional)" >
+    </div>
+	<div class="form-group" data-role="fieldcontain">
+      <label for="submitter_phone">Phone</label>
+      <input class="form-control" type="text" name="submitter_phone" id="submitter_phone" placeholder="(Optional)" >
     </div>
   </div>
 </div>

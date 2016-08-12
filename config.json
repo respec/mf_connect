@@ -33,7 +33,8 @@
   "about": {
     "showAtStartup": false,
     "title": "Post Issue",
-    "text": "This is a simple citizen-driven app for quick reporting of issues they find in their city."
+    "text": "A simple citizen-driven app for reporting issues to city Public Works, powered by <a href='https://respec.squarespace.com/public-works/'>mapFeeder</a>. Thanks to <a href='https://github.com/bmcbride/building-damage-reporter'>Brian McBride</a> and the great folks at <a href='https://www.fulcrumapp.com'>FulcrumApp</a>.",
+	"help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
   },
   "sidebar": {
     "titleField": "Timestamp",

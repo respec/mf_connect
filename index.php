@@ -56,19 +56,9 @@
               <ul class="dropdown-menu">
                 <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
                 <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="refresh-btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Refresh Data</a></li>
-                <li class="divider hidden-xs"></li>
-                <li><a href="api/admin.php" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-user"></i>&nbsp;&nbsp;Admin</a></li>
               </ul>
             </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download fa-white"></i>&nbsp;&nbsp;Download <b class="caret"></b></a>
-                <ul class="dropdown-menu" id="download-formats">
-                  <li><a href="api/csv" <?php echo "download='" . $config['text']['downloadFileName'] . ".csv'"; ?> target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;CSV</a></li>
-                  <li><a href="api/geojson" <?php echo "download='" . $config['text']['downloadFileName'] . ".geojson'"; ?> target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;GeoJSON</a></li>
-                  <li><a href="api/kml" <?php echo "download='" . $config['text']['downloadFileName'] . ".kml'"; ?> target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;KML</a></li>
-                  <li><a href="api/gpx" <?php echo "download='" . $config['text']['downloadFileName'] . ".gpx'"; ?> target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;GPX</a></li>
-                </ul>
-            </li>
+
             <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" class="search-btn"><i class="fa fa-search fa-white"></i>&nbsp;&nbsp;Search</a></li>
           </ul>
           <div class="navbar-form navbar-right hidden-xs">
@@ -130,7 +120,8 @@
           </div>
           <div class="modal-body">
             <div><?php echo $config["about"]["text"]; ?></div>
-            <br><div class="well well-sm" id="attribution"></div>
+			<div class="well well-sm" id="help"><?php echo $config["about"]["help"]; ?></div>
+			<div class="well well-sm" id="attribution"></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -172,7 +163,7 @@
                 <input type="text" class="form-control" name="token" value="<?php echo $newToken; ?>">
               </div>
               <?php include("form.html") ?>
-              <div class="panel panel-default">
+			  <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Location</h3>
                 </div>
@@ -181,13 +172,13 @@
                     <div class="col-xs-6">
                       <div class="form-group">
                         <label for="lat">Latitude</label>
-                        <input type="text" class="form-control" id="lat" name="lat">
+                        <input type="text" class="form-control" id="lat" name="lat" readonly>
                       </div>
                     </div>
                     <div class="col-xs-6">
                       <div class="form-group">
                         <label for="lng">Longitude</label>
-                        <input type="text" class="form-control" id="lng" name="lng">
+                        <input type="text" class="form-control" id="lng" name="lng" readonly>
                       </div>
                     </div>
                   </div>
@@ -265,16 +256,6 @@
             </div> <!-- /.tab-content -->
           </div> <!-- /.modal-body -->
           <div class="modal-footer">
-            <div class="btn-group dropup pull-left">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="share-btn">
-                <i class="fa fa-share-alt"></i>&nbsp;Share&nbsp;<span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#" target="_blank" id="share-hyperlink"><i class="fa fa-link"></i>&nbsp;Hyperlink</a></li>
-                <li><a href="#" target="_blank" id="share-twitter"><i class="fa fa-twitter"></i>&nbsp;Twitter</a></li>
-                <li><a href="#" target="_blank" id="share-facebook"><i class="fa fa-facebook"></i>&nbsp;Facebook</a></li>
-              </ul>
-            </div>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div> <!-- /.modal-footer -->
         </div>
