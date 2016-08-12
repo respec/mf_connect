@@ -346,6 +346,11 @@ function buildApp() {
   }
 
   /* Basemap Layers */
+  var baseOSM = L.tileLayer("http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+    minZoom: 8,
+	maxZoom: 18,
+    attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+  });
   var mapquestOSM = L.tileLayer("https://{s}-s.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
     maxZoom: 18,
     subdomains: ["otile1", "otile2", "otile3", "otile4"],
@@ -511,7 +516,7 @@ function buildApp() {
     });
 
   map = L.map("map", {
-    layers: [mapquestOSM, highlight],
+    layers: [baseOSM, highlight],
     zoomControl: false,
     attributionControl: false
   }).fitWorld();
@@ -540,8 +545,8 @@ function buildApp() {
   }
 
   var baseLayers = {
-    "Street Map": mapquestOSM,
-    "Aerial Imagery": mapquestHYB/*,
+    "Street Map": baseOSM,
+    /*"Aerial Imagery": mapquestHYB,
     "NYSDOP Imagery": nysdop,
     "Nautical Charts": nauticalCharts*/
   };
