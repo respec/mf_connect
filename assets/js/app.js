@@ -346,7 +346,7 @@ function buildApp() {
   }
 
   /* Basemap Layers */
-  var baseOSM = L.tileLayer("http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+  var baseOSM = L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
     minZoom: 8,
 	maxZoom: 18,
     attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
@@ -395,7 +395,7 @@ function buildApp() {
     }),
     draggable: true,
     riseOnHover: true
-  }).bindPopup("<div class='new-marker-popup center-block'><b>Drag marker to adjust location.</b><br>Then tap here to enter info.</div>");
+  }).bindPopup("<div class='new-marker-popup center-block'>Tap here to enter information <b>OR</b><br/> drag the marker to adjust location.</div>");
 
   newMarker.on("dragend", function(e) {
     $("#lat").val(newMarker.getLatLng().lat.toFixed(6));
