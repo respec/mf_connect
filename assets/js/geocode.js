@@ -27,6 +27,8 @@ function reverseGeo(lat,lng) {
                 $(issue_address).val(part[0]);
             } else {
                 alert("Warning: MapFeeder Connect has not been deployed for " + city + ".");
+		$(issue_address).val('');
+		$(issue_city).val('');
             }
 
 
@@ -74,4 +76,15 @@ function geocodeAddress() {
             console.log("Address lookup failed for the following reason: " + status);
         }
     });
+}
+
+
+/**
+* Check City
+*/
+function checkCity(theCity) {
+    if (!$('#issue_city option[value="' + theCity + '"]').prop("selected", true).length) {
+        alert('Warning: mapFeeder Connect has not been deployed for ' + theCity);;
+    }
+    return true;
 }
