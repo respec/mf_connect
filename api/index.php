@@ -215,7 +215,7 @@ function getGPX() {
 }
 
 function getComments($id) {
-  $sql = "SELECT id, name, comment, date(timestamp, 'localtime') AS date FROM comments WHERE feature_id = " . $id . " ORDER BY timestamp DESC";
+  $sql = "SELECT id, name, comment, \"timestamp\"::date AS date FROM workorder.comments WHERE feature_id = " . $id . " ORDER BY \"timestamp\" DESC";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -239,7 +239,7 @@ function newComment() {
         $values[] = trim($value);
       }
     }
-    $sql = "INSERT INTO comments (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
+    $sql = "INSERT INTO workorder.comments (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);
@@ -302,11 +302,19 @@ function newFeature() {
   }
 }
 
+/*
 function getConnection() {
   global $dbname;
   $dbh = new PDO('sqlite:' . $dbname . '.sqlite');
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   return $dbh;
 }
-
+*/
+function getConnection() {
+  global $dbname;
+  // Create an mfconnect database user which only has access to the appropriate table
+  $dbh = new PDO('pgsql:host=localhost;port=5432;dbname=andover', 'andover', 'f33dME!');
+  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  return $dbh;
+}
 ?>

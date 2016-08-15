@@ -44,7 +44,7 @@
           <div class="navbar-icon-container">
             <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg fa-white"></i></a>
             <a href="#" class="navbar-icon pull-right visible-xs search-btn"><i class="fa fa-search fa-lg fa-white"></i></a>
-            <a href="#" class="navbar-icon pull-right visible-xs new-item-btn" style="margin-left: 5px;"><i class="fa fa-plus fa-lg fa-white"></i></a>
+            <a href="#" class="navbar-icon pull-right visible-xs new-item-btn" style="margin-left: 5px;"><i class="fa fa-plus fa-lg fa-red"><span style="font-size:75%;font-weight:bold;"> Add</span></i></a>
           </div>
           <div class="navbar-brand"><?php if ($config["navbar"]["icon"]) {echo "<img src='" . $config["navbar"]["icon"] . "'>";} echo $config["navbar"]["title"]; ?></div>
         </div>
@@ -272,5 +272,26 @@
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
     <script src="assets/js/geocode.js"></script>
     <script src="assets/js/app.js"></script>
+/*
+    <script>
+        // Parameterize the URL query string
+	var urlParams={};
+        if (location.search) {
+            var parts = location.search.substring(1).split('&');
+
+            for (var i = 0; i < parts.length; i++) {
+                var nv = parts[i].split('=');
+                if (!nv[0]) continue;
+                urlParams[nv[0]] = nv[1] || true;
+            }
+        }
+
+        if (urlParams.city === undefined || urlParams.city === true) {
+            alert("WARNING: No city has been supplied");
+        } else {
+    	    checkCity(decodeURIComponent(urlParams.city));
+        }
+    </script>
+*/
   </body>
 </html>

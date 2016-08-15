@@ -1,26 +1,26 @@
 {
   "data": {
-    "table": "data",
+    "table": "workorder.data",
     "fields": [
       "id",
-      "strftime('%Y-%m-%d %H:%M',datetime(timestamp, 'localtime')) AS Timestamp",
-      "issue_type AS 'Issue Type'",
-      "issue_city AS 'City'",
-      "issue_state AS 'State'",
-      "uploads AS Photos",
-      "lat || ', ' || lng AS Location",
+      "to_char(\"timestamp\",'YYYY-mm-dd HH24:MM:ss') AS \"Timestamp\"",
+      "issue_type AS \"Issue Type\"",
+      "issue_city AS \"City\"",
+      "issue_state AS \"State\"",
+      "uploads AS \"Photos\"",
+      "lat || ', ' || lng AS \"Location\"",
       "lng AS x",
       "lat AS y"
     ]
   },
   "app": {
-    "title": "Mapfeeder Connect",
+    "title": "mapFeeder Connect",
     "description": "",
     "author": ""
   },
   "navbar": {
     "icon": "",
-    "title": "Mapfeeder Connect"
+    "title": "mapFeeder Connect"
   },
   "twitter": {
     "via": "fulcrumapp",
