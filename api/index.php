@@ -7,7 +7,7 @@ use Slim\Slim;
 
 $json = file_get_contents('../config.json');
 $config = json_decode($json, true);
-$dbname = 'data';
+$dbname = $config['city'][$_SESSION["form_city"]];
 $table = $config['data']['table'];
 $fields = implode(', ', $config['data']['fields']);
 $titleField = $config['marker']['titleField'];
@@ -30,6 +30,8 @@ $app->post('/feature', 'newFeature');
 $app->run();
 
 function verifyFormToken($form) {
+
+
   // check if a session is started and a token is transmitted, if not return an error
   if (!isset($_SESSION[$form.'_token'])) {
     return false;
@@ -215,7 +217,7 @@ function getGPX() {
 }
 
 function getComments($id) {
-  $sql = "SELECT id, name, comment, \"timestamp\"::date AS date FROM workorder.comments WHERE feature_id = " . $id . " ORDER BY \"timestamp\" DESC";
+  $sql = "SELECT id, name, comment, \"timestamp\"::date AS date FROM workorder.mfc_comments WHERE feature_id = " . $id . " ORDER BY \"timestamp\" DESC";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -239,7 +241,7 @@ function newComment() {
         $values[] = trim($value);
       }
     }
-    $sql = "INSERT INTO workorder.comments (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
+    $sql = "INSERT INTO workorder.mfc_comments (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);
@@ -302,18 +304,10 @@ function newFeature() {
   }
 }
 
-/*
 function getConnection() {
   global $dbname;
-  $dbh = new PDO('sqlite:' . $dbname . '.sqlite');
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  return $dbh;
-}
-*/
-function getConnection() {
-  global $dbname;
-  // Create an mfconnect database user which only has access to the appropriate table
-  $dbh = new PDO('pgsql:host=localhost;port=5432;dbname=andover', 'andover', 'f33dME!');
+
+  $dbh = new PDO('pgsql:host=localhost;port=5432;dbname=' . $dbname . '', 'mf_connect', 'mfconnect123');
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   return $dbh;
 }
