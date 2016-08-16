@@ -1,6 +1,6 @@
 {
   "data": {
-    "table": "workorder.data",
+    "table": "workorder.mfc_data",
     "fields": [
       "id",
       "to_char(\"timestamp\",'YYYY-mm-dd HH24:MM:ss') AS \"Timestamp\"",
@@ -12,6 +12,12 @@
       "lng AS x",
       "lat AS y"
     ]
+  },
+  "city": {
+    "Andover": "andover",
+    "Fridley": "fridley",
+    "St Paul": "stpaul",
+    "Roseville": "roseville"
   },
   "app": {
     "title": "mapFeeder Connect",
