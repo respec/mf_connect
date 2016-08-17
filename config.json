@@ -61,7 +61,7 @@
     "status": {
       "field": "Issue Type",
       "values": [{
-        "name": "Graffiti",
+        "name": "PARKS",
         "icon": {
           "iconUrl": "assets/img/markers/87d30f.png",
           "iconSize": [30, 40],
@@ -70,7 +70,7 @@
         }
       },
       {
-        "name": "Pothole",
+        "name": "SEWER",
         "icon": {
           "iconUrl": "assets/img/markers/cb0d0c.png",
           "iconSize": [30, 40],
@@ -79,7 +79,7 @@
         }
       },
       {
-        "name": "Garbage",
+        "name": "WATER",
         "icon": {
           "iconUrl": "assets/img/markers/1891c9.png",
           "iconSize": [30, 40],
@@ -88,7 +88,7 @@
         }
       },
       {
-        "name": "Sidewalk Damage",
+        "name": "STREETS",
         "icon": {
           "iconUrl": "assets/img/markers/ff8819.png",
           "iconSize": [30, 40],
