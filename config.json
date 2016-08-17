@@ -13,9 +13,17 @@
       "lat AS y"
     ]
   },
-  "city": {
-    "Andover": "andover",
-    "Fridley": "fridley",
+  "city":{
+    "Andover": {
+	"database":"andover",
+	"name":"City of Andover",
+	"web":"http://www.ci.andover.mn.us/"
+    },
+    "Fridley": {
+	"database":"fridley",
+	"name":"City of Fridley",
+	"web":"http://www.ci.fridley.mn.us/"
+    },
     "St Paul": "stpaul",
     "Roseville": "roseville"
   },
@@ -39,8 +47,9 @@
   "about": {
     "showAtStartup": false,
     "title": "Post Issue",
-    "text": "A simple citizen-driven app for reporting issues to city Public Works, powered by <a href='https://respec.squarespace.com/public-works/'>mapFeeder</a>. Thanks to <a href='https://github.com/bmcbride/building-damage-reporter'>Brian McBride</a> and the great folks at <a href='https://www.fulcrumapp.com'>FulcrumApp</a>.",
-	"help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
+    "text": "A simple citizen-driven app for reporting issues to the city, powered by <a href='https://respec.squarespace.com/public-works/'>mapFeeder</a>.",
+    "thanks": "Thanks to <a href='https://github.com/bmcbride/building-damage-reporter'>Brian McBride</a> and the great folks at <a href='https://www.fulcrumapp.com'>FulcrumApp</a>.",
+    "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
   },
   "sidebar": {
     "titleField": "Timestamp",

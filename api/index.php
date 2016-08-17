@@ -7,7 +7,7 @@ use Slim\Slim;
 
 $json = file_get_contents('../config.json');
 $config = json_decode($json, true);
-$dbname = $config['city'][$_SESSION["form_city"]];
+$dbname = $config['city'][$_SESSION["form_city"]]["database"];;
 $table = $config['data']['table'];
 $fields = implode(', ', $config['data']['fields']);
 $titleField = $config['marker']['titleField'];

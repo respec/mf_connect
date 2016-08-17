@@ -121,8 +121,10 @@
           </div>
           <div class="modal-body">
             <div><?php echo $config["about"]["text"]; ?></div>
-			<div class="well well-sm" id="help"><?php echo $config["about"]["help"]; ?></div>
-			<div class="well well-sm" id="attribution"></div>
+	    <div class="well well-sm" id="about"><a href="<?php echo $config["city"][$_SESSION["form_city"]]["web"]; ?>" target="_city"><?php echo $config["city"][$_SESSION["form_city"]]["name"]; ?></a></div>
+	    <div class="well well-sm" id="help"><?php echo $config["about"]["help"]; ?></div>
+	    <div class="well well-sm" id="thanks"><?php echo $config["about"]["thanks"]; ?></div>
+	    <div class="well well-sm" id="attribution"></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
