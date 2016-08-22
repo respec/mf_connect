@@ -96,6 +96,11 @@ body {
 .fa-white {
   color: #FFFFFF;
 }
+.fa-red {
+  color: #FFFFFF;
+  background-color: #CC0000;
+  padding: 3px;
+}
 /*.modal-backdrop {
   position: absolute;
   top: 0;
