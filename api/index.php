@@ -9,7 +9,8 @@ $json = file_get_contents('../config.json');
 $config = json_decode($json, true);
 $dbname = $config['city'][$_SESSION["form_city"]]["database"];;
 $table = $config['data']['table'];
-$table_after_trigger_runs = $config['data']['table_after_trigger_runs'];
+$table_mapfeeder_side = $config['data']['table_mapfeeder_side'];
+$table_mapfeeder_side_pid_col = $config['data']['table_mapfeeder_side_primary_id_column'];
 $fields = implode(', ', $config['data']['fields']);
 $titleField = $config['marker']['titleField'];
 $dir = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
@@ -272,7 +273,8 @@ function newFeature() {
   file_put_contents($file, $current);
 
   global $table;
-  global $table_after_trigger_runs;
+  global $table_mapfeeder_side;
+  global $table_mapfeeder_side_pid_col;
   global $dbname;
   if (verifyFormToken('form')) {
     $fields = array();
@@ -330,9 +332,6 @@ function newFeature() {
     // not going to work because the trigger creates yet another record with a new primary id in the work_order table
     $getPID = "SELECT id from $table WHERE " . $whereCondition;
 
-
-
-
     $newPID = false;
     try {
       
@@ -351,7 +350,7 @@ function newFeature() {
 
       // get the PID of the record created by the trigger in the table that Mapfeeder will be checking
       sleep(1);
-      $getActualPID = "SELECT work_order_id from $moduleName.$table_after_trigger_runs WHERE connect_id = $newPID";
+      $getActualPID = "SELECT $table_mapfeeder_side_pid_col from $moduleName.$table_mapfeeder_side WHERE connect_id = $newPID";
 
       $db = getConnection();
       $re = $db->query($getActualPID);
@@ -409,7 +408,7 @@ function newFeature() {
         $current .= $uploadfile;
         file_put_contents($file, $current);
 
-        $mf_uploads_path = '/data2/mapfeeder-uploads/' . $subscriberName . "/" . $moduleName . "/" . $table_after_trigger_runs . "/" . $newActualPID;
+        $mf_uploads_path = '/data2/mapfeeder-uploads/' . $subscriberName . "/" . $moduleName . "/" . $table_mapfeeder_side . "/" . $newActualPID;
         $current = file_get_contents($file);
         $current .= "\n constructed mf uploads path\n";
         $current .= $mf_uploads_path . "\n";

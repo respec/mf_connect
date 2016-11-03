@@ -2,6 +2,7 @@
   "data": {
     "table": "workorder.mfc_data",
     "table_mapfeeder_side": "rpt_work_order",
+    "table_mapfeeder_side_primary_id_column": "work_order_id",
     "fields": [
       "id",
       "to_char(\"timestamp\",'YYYY-mm-dd HH24:MM:ss') AS \"Timestamp\"",
