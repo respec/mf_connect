@@ -9,6 +9,7 @@ $json = file_get_contents('../config.json');
 $config = json_decode($json, true);
 $dbname = $config['city'][$_SESSION["form_city"]]["database"];;
 $table = $config['data']['table'];
+$table_after_trigger_runs = $config['data']['table_after_trigger_runs'];
 $fields = implode(', ', $config['data']['fields']);
 $titleField = $config['marker']['titleField'];
 $dir = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
@@ -256,7 +257,23 @@ function newComment() {
 }
 
 function newFeature() {
+
+  $file = '/home/chris/dev/mapfeeder/connect/logs/connect.txt';
+  // $myfile = fopen($file, "w") or die("Unable to open file!");
+  // $txt = "new feature in mfconnect\n";
+  // fwrite($myfile, $txt);
+  // $txt = "\n";
+  // fwrite($myfile, $txt);
+  // fclose($myfile);
+  $current = file_get_contents($file);
+  // Append a new person to the file
+  $current .= "new feature in mfconnect\n";
+  // Write the contents back to the file
+  file_put_contents($file, $current);
+
   global $table;
+  global $table_after_trigger_runs;
+  global $dbname;
   if (verifyFormToken('form')) {
     $fields = array();
     $values = array();
@@ -270,6 +287,111 @@ function newFeature() {
       }
     }
 
+    try{
+      $tableSplit = explode('.', $table);
+      $subscriberName = $dbname;
+      $moduleName = $tableSplit[0];
+      $tableName = $tableSplit[1];
+
+      // $current = file_get_contents($file);
+      // // Append a new person to the file
+      // $current .= "\n path parts: \n";
+      // $current .= print_r($tableSplit,true);
+      // $current .= "\n" . $subscriberName;
+      // $current .= "\n" . $moduleName;
+      // $current .= "\n" . $tableName;
+      // // Write the contents back to the file
+      // file_put_contents($file, $current);
+    } catch(Exception $e) {
+      // error_log('ERROR: '. $e->getMessage(), 0);  
+      // $current = file_get_contents($file);
+      // // Append a new person to the file
+      // $current .= "error\n";
+      // $current .= print_r($e->getMessage(),true);
+      // // Write the contents back to the file
+      // file_put_contents($file, $current);
+
+    }
+    
+
+
+    $sql = "INSERT INTO $table (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
+    
+    $whereCondition = "";
+    $num = count($values);
+    $and = "";
+    for ($i=0; $i < $num; $i++) {
+      if ($i > 0) {
+        $and = "AND ";
+      }
+      $whereCondition .= $and . $fields[$i] . " ='" . $values[$i] . "' ";
+    }
+
+    // not going to work because the trigger creates yet another record with a new primary id in the work_order table
+    $getPID = "SELECT id from $table WHERE " . $whereCondition;
+
+
+
+
+    $newPID = false;
+    try {
+      
+      // insert record
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->execute($values);
+      $db = null;
+
+      // select record to get new primary id
+      $db = getConnection();
+      $re = $db->query($getPID);
+      $retv = $re->execute();
+      $val = $re->fetch();
+      $newPID = $val[0];
+
+      // get the PID of the record created by the trigger in the table that Mapfeeder will be checking
+      sleep(1);
+      $getActualPID = "SELECT work_order_id from $moduleName.$table_after_trigger_runs WHERE connect_id = $newPID";
+
+      $db = getConnection();
+      $re = $db->query($getActualPID);
+      $retv = $re->execute();
+      $val = $re->fetch();
+
+      $current = file_get_contents($file);
+      $current .= "\n actual val\n";
+      $current .= print_r($val,true);
+      file_put_contents($file, $current);
+
+      $newActualPID = $val[0];
+
+
+
+
+    } catch(Exception $e) {
+
+      $current = file_get_contents($file);
+      $current .= "\n error\n";
+      $current .= print_r($e,true);
+      file_put_contents($file, $current);
+
+      error_log('ERROR: '. $e->getMessage(), 0);
+      $db = null;
+    }
+    $db = null;
+
+    $current = file_get_contents($file);
+    $current .= "\n new pid\n";
+    $current .= $newPID;
+    file_put_contents($file, $current);
+
+
+    $current = file_get_contents($file);
+    $current .= "\n new actual pid\n";
+    $current .= $newActualPID;
+    file_put_contents($file, $current);
+
+
     $uploads = array();
     foreach ($_FILES['uploads']['error'] as $key => $error) {
       if ($error === UPLOAD_ERR_OK) {
@@ -279,28 +401,127 @@ function newFeature() {
         $newfilename = md5($file_basename) .rand() . $file_ext;
         $uploaddir = 'uploads/';
         $uploadfile = $uploaddir . $newfilename;
-        move_uploaded_file($_FILES['uploads']['tmp_name'][$key], $uploadfile);
+        
+        $current = file_get_contents($file);
+        $current .= "\n cwd\n";
+        $current .= getcwd() . "\n";
+        $current .= "\n uploading files uploadfile:\n";
+        $current .= $uploadfile;
+        file_put_contents($file, $current);
+
+        $mf_uploads_path = '/data2/mapfeeder-uploads/' . $subscriberName . "/" . $moduleName . "/" . $table_after_trigger_runs . "/" . $newActualPID;
+        $current = file_get_contents($file);
+        $current .= "\n constructed mf uploads path\n";
+        $current .= $mf_uploads_path . "\n";
+        $current .= "\n constructed user\n";
+        $current .= get_current_user() . "\n";
+        // $current .= "\n constructed mf uploads key\n";
+        // $current .= $key . "\n";
+        // $current .= $_FILES['uploads']['tmp_name'][$key];
+        file_put_contents($file, $current);
+        try {
+          $current = file_get_contents($file);
+          $current .= "\n trying to move file __\n";
+          // $current .= print_r($e,true);
+          file_put_contents($file, $current);
+
+          move_uploaded_file($_FILES['uploads']['tmp_name'][$key], $uploadfile);
+
+          // $from = '/data/vhosts/chris.mapfeeder.net/mapfeeder/connect/api/' . $uploadfile;
+
+          // $current = file_get_contents($file);
+          // $current .= "\n copying\n";
+          // $current .= $from;
+          // file_put_contents($file, $current);
+          if(! is_dir($mf_uploads_path)){
+            mkdir($mf_uploads_path);
+          }
+
+          copy($uploadfile, $mf_uploads_path . "/" . $newfilename);
+        
+          $current = file_get_contents($file);
+          $current .= "\n trying to move file after\n";
+          // $current .= print_r($e,true);
+          file_put_contents($file, $current);
+          // copy($mf_uploads_path, $uploadfile);
+          // if (!copy($_FILES['uploads']['tmp_name'][$key], $mf_uploads_path)) {
+          //   $current = file_get_contents($file);
+          //   $current .= "\n failed to copy file\n";
+          //   file_put_contents($file, $current);
+          // }
+          
+        } catch(Exception $e) {
+          $current = file_get_contents($file);
+          $current .= "\n failed to copy file\n";
+          $current .= print_r($e,true);
+          file_put_contents($file, $current);
+        }
+        // if (!copy($_FILES['uploads']['tmp_name'][$key], $mf_uploads_path)) {
+        //   $current = file_get_contents($file);
+        //   $current .= "\n failed to copy file\n";
+        //   file_put_contents($file, $current);
+        // }
+
+        // move_uploaded_file($_FILES['uploads']['tmp_name'][$key], $uploadfile);
+        // move_uploaded_file($_FILES['uploads']['tmp_name'][$key], $mf_uploads_path);
+        
+        // copy($mf_uploads_path, $uploadfile);
+
         $uploads[] = $newfilename;
       }
     }
 
     if (count($uploads) > 0) {
+
+      $current = file_get_contents($file);
+      $current .= "\ncount uploads is > 0\n";
+      file_put_contents($file, $current);
+
       $fields[] = 'uploads';
       $values[] = implode(',', $uploads);
     }
 
-    $sql = "INSERT INTO $table (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
+    // $sql = "INSERT INTO $table (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
+    
+    // $whereCondition = "";
+    // $num = count($values);
+    // $and = "";
+    // for ($i=0; $i < $num; $i++) {
+    //   if ($i > 0) {
+    //     $and = "AND ";
+    //   }
+    //   $whereCondition .= $and . $fields[$i] . " ='" . $values[$i] . "' ";
+    // }
 
-    try {
-      $db = getConnection();
-      $stmt = $db->prepare($sql);
-      $stmt->execute($values);
-      echo $db->lastInsertId();
-      $db = null;
-    } catch(PDOException $e) {
-      error_log('ERROR: '. $e->getMessage(), 0);
-      echo '{"error":{"text":'. $e->getMessage() .'}}';
-    }
+    // $getPID = "SELECT id from $table WHERE " . $whereCondition;
+    // $newPID = false;
+    // try {
+      
+    //   // insert record
+    //   $db = getConnection();
+    //   $stmt = $db->prepare($sql);
+    //   $stmt->execute($values);
+    //   $db = null;
+
+    //   // select record to get new primary id
+    //   $db = getConnection();
+    //   $re = $db->query($getPID);
+    //   $retv = $re->execute();
+    //   $val = $re->fetch();
+    //   $newPID = $val[0]; 
+    // } catch(Exception $e) {
+    //   error_log('ERROR: '. $e->getMessage(), 0);
+    //   $db = null;
+    // }
+    // $db = null;
+
+    // $current = file_get_contents($file);
+    // $current .= "\n new pid\n";
+    // $current .= $newPID;
+    // file_put_contents($file, $current);
+
+
+
   }
 }
 
