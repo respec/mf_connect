@@ -258,24 +258,11 @@ function newComment() {
 }
 
 function newFeature() {
-
-  $file = '/home/chris/dev/mapfeeder/connect/logs/connect.txt';
-  // $myfile = fopen($file, "w") or die("Unable to open file!");
-  // $txt = "new feature in mfconnect\n";
-  // fwrite($myfile, $txt);
-  // $txt = "\n";
-  // fwrite($myfile, $txt);
-  // fclose($myfile);
-  $current = file_get_contents($file);
-  // Append a new person to the file
-  $current .= "new feature in mfconnect\n";
-  // Write the contents back to the file
-  file_put_contents($file, $current);
-
   global $table;
   global $table_mapfeeder_side;
   global $table_mapfeeder_side_pid_col;
   global $dbname;
+
   if (verifyFormToken('form')) {
     $fields = array();
     $values = array();
@@ -334,32 +321,12 @@ function newFeature() {
       $retv = $re->execute();
       $val = $re->fetch();
 
-      // $current = file_get_contents($file);
-      // $current .= "\n actual val\n";
-      // $current .= print_r($val,true);
-      // file_put_contents($file, $current);
-
       $newActualPID = $val[0];
     } catch(Exception $e) {
-      // $current = file_get_contents($file);
-      // $current .= "\n error\n";
-      // $current .= print_r($e,true);
-      // file_put_contents($file, $current);
       error_log('ERROR: '. $e->getMessage(), 0);
       $db = null;
     }
     $db = null;
-
-    // $current = file_get_contents($file);
-    // $current .= "\n new pid\n";
-    // $current .= $newPID;
-    // file_put_contents($file, $current);
-
-
-    // $current = file_get_contents($file);
-    // $current .= "\n new actual pid\n";
-    // $current .= $newActualPID;
-    // file_put_contents($file, $current);
 
     $uploads = array();
     foreach ($_FILES['uploads']['error'] as $key => $error) {
