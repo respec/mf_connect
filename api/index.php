@@ -9,6 +9,8 @@ $json = file_get_contents('../config.json');
 $config = json_decode($json, true);
 $dbname = $config['city'][$_SESSION["form_city"]]["database"];;
 $table = $config['data']['table'];
+$table_mapfeeder_side = $config['data']['table_mapfeeder_side'];
+$table_mapfeeder_side_pid_col = $config['data']['table_mapfeeder_side_primary_id_column'];
 $fields = implode(', ', $config['data']['fields']);
 $titleField = $config['marker']['titleField'];
 $dir = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
@@ -257,6 +259,10 @@ function newComment() {
 
 function newFeature() {
   global $table;
+  global $table_mapfeeder_side;
+  global $table_mapfeeder_side_pid_col;
+  global $dbname;
+
   if (verifyFormToken('form')) {
     $fields = array();
     $values = array();
@@ -270,7 +276,14 @@ function newFeature() {
       }
     }
 
-    $uploads = array();
+    try{
+      $tableSplit = explode('.', $table);
+      $subscriberName = $dbname;
+      $moduleName = $tableSplit[0];
+      $tableName = $tableSplit[1];
+    } catch(Exception $e) {}
+
+    $uploadsList = array();
     foreach ($_FILES['uploads']['error'] as $key => $error) {
       if ($error === UPLOAD_ERR_OK) {
         $filename = $_FILES['uploads']['name'][$key];
@@ -280,26 +293,70 @@ function newFeature() {
         $uploaddir = 'uploads/';
         $uploadfile = $uploaddir . $newfilename;
         move_uploaded_file($_FILES['uploads']['tmp_name'][$key], $uploadfile);
-        $uploads[] = $newfilename;
+        $uploadsList[] = $newfilename;
       }
     }
 
-    if (count($uploads) > 0) {
+    if (count($uploadsList) > 0) {
       $fields[] = 'uploads';
-      $values[] = implode(',', $uploads);
+      $values[] = implode(',', $uploadsList);
+    }
+    
+    $sql_insert = "INSERT INTO $table (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
+    
+    $whereCondition = "";
+    $num = count($values);
+    $and = "";
+    for ($i=0; $i < $num; $i++) {
+      if ($i > 0) {
+        $and = "AND ";
+      }
+      $whereCondition .= $and . $fields[$i] . " ='" . $values[$i] . "' ";
     }
 
-    $sql = "INSERT INTO $table (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
-
+    $newPID = false;
     try {
+      // insert record
       $db = getConnection();
-      $stmt = $db->prepare($sql);
+      $stmt = $db->prepare($sql_insert);
       $stmt->execute($values);
-      echo $db->lastInsertId();
       $db = null;
-    } catch(PDOException $e) {
+
+      // select record to get new primary id
+      $sql_getPID = "SELECT id from $table WHERE " . $whereCondition;
+      $db = getConnection();
+      $re = $db->query($sql_getPID);
+      $retv = $re->execute();
+      $val = $re->fetch();
+      $newPID = $val[0];
+
+      // sleep for one second to give the database trigger a change to run
+      sleep(1);
+      // get the PID of the record created by the trigger in the table that Mapfeeder will be checking
+      $sql_get_mf_PID = "SELECT $table_mapfeeder_side_pid_col from $moduleName.$table_mapfeeder_side WHERE connect_id = $newPID";
+
+      $db = getConnection();
+      $re = $db->query($sql_get_mf_PID);
+      $retv = $re->execute();
+      $val = $re->fetch();
+
+      $newActualPID = $val[0];
+    } catch(Exception $e) {
       error_log('ERROR: '. $e->getMessage(), 0);
-      echo '{"error":{"text":'. $e->getMessage() .'}}';
+      $db = null;
+    }
+    $db = null;
+
+    $uploaddir = 'uploads/';
+    $mf_uploads_path = '/data2/mapfeeder-uploads/' . $subscriberName . "/" . $moduleName . "/" . $table_mapfeeder_side . "/" . $newActualPID;
+    if((! is_dir($mf_uploads_path)) && (count($uploadsList) > 0)){
+      mkdir($mf_uploads_path);
+    }
+
+    foreach ($uploadsList as $key => $value) {
+      # for each copy to mapfeeder uploads dir
+      $uploadfile = $uploaddir . $value;
+      copy($uploadfile, $mf_uploads_path . "/" . $value);
     }
   }
 }
