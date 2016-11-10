@@ -282,6 +282,25 @@ function newFeature() {
       $moduleName = $tableSplit[0];
       $tableName = $tableSplit[1];
     } catch(Exception $e) {}
+
+    $uploadsList = array();
+    foreach ($_FILES['uploads']['error'] as $key => $error) {
+      if ($error === UPLOAD_ERR_OK) {
+        $filename = $_FILES['uploads']['name'][$key];
+        $file_basename = substr($filename, 0, strripos($filename, '.'));
+        $file_ext = substr($filename, strripos($filename, '.'));
+        $newfilename = md5($file_basename) .rand() . $file_ext;
+        $uploaddir = 'uploads/';
+        $uploadfile = $uploaddir . $newfilename;
+        move_uploaded_file($_FILES['uploads']['tmp_name'][$key], $uploadfile);
+        $uploadsList[] = $newfilename;
+      }
+    }
+
+    if (count($uploadsList) > 0) {
+      $fields[] = 'uploads';
+      $values[] = implode(',', $uploadsList);
+    }
     
     $sql_insert = "INSERT INTO $table (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
     
@@ -328,35 +347,16 @@ function newFeature() {
     }
     $db = null;
 
-    $uploads = array();
-    foreach ($_FILES['uploads']['error'] as $key => $error) {
-      if ($error === UPLOAD_ERR_OK) {
-        $filename = $_FILES['uploads']['name'][$key];
-        $file_basename = substr($filename, 0, strripos($filename, '.'));
-        $file_ext = substr($filename, strripos($filename, '.'));
-        $newfilename = md5($file_basename) .rand() . $file_ext;
-        $uploaddir = 'uploads/';
-        $uploadfile = $uploaddir . $newfilename;
-        
-        $mf_uploads_path = '/data2/mapfeeder-uploads/' . $subscriberName . "/" . $moduleName . "/" . $table_mapfeeder_side . "/" . $newActualPID;
-        try {
-          // move the file into the mapfeeder connect uploads dir
-          move_uploaded_file($_FILES['uploads']['tmp_name'][$key], $uploadfile);
-          // if the upload dir for this record doesn't exist yet make it
-          if(! is_dir($mf_uploads_path)){
-            mkdir($mf_uploads_path);
-          }
-
-          copy($uploadfile, $mf_uploads_path . "/" . $newfilename);
-
-        } catch(Exception $e) {}
-        $uploads[] = $newfilename;
-      }
+    $uploaddir = 'uploads/';
+    $mf_uploads_path = '/data2/mapfeeder-uploads/' . $subscriberName . "/" . $moduleName . "/" . $table_mapfeeder_side . "/" . $newActualPID;
+    if((! is_dir($mf_uploads_path)) && (count($uploadsList) > 0)){
+      mkdir($mf_uploads_path);
     }
 
-    if (count($uploads) > 0) {
-      $fields[] = 'uploads';
-      $values[] = implode(',', $uploads);
+    foreach ($uploadsList as $key => $value) {
+      # for each copy to mapfeeder uploads dir
+      $uploadfile = $uploaddir . $value;
+      copy($uploadfile, $mf_uploads_path . "/" . $value);
     }
   }
 }
