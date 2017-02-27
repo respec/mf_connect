@@ -353,6 +353,10 @@ function buildApp() {
     attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
   });
 
+  var googleBaseRoad = new L.Google('ROADMAP');
+  var googleBaseSatellite = new L.Google('SATELLITE');
+  var googleBaseHybrid = new L.Google('HYBRID');
+
   /* Overlay Layers */
   var highlight = L.geoJson(null);
   var highlightStyle = {
@@ -492,7 +496,8 @@ function buildApp() {
     });
 
   map = L.map("map", {
-    layers: [baseOSM, highlight],
+    // layers: [baseOSM, highlight],
+    layers: [googleBaseRoad, googleBaseSatellite, googleBaseHybrid, highlight],
     zoomControl: false,
     attributionControl: false
   }).fitWorld();
@@ -521,7 +526,10 @@ function buildApp() {
   }
 
   var baseLayers = {
-    "Street Map": baseOSM
+    // "Street Map": baseOSM
+    "Google Road Basemap" : googleBaseRoad,
+    "Google Satellite Basemap" : googleBaseSatellite,
+    "Google Hybrid Basemap" : googleBaseHybrid
   };
 
   var overlayLayers = {};
