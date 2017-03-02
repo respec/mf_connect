@@ -347,7 +347,13 @@ function buildApp() {
   }
 
   /* Basemap Layers */
-  var baseOSM = L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+  var baseOSM = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    minZoom: 11,
+    maxZoom: 17,
+    attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+  });
+
+  var baseOSMHot = L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
     minZoom: 11,
     maxZoom: 17,
     attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
@@ -496,8 +502,8 @@ function buildApp() {
     });
 
   map = L.map("map", {
-    // layers: [baseOSM, highlight],
-    layers: [googleBaseRoad, googleBaseSatellite, googleBaseHybrid, highlight],
+    layers: [baseOSM, highlight],
+    //layers: [googleBaseRoad, googleBaseSatellite, googleBaseHybrid, highlight],
     zoomControl: false,
     attributionControl: false
   }).fitWorld();
