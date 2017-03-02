@@ -275,6 +275,10 @@
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
     <script src="assets/js/geocode.js"></script>
     <script src="assets/js/app.js"></script>
+
+    <!-- fails because of mixed content type error, cannot get the file via https and http fails -->
+    <!-- <script src="//matchingnotes.com/javascripts/leaflet-google.js"></script> -->
+    <script src="assets/js/leaflet-google.js"></script>
 /*
     <script>
         // Parameterize the URL query string

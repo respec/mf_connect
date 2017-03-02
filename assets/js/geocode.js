@@ -21,14 +21,14 @@ function reverseGeo(lat,lng) {
             });
             if(allowed_cities.indexOf(city) > -1){
                 // City is allowed
-                $(issue_city).val(city);
-                $(issue_state).val(part[2].split(' ')[1].replace(/^\s+/,""));
+                $('#issue_city').val(city);
+                $('#issue_state').val(part[2].split(' ')[1].replace(/^\s+/,""));
                 var zip = part[2].split(' ')[2];
-                $(issue_address).val(part[0]);
+                $('#issue_address').val(part[0]);
             } else {
                 alert("Warning: MapFeeder Connect has not been deployed for " + city + ".");
-		$(issue_address).val('');
-		$(issue_city).val('');
+        $('#issue_address').val('');
+        $('#issue_city').val('');
             }
 
 
@@ -44,19 +44,19 @@ function reverseGeo(lat,lng) {
 function geocodeAddress() {
 
     // Check that all fields are filled
-    if($(issue_city).val() === ""){
+    if($('#issue_city').val() === ""){
         return;
     }
-    if($(issue_state).val() === ""){
+    if($('#issue_state').val() === ""){
         return;
     }
-    if($(issue_address).val() === ""){
+    if($('#issue_address').val() === ""){
         return;
     }
 
-    city = $(issue_city).val();
-    street = $(issue_address).val();
-    state = $(issue_state).val();
+    city = $('#issue_city').val();
+    street = $('#issue_address').val();
+    state = $('#issue_state').val();
 
     var address;
     if (street==="") {
@@ -69,8 +69,8 @@ function geocodeAddress() {
     geocoder.geocode({ 'address': address, 'region':'us'}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
 
-            $(lng).val(Math.round(results[0].geometry.location.lng()*1000000)/1000000);
-            $(lat).val(Math.round(results[0].geometry.location.lat()*1000000)/1000000);
+            $('#lng').val(Math.round(results[0].geometry.location.lng()*1000000)/1000000);
+            $('#lat').val(Math.round(results[0].geometry.location.lat()*1000000)/1000000);
 
         } else {
             console.log("Address lookup failed for the following reason: " + status);

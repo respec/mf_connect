@@ -93,7 +93,7 @@ function buildApp() {
 
   $(document).on("click", ".new-marker-popup", function(e) {
     $("#formModal").modal("show");
-    $(editLocation).show();
+    $('#editLocation').show();
   });
 
   $("#about-btn").click(function() {
@@ -138,13 +138,14 @@ function buildApp() {
   $(".no-new-item-btn").click(function() {
     $("#questionModal").modal("hide");
     $("#formModal").modal("show");
-    $(editLocation).hide();
+    $('#editLocation').hide();
+    
   });
 
   // Reverse geocode marker location when form modal is opened and prepopulate address fields
   $("#formModal").on("shown.bs.modal", function (e) {
-    if($(lat).val()!== "" && $(lng).val() !== ""){
-      reverseGeo($(lat).val(),$(lng).val());
+    if($('#lat').val()!== "" && $('#lng').val() !== ""){
+      reverseGeo($('#lat').val(),$('#lng').val());
     }
   });
 
@@ -346,11 +347,21 @@ function buildApp() {
   }
 
   /* Basemap Layers */
-  var baseOSM = L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+  var baseOSM = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     minZoom: 11,
     maxZoom: 17,
     attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
   });
+
+  var baseOSMHot = L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+    minZoom: 11,
+    maxZoom: 17,
+    attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+  });
+
+  var googleBaseRoad = new L.Google('ROADMAP');
+  var googleBaseSatellite = new L.Google('SATELLITE');
+  var googleBaseHybrid = new L.Google('HYBRID');
 
   /* Overlay Layers */
   var highlight = L.geoJson(null);
@@ -492,6 +503,7 @@ function buildApp() {
 
   map = L.map("map", {
     layers: [baseOSM, highlight],
+    //layers: [googleBaseRoad, googleBaseSatellite, googleBaseHybrid, highlight],
     zoomControl: false,
     attributionControl: false
   }).fitWorld();
@@ -520,7 +532,10 @@ function buildApp() {
   }
 
   var baseLayers = {
-    "Street Map": baseOSM
+    // "Street Map": baseOSM
+    "Google Road Basemap" : googleBaseRoad,
+    "Google Satellite Basemap" : googleBaseSatellite,
+    "Google Hybrid Basemap" : googleBaseHybrid
   };
 
   var overlayLayers = {};
