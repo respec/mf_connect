@@ -129,6 +129,7 @@ function buildApp() {
 
   // Fire new item when Yes button click on use current location prompt
   $(".yes-new-item-btn").click(function() {
+    $("#data-form")[0].reset();
     $("#questionModal").modal("hide");
     newItem();
     return false;
@@ -136,6 +137,7 @@ function buildApp() {
 
   // Open new issue modal without location when no button clicked
   $(".no-new-item-btn").click(function() {
+    $("#data-form")[0].reset();
     $("#questionModal").modal("hide");
     $("#formModal").modal("show");
     $('#editLocation').hide();
