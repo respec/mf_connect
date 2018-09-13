@@ -123,7 +123,10 @@ function buildApp() {
   });
 
   $(".new-item-btn").click(function() {
-    $("#questionModal").modal("show");
+    // $("#questionModal").modal("show");
+    // return false;
+    $("#data-form")[0].reset();
+    newItem();
     return false;
   });
 
@@ -252,15 +255,24 @@ function buildApp() {
         }
       });
     }
-    // If location found, use coordinates
-    map.once("locationfound", function(e) {
-      updateMarkerLocation(e.latlng);
-    });
-    // If no location found, use map center
-    map.once("locationerror", function(e) {
-      updateMarkerLocation(map.getCenter());
-    });
-    locateControl.locate();
+
+    ll = {}
+    ll.lat = 44.944854
+    ll.lng = -93.101347
+
+    updateMarkerLocation(ll);
+
+    $("#formModal").modal("show");
+    
+    // // If location found, use coordinates
+    // map.once("locationfound", function(e) {
+    //   updateMarkerLocation(e.latlng);
+    // });
+    // // If no location found, use map center
+    // map.once("locationerror", function(e) {
+    //   updateMarkerLocation(map.getCenter());
+    // });
+    // locateControl.locate();
   }
 
   function refresh(id) {

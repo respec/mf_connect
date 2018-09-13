@@ -76,9 +76,19 @@ function geocodeAddress() {
 
     geocoder.geocode({ 'address': address, 'region':'us'}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-
-            $('#lng').val(Math.round(results[0].geometry.location.lng()*1000000)/1000000);
-            $('#lat').val(Math.round(results[0].geometry.location.lat()*1000000)/1000000);
+            var lat = 0;
+            var lng = 0;
+            if(results[0].geometry.bounds !== undefined){
+                var lng_avg = (results[0].geometry.bounds.b.b + results[0].geometry.bounds.b.f)/2
+                var lat_avg = (results[0].geometry.bounds.f.b + results[0].geometry.bounds.f.f)/2
+                lng = Math.round(lng_avg*1000000)/1000000;
+                lat = Math.round(lat_avg*1000000)/1000000;
+            }else{
+                lng = Math.round(results[0].geometry.location.lng()*1000000)/1000000;
+                lat = Math.round(results[0].geometry.location.lat()*1000000)/1000000;
+            }
+            $('#lng').val(lng);
+            $('#lat').val(lat);
 
         } else {
             console.log("Address lookup failed for the following reason: " + status);
