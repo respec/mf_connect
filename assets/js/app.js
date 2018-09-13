@@ -294,6 +294,17 @@ function buildApp() {
       url: url,
       dataType: "json",
       success: function (data) {
+
+        var add_list = [];
+        for (var i = 0; i < data.features.length; i++) {
+          var pt = data.features[i];
+          console.log(pt.geometry.coordinates);
+          if (pt.geometry.coordinates[0] !== null) {
+            add_list.push(pt);
+          }
+        }
+        data.features = add_list;
+
         markers.addData(data);
         markerClusters.clearLayers();
         markerClusters.addLayer(markers);
@@ -496,6 +507,17 @@ function buildApp() {
     url: "api/geojson",
     dataType: "json",
     success: function (data) {
+
+      var add_list = [];
+      for (var i = 0; i < data.features.length; i++) {
+        var pt = data.features[i];
+        console.log(pt.geometry.coordinates);
+        if (pt.geometry.coordinates[0] !== null) {
+          add_list.push(pt);
+        }
+      }
+      data.features = add_list;
+
       markers.addData(data);
       markerClusters.addLayer(markers);
       featureList = new List("features", {valueNames: ["feature-name"]});
