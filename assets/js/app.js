@@ -369,14 +369,14 @@ function buildApp() {
   var highlight = L.geoJson(null);
   var highlightStyle = {
     stroke: false,
-    fillColor: "#00FFFF",
+    fillColor: "#c4122f",
     fillOpacity: 0.7,
     radius: 10
   };
 
   var newMarker = L.marker(null, {
     icon: L.icon({
-      iconUrl: "assets/img/markers/b3b3b3.png",
+      iconUrl: "assets/img/markers/2d5d00.png",
       iconSize: [30, 40],
       iconAnchor: [15, 32],
       popupAnchor: [0, -35]
@@ -471,7 +471,7 @@ function buildApp() {
             highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
           }
         });
-        $("#feature-list tbody").append('<tr class="feature-row" id="'+L.stamp(layer)+'" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img height="20" src="'+layer.options.icon.options.iconUrl+'"></td><td class="feature-name"><em><span class="text-muted">'+layer.feature.properties.Timestamp+'</span></em><br>'+layer.feature.properties["Issue Type"]+'</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="'+L.stamp(layer)+'" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img height="20" src="'+layer.options.icon.options.iconUrl+'"></td><td class="feature-name"><em><span class="text-muted">'+layer.feature.properties["Issue Type"]+'</span></em><br>'+layer.feature.properties.Meaning+'</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -504,8 +504,8 @@ function buildApp() {
     });
 
   map = L.map("map", {
-    layers: [baseOSM, highlight],
-    //layers: [googleBaseRoad, googleBaseSatellite, googleBaseHybrid, highlight],
+    //layers: [baseOSM, highlight],
+    layers: [googleBaseRoad, googleBaseSatellite, googleBaseHybrid, highlight],
     zoomControl: false,
     attributionControl: false
   }).fitWorld();
@@ -544,7 +544,8 @@ function buildApp() {
 
   var layerControl = L.control.layers(baseLayers, null, {
     collapsed: isCollapsed
-  }).addTo(map);
+  });
+ // }).addTo(map);
 
 
   if (config.marker.cluster && config.marker.cluster === true) {

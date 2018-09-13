@@ -5,10 +5,10 @@
     "table_mapfeeder_side_primary_id_column": "work_order_id",
     "fields": [
       "id",
-      "to_char(\"timestamp\",'YYYY-mm-dd HH24:MM:ss') AS \"Timestamp\"",
       "issue_type AS \"Issue Type\"",
       "issue_city AS \"City\"",
       "issue_state AS \"State\"",
+      "notes AS \"Meaning\"",
       "uploads AS \"Photos\"",
       "lat || ', ' || lng AS \"Location\"",
       "lng AS x",
@@ -26,107 +26,52 @@
 	"name":"City of Fridley",
 	"web":"http://www.ci.fridley.mn.us/"
     },
-    "St Paul": "stpaul",
+    "StPaul": {
+	"database":"mnwild",
+	"name":"City of Fridley",
+	"web":"http://www.ci.fridley.mn.us/"
+    },
     "Roseville": "roseville"
   },
   "app": {
-    "title": "mapFeeder Connect",
+    "title": "This Is Our Ice",
     "description": "",
     "author": ""
   },
   "navbar": {
-    "icon": "",
-    "title": "mapFeeder Connect"
+    "icon": "assets/img/logo.png",
+    "title": "This Is Our Ice"
   },
   "twitter": {
     "via": "fulcrumapp",
     "tweet": "Check it out!"
   },
   "text": {
-    "newItem": "Submit An Issue",
+    "newItem": "Add More Ice",
     "downloadFileName": "damage"
   },
   "about": {
     "showAtStartup": false,
-    "title": "Post Issue",
-    "text": "A simple citizen-driven app for reporting issues to the city, powered by <a href='https://respec.squarespace.com/public-works/'>mapFeeder</a>.",
-    "thanks": "Thanks to <a href='https://github.com/bmcbride/building-damage-reporter'>Brian McBride</a> and the great folks at <a href='https://www.fulcrumapp.com'>FulcrumApp</a>.",
-    "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
+    "title": "This Is Our Ice",
+    "text": "Powered by <a href='https://www.respec.com/product/mapfeeder/' target='respec'>mapFeeder</a>.",
+    "thanks": "",
+    "help": ""
   },
   "sidebar": {
     "titleField": "Timestamp",
     "sortOrder": "desc"
   },
   "marker": {
-    "titleField": "Issue Type",
+    "titleField": "Ice Type",
     "cluster": true,
     "layer": {
-      "name": "Issues"
+      "name": "Our Ice"
     },
     "icon": {
-      "iconUrl": "assets/img/markers/cb0d0c.png",
+      "iconUrl": "assets/img/markers/wild.png",
       "iconSize": [30, 40],
       "iconAnchor": [15, 32],
       "popupAnchor": [0, -20]
-    },
-    "status": {
-      "field": "Issue Type",
-      "values": [{
-        "name": "PARKS",
-        "icon": {
-          "iconUrl": "assets/img/markers/87d30f.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-      },
-      {
-        "name": "SEWER",
-        "icon": {
-          "iconUrl": "assets/img/markers/cb0d0c.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-      },
-      {
-        "name": "WATER",
-        "icon": {
-          "iconUrl": "assets/img/markers/1891c9.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-      },
-      {
-        "name": "STREETS",
-        "icon": {
-          "iconUrl": "assets/img/markers/ff8819.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-          
-      },
-       {
-        "name": "Park",
-        "icon": {
-          "iconUrl": "assets/img/markers/ffd300.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-       },
-                
-       {
-        "name": "Other",
-        "icon": {
-          "iconUrl": "assets/img/markers/704b10.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-          }
-        }]
     }
   }
 }

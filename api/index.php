@@ -364,7 +364,7 @@ function newFeature() {
 function getConnection() {
   global $dbname;
 
-  $dbh = new PDO('pgsql:host=localhost;port=5432;dbname=' . $dbname . '', 'mf_connect', 'mfconnect123');
+  $dbh = new PDO('pgsql:host=localhost;port=5432;dbname=mnwild', 'mnwild', 'f33dME!');
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   return $dbh;
 }

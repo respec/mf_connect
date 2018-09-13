@@ -12,8 +12,10 @@ function reverseGeo(lat,lng) {
             var format_address = results[0].formatted_address;
             var part = format_address.split(',');
 
+	console.log(format_address);
             var city = part[1].replace(/^\s+/,"");
 
+/*
             // Check if result city is allowed:
             var allowed_cities = new Array;
             $("#issue_city option").each  ( function() {
@@ -30,7 +32,13 @@ function reverseGeo(lat,lng) {
         $('#issue_address').val('');
         $('#issue_city').val('');
             }
+*/
 
+                // City is allowed
+                $('#issue_city').val(city);
+                $('#issue_state').val(part[2].split(' ')[1].replace(/^\s+/,""));
+                var zip = part[2].split(' ')[2];
+                $('#issue_address').val(part[0]);
 
         } else {
             console.log("Geocoder failed due to: " + status);

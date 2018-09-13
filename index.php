@@ -23,7 +23,7 @@
     <meta name="author" content=<?php echo '"' . $config["app"]["author"] . '"';?>>
     <title><?php echo $config["app"]["title"]; ?></title>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css">
@@ -47,7 +47,7 @@
             <a href="#" class="navbar-icon pull-right visible-xs search-btn"><i class="fa fa-search fa-lg fa-white"></i></a>
             <a href="#" class="navbar-icon pull-right visible-xs new-item-btn" style="margin-left: 5px;"><i class="fa fa-plus fa-lg fa-red"><span style="font-size:75%;font-weight:bold;"> Add</span></i></a>
           </div>
-          <div class="navbar-brand"><?php if ($config["navbar"]["icon"]) {echo "<img src='" . $config["navbar"]["icon"] . "'>";} echo $config["navbar"]["title"]; ?></div>
+          <div class="navbar-brand"><?php if ($config["navbar"]["icon"]) {echo "<img src='" . $config["navbar"]["icon"] . "'>";} /* echo $config["navbar"]["title"]; */ ?></div>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -121,10 +121,10 @@
           </div>
           <div class="modal-body">
             <div><?php echo $config["about"]["text"]; ?></div>
-	    <div class="well well-sm" id="about"><a href="<?php echo $config["city"][$_SESSION["form_city"]]["web"]; ?>" target="_city"><?php echo $config["city"][$_SESSION["form_city"]]["name"]; ?></a></div>
-	    <div class="well well-sm" id="help"><?php echo $config["about"]["help"]; ?></div>
-	    <div class="well well-sm" id="thanks"><?php echo $config["about"]["thanks"]; ?></div>
-	    <div class="well well-sm" id="attribution"></div>
+	    <div class="well well-sm" id="about" style="display: none;"><a href="<?php echo $config["city"][$_SESSION["form_city"]]["web"]; ?>" target="_city"><?php echo $config["city"][$_SESSION["form_city"]]["name"]; ?></a></div>
+	    <div class="well well-sm" id="help" style="display: none;"><?php echo $config["about"]["help"]; ?></div>
+	    <div class="well well-sm" id="thanks" style="display: none;"><?php echo $config["about"]["thanks"]; ?></div>
+	    <div class="well well-sm" id="attribution" style="display: none;"></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -138,7 +138,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-primary">Submit a New Issue</h4>
+            <h4 class="modal-title text-primary">Add More Ice</h4>
           </div>
           <div class="modal-body">
             <div><strong>Is the issue at your current location?</strong></div>
@@ -166,11 +166,11 @@
                 <input type="text" class="form-control" name="token" value="<?php echo $newToken; ?>">
               </div>
               <?php include("form.html") ?>
-			  <div class="panel panel-default">
-                <div class="panel-heading">
+			  <div class="panel panel-default" style="display: none;">
+                <div class="panel-heading" style="display: none;">
                   <h3 class="panel-title">Location</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="display: none;" >
                   <div class="row">
                     <div class="col-xs-6">
                       <div class="form-group">
@@ -190,7 +190,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" id="cancel-btn">Cancel</button>
-              <button type="submit" class="btn btn-default" id="editLocation" data-dismiss="modal" title="Edit location"><i class="fa fa-map-marker"></i>&nbsp;Edit</button>
+              <button type="submit" class="btn btn-default" id="editLocation" data-dismiss="modal" title="Edit location"><i class="fa fa-map-marker"></i>&nbsp;Move Marker</button>
               <button type="submit" class="btn btn-primary pull-right" title="Submit form">Submit</button>
             </div>
           </form>
@@ -293,11 +293,13 @@
             }
         }
 
+/*
         if (urlParams.city === undefined || urlParams.city === true) {
             alert("WARNING: No city has been supplied");
         } else {
     	    checkCity(decodeURIComponent(urlParams.city));
         }
+*/
     </script>
 */
   </body>
