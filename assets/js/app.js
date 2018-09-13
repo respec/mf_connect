@@ -224,6 +224,8 @@ function buildApp() {
     return false;
   });
 
+
+
   function newItem() {
     if (locateControl._active) {
       gpsActive = true;
@@ -255,6 +257,7 @@ function buildApp() {
         }
       });
     }
+    window.updateMarkerLocation = updateMarkerLocation;
 
     ll = {}
     ll.lat = 44.944854
@@ -263,7 +266,7 @@ function buildApp() {
     updateMarkerLocation(ll);
 
     $("#formModal").modal("show");
-    
+
     // // If location found, use coordinates
     // map.once("locationfound", function(e) {
     //   updateMarkerLocation(e.latlng);
@@ -522,11 +525,17 @@ function buildApp() {
     attributionControl: false
   }).fitWorld();
 
+  var layer_to_add = {};
+
   if (config.marker.cluster && config.marker.cluster === true) {
-    map.addLayer(markerClusters);
+    layer_to_add = markerClusters;
+    // map.addLayer(markerClusters);
   } else {
-    map.addLayer(markers);
+    layer_to_add = markers;
+    // map.addLayer(markers);
   }
+  map.addLayer(layer_to_add);
+  map.markers = layer_to_add;
 
   /* Clear feature highlight when map is clicked */
   map.on("click", function(e) {

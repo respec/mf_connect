@@ -90,6 +90,14 @@ function geocodeAddress() {
             $('#lng').val(lng);
             $('#lat').val(lat);
 
+            ll = {}
+            ll.lat = lat
+            ll.lng = lng
+
+            window.updateMarkerLocation(ll);
+
+            // newMarker.setLatLng(location).addTo(map)
+
         } else {
             console.log("Address lookup failed for the following reason: " + status);
         }
