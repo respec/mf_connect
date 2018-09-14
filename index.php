@@ -69,7 +69,7 @@
       </div>
     </div>
     <div class="main-container">
-      <div id="sidebar">
+      <div id="sidebar" style="display: none;">
         <div class="sidebar-wrapper">
           <div class="panel panel-default" id="features">
             <div class="panel-heading">

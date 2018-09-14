@@ -8,7 +8,7 @@
   
     <div class="panel-body">
     	<div class="form-group" data-role="fieldcontain">
-      		<label for="issue_address">Street Address</label>
+      		<label for="issue_address">Water Location</label>
       		<input class="form-control" type="text" name="issue_address" id="issue_address" data-errormessage='{"valueMissing": "This is a required field"}' required>
     	</div>
 
@@ -41,23 +41,75 @@
                 </div>
             </div>
         </div>
-    </div>
+ 	
+		<div class="form-group" data-role="fieldcontain">
+			<label for="issue_type">Water Body Type</label>
+			<select class="form-control" name="issue_type" id="issue_type" data-errormessage='{"valueMissing": "This is a required field"}' required>
+				<option value=""></option>
+				<option value="Arena/Indoor Ice Rink">Arena/Indoor Ice Rink</option>
+				<option value="Backyard/Homemade Rink">Backyard/Homemade Rink</option>
+				<option value="Cabin">Cabin</option>
+				<option value="Lake">Lake</option>
+				<option value="Park">Park</option>
+				<option value="Pond">Pond</option>
+				<option value="Swamp/Slough">Swamp/Slough</option>
+				<option value="Tap/Faucet/Home">Tap/Faucet/Home</option>
+			</select>
+		</div>
+
+		<div class="form-group" data-role="fieldcontain">
+			<label for="water_body_name">Water Body Name</label>
+			<input class="form-control" name="water_body_name" id="water_body_name" data-errormessage='{"valueMissing": "This is a required field"}' required >
+		</div>
+
+		<div class="form-group" data-role="fieldcontain">
+			<label for="notes">What does this water mean to you?</label>
+			<textarea class="form-control" rows="1" name="notes" id="notes" data-errormessage='{"valueMissing": "This is a required field"}' required></textarea>
+		</div>
+	</div>
 </div>
               
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Water Collection Data</h3>
+    <h3 class="panel-title">Fan Information</h3>
   </div>
   <div class="panel-body">
-  
- 	<div class="form-group" data-role="fieldcontain">
-      <label for="submitter_first_name">First Name</label>
-      <input class="form-control" type="text" name="submitter_first_name" id="submitter_first_name" data-errormessage='{"valueMissing": "This is a required field"}' required >
+
+    <div class="row">
+      	<div class="col-xs-6">     
+			<div class="form-group" data-role="fieldcontain">
+				<label for="submitter_first_name">First Name</label>
+				<input class="form-control" type="text" name="submitter_first_name" id="submitter_first_name" data-errormessage='{"valueMissing": "This is a required field"}' required >
+			</div>
+		</div>
+		<div class="col-xs-6"> 
+			<div class="form-group" data-role="fieldcontain">
+				<label for="submitter_last_name">Last Name</label>
+				<input class="form-control" type="text" name="submitter_last_name" id="submitter_last_name" data-errormessage='{"valueMissing": "This is a required field"}' required >
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group" data-role="fieldcontain">
+		<label for="fan_address">Address</label>
+      	<input class="form-control" type="text" name="fan_address" id="fan_address" data-errormessage='{"valueMissing": "This is a required field"}' required>
     </div>
- 	<div class="form-group" data-role="fieldcontain">
-      <label for="submitter_last_name">Last Name</label>
-      <input class="form-control" type="text" name="submitter_last_name" id="submitter_last_name" data-errormessage='{"valueMissing": "This is a required field"}' required >
-    </div>
+		
+    <div class="row">
+      	<div class="col-xs-6">                 
+    		<div class="form-group" data-role="fieldcontain">
+    		   <label for="fan_city">City</label>
+			   <input class="form-control" type="text" name="fan_city" id="fan_city" data-errormessage='{"valueMissing": "This is a required field"}' required>
+    		</div>
+   		</div>
+   		<div class="col-xs-6">
+   			<div class="form-group" data-role="fieldcontain">
+   				<label for="fan_state">State</label>
+   				<input class="form-control" type="text" name="fan_state" id="fan_state" value="MN" data-errormessage='{"valueMissing": "This is a required field"}' required>
+   			</div>
+        </div>
+   	</div>
+		
     <div class="form-group" data-role="fieldcontain">
       <label for="submitter_email">Email</label>
       <input class="form-control" type="email" name="submitter_email" id="submitter_email" data-errormessage='{"valueMissing": "This is a required field"}' required >
@@ -66,7 +118,7 @@
     <div class="row">
     	<div class="col-xs-1">
   			<div class="form-group" data-role="fieldcontain">
-      			<input class="form-control"  type="checkbox" name="sign_me_up" id="sign_me_up" data-errormessage='{"valueMissing": "This is a required field"}' required >
+      			<input class="form-control"  type="checkbox" name="sign_me_up" id="sign_me_up" data-errormessage='{"valueMissing": "Required"}' required >
     		</div>
    		</div>
     	<div class="col-xs-10">
@@ -75,28 +127,7 @@
     		</div>
 		</div>
    	</div>
-        
-    <div class="form-group" data-role="fieldcontain">
-      <label for="issue_type">Water Body Type</label>
-      <select class="form-control" name="issue_type" id="issue_type" data-errormessage='{"valueMissing": "This is a required field"}' required>
-        <option value=""></option>
-        <option value="RINK">LAKE</option>
-        <option value="CREEK">CREEK</option>
-        <option value="POND">POND</option>
-        <option value="RINK">RINK</option>
-      </select>
-    </div>
-
-    <div class="form-group" data-role="fieldcontain">
-      <label for="water_body_name">Water Body Name</label>
-      <input class="form-control" name="water_body_name" id="water_body_name" data-errormessage='{"valueMissing": "This is a required field"}' required >
-    </div>
-
-    <div class="form-group" data-role="fieldcontain">
-      <label for="notes">What does this water mean to you?</label>
-      <textarea class="form-control" rows="1" name="notes" id="notes" data-errormessage='{"valueMissing": "This is a required field"}' required></textarea>
-    </div>
-       
+              
 <!--   
     <div class="form-group" data-role="fieldcontain">
       <label for="issue_waterbody">Lake/Pond/Water Source Name</label>
