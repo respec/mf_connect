@@ -45,7 +45,7 @@
           <div class="navbar-icon-container">
             <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg fa-white"></i></a>
             <a href="#" class="navbar-icon pull-right visible-xs search-btn"><i class="fa fa-search fa-lg fa-white"></i></a>
-            <a href="#" class="navbar-icon pull-right visible-xs new-item-btn" style="margin-left: 5px;"><i class="fa fa-plus fa-lg fa-red"><span style="font-size:75%;font-weight:bold;"> Ice</span></i></a>
+            <a href="#" class="navbar-icon pull-right visible-xs new-item-btn" style="margin-left: 5px;"><i class="fa fa-plus fa-lg fa-red"><span style="font-size:75%;font-weight:bold;"> Water</span></i></a>
           </div>
           <div class="navbar-brand"><?php if ($config["navbar"]["icon"]) {echo "<img src='" . $config["navbar"]["icon"] . "'>";} /* echo $config["navbar"]["title"]; */ ?></div>
         </div>
@@ -138,7 +138,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-primary">Add More Ice</h4>
+            <h4 class="modal-title text-primary">Add Water</h4>
           </div>
           <div class="modal-body">
             <div><strong>Is the issue at your current location?</strong></div>
@@ -165,7 +165,32 @@
                 <label for="token">token</label>
                 <input type="text" class="form-control" name="token" value="<?php echo $newToken; ?>">
               </div>
+ <!--
+ 			  <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Location</h3>
+                </div>
+                <div class="panel-body" style="display: none;" >
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label for="lat">Latitude</label>
+                        <input type="text" class="form-control" id="lat" name="lat" readonly>
+                      </div>
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label for="lng">Longitude</label>
+                        <input type="text" class="form-control" id="lng" name="lng" readonly>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+ -->
+            
               <?php include("form.html") ?>
+<!--
 			  <div class="panel panel-default" style="display: none;">
                 <div class="panel-heading" style="display: none;">
                   <h3 class="panel-title">Location</h3>
@@ -187,11 +212,15 @@
                   </div>
                 </div>
               </div>
+-->
             </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" id="cancel-btn">Cancel</button>
-              <button type="submit" class="btn btn-default" id="editLocation" data-dismiss="modal" title="Edit location"><i class="fa fa-map-marker"></i>&nbsp;Move Marker</button>
-              <button type="submit" class="btn btn-primary pull-right" title="Submit form">Submit</button>
+<!--
+              <button type="submit" class="btn btn-default" id="editLocation" data-dismiss="modal" title="Move Marker"><i class="fa fa-map-marker"></i>&nbsp;Move Marker</button>
+-->
+              <button type="submit" class="btn btn-default pull-right" title="Submit form">Submit</button>
             </div>
           </form>
         </div>

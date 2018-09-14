@@ -409,7 +409,7 @@ function buildApp() {
     }),
     draggable: true,
     riseOnHover: true
-  }).bindPopup("<div class='new-marker-popup center-block'>Tap here to enter information <b>OR</b><br/> drag the marker to adjust location.</div>");
+  }).bindPopup("<div class='new-marker-popup center-block'><span style='text-align:center;padding:3px;margin:4px;border:1px solid green'>RETURN TO FORM</span><br/><br/><b>OR</b> Move the marker</div>");
 
   newMarker.on("dragend", function(e) {
     $("#lat").val(newMarker.getLatLng().lat.toFixed(6));

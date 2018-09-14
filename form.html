@@ -1,4 +1,50 @@
 <div class="panel panel-default">
+	<div class="panel-heading">
+<!--
+    	<h3 class="panel-title">Location</h3>              
+-->
+	    <button type="submit" class="btn btn-default" id="editLocation" data-dismiss="modal" title="Move Marker"><i class="fa fa-map-marker"></i>&nbsp;Move Marker</button>
+    </div>
+  
+    <div class="panel-body">
+    	<div class="form-group" data-role="fieldcontain">
+      		<label for="issue_address">Street Address</label>
+      		<input class="form-control" type="text" name="issue_address" id="issue_address" data-errormessage='{"valueMissing": "This is a required field"}' required>
+    	</div>
+
+        <div class="row">
+        	<div class="col-xs-6">                 
+    					<div class="form-group" data-role="fieldcontain">
+      					   <label for="issue_city">City</label>
+	  					   <input class="form-control" type="text" name="issue_city" id="issue_city" data-errormessage='{"valueMissing": "This is a required field"}' required>
+      					</div>
+      				</div>
+      		<div class="col-xs-6">
+    			<div class="form-group" data-role="fieldcontain">
+      				<label for="issue_state">State</label>
+      				<input class="form-control" type="text" name="issue_state" id="issue_state" value="MN" data-errormessage='{"valueMissing": "This is a required field"}' required>
+    			</div>
+            </div>
+    	</div>
+    			  
+        <div class="row" style="display: none;">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lat">Latitude</label>
+                    <input type="text" class="form-control" id="lat" name="lat" readonly>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lng">Longitude</label>
+                    <input type="text" class="form-control" id="lng" name="lng" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+              
+<div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Water Collection Data</h3>
   </div>
@@ -17,11 +63,18 @@
       <input class="form-control" type="email" name="submitter_email" id="submitter_email" data-errormessage='{"valueMissing": "This is a required field"}' required >
     </div>
 
-    <div class="form-group" data-role="fieldcontain">
-      <label for="sign_me_up">Sign me up to receive email communication from the Minnesota Wild
-      <input class="form-control"  type="checkbox" name="sign_me_up" id="sign_me_up" data-errormessage='{"valueMissing": "This is a required field"}' required >
-    </label>
-    </div>
+    <div class="row">
+    	<div class="col-xs-1">
+  			<div class="form-group" data-role="fieldcontain">
+      			<input class="form-control"  type="checkbox" name="sign_me_up" id="sign_me_up" data-errormessage='{"valueMissing": "This is a required field"}' required >
+    		</div>
+   		</div>
+    	<div class="col-xs-10">
+  			<div class="form-group" data-role="fieldcontain">
+      			<label for="sign_me_up">Sign up to receive email communication from the Minnesota Wild</label>
+    		</div>
+		</div>
+   	</div>
         
     <div class="form-group" data-role="fieldcontain">
       <label for="issue_type">Water Body Type</label>
@@ -58,26 +111,6 @@
     </div>
 -->
 
-    <div class="form-group" data-role="fieldcontain">
-      <label for="issue_address">Street Address</label>
-      <input class="form-control" type="text" name="issue_address" id="issue_address" data-errormessage='{"valueMissing": "This is a required field"}' required>
-    </div>
-
-    <div class="form-group" data-role="fieldcontain">
-      <label for="issue_city">City</label>
-	  <input class="form-control" type="text" name="issue_city" id="issue_city" data-errormessage='{"valueMissing": "This is a required field"}' required>
-<!--
-      <select class="form-control" name="issue_city" id="issue_city" data-errormessage='{"valueMissing": "This is a required field"}' required>
-        <option value=""></option>
-        <option value="Andover">Andover</option>
-        <option value="Fridley">Fridley</option>
-        <option value="St Paul">St Paul</option>
-        <option value="Roseville">Roseville</option>
-      </select>
--->
-      <label for="issue_state">State</label>
-      <input class="form-control" type="text" name="issue_state" id="issue_state" value="MN" data-errormessage='{"valueMissing": "This is a required field"}' required>
-    </div>
   <!--
     <div class="form-group" data-role="fieldcontain">
       <label for="is_resident">Are you a resident of the city?</label>
