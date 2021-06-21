@@ -7,49 +7,65 @@
       "id",
       "to_char(\"timestamp\",'YYYY-mm-dd HH24:MM:ss') AS \"Timestamp\"",
       "issue_type AS \"Issue Type\"",
+      "notes AS \"Comment\"",
       "issue_city AS \"City\"",
       "issue_state AS \"State\"",
       "uploads AS \"Photos\"",
       "lat || ', ' || lng AS \"Location\"",
       "lng AS x",
-      "lat AS y"
+      "lat AS y",
+      "likes as \"Likes\""
     ]
   },
   "city":{
     "Andover": {
 	"database":"andover",
 	"name":"City of Andover",
-	"web":"http://www.ci.andover.mn.us/"
+	"web":"http://www.ci.andover.mn.us/",
+  "enableLikes": true,
+  "enableComments": false
+    },
+    "Fairbanks": {
+  "database":"fairbanks",
+  "name":"City of Fairbanks",
+  "web":"https://www.fairbanksalaska.us/",
+  "enableLikes": true,
+  "enableComments": false
     },
     "Fridley": {
 	"database":"fridley",
 	"name":"City of Fridley",
-	"web":"http://www.ci.fridley.mn.us/"
+	"web":"http://www.ci.fridley.mn.us/",
+  "enableLikes": false,
+  "enableComments": true
     },
     "St Paul": "stpaul",
     "Roseville": "roseville"
   },
   "app": {
-    "title": "mapFeeder Connect",
+    "title": "Connect",
     "description": "",
     "author": ""
   },
+  "map": {
+    "questionModalPopup": false
+  },
   "navbar": {
     "icon": "",
-    "title": "mapFeeder Connect"
+    "title": "Connect"
   },
   "twitter": {
     "via": "fulcrumapp",
     "tweet": "Check it out!"
   },
   "text": {
-    "newItem": "Submit An Issue",
-    "downloadFileName": "damage"
+    "newItem": "Public Comment Form",
+    "downloadFileName": "mf_connect_data"
   },
   "about": {
-    "showAtStartup": false,
-    "title": "Post Issue",
-    "text": "A simple citizen-driven app for reporting issues to the city, powered by <a href='https://respec.squarespace.com/public-works/'>mapFeeder</a>.",
+    "showAtStartup": true,
+    "title": "Welcome!",
+    "text": "About modal text set in the config.json",
     "thanks": "Thanks to <a href='https://github.com/bmcbride/building-damage-reporter'>Brian McBride</a> and the great folks at <a href='https://www.fulcrumapp.com'>FulcrumApp</a>.",
     "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
   },
@@ -58,10 +74,10 @@
     "sortOrder": "desc"
   },
   "marker": {
-    "titleField": "Issue Type",
+    "titleField": "Public Comments",
     "cluster": true,
     "layer": {
-      "name": "Issues"
+      "name": "Public Comments"
     },
     "icon": {
       "iconUrl": "assets/img/markers/cb0d0c.png",
@@ -72,6 +88,14 @@
     "status": {
       "field": "Issue Type",
       "values": [{
+        "name": "PUBLIC_COMMENT",
+        "icon": {
+          "iconUrl": "assets/img/markers/87d30f.png",
+          "iconSize": [30, 40],
+          "iconAnchor": [15, 32],
+          "popupAnchor": [0, -20]
+        }
+      },{
         "name": "PARKS",
         "icon": {
           "iconUrl": "assets/img/markers/87d30f.png",

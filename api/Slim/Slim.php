@@ -304,7 +304,7 @@ class Slim
             'cookies.secure' => false,
             'cookies.httponly' => false,
             // Encryption
-            'cookies.secret_key' => 'CHANGE_ME',
+            'cookies.secret_key' => 'CHANGE_ME_987',
             'cookies.cipher' => MCRYPT_RIJNDAEL_256,
             'cookies.cipher_mode' => MCRYPT_MODE_CBC,
             // HTTP

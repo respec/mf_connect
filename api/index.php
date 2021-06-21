@@ -27,6 +27,8 @@ $app->get('/csv', 'getCSV');
 $app->get('/kml', 'getKML');
 $app->get('/gpx', 'getGPX');
 $app->get('/comments/:id', 'getComments');
+$app->get('/likes/:id', 'getLikes');
+$app->get('/incrementlikes/:id', 'incrementLikes');
 $app->post('/comment', 'newComment');
 $app->post('/feature', 'newFeature');
 $app->run();
@@ -218,6 +220,41 @@ function getGPX() {
   }
 }
 
+function getLikes($id) {
+  $sql = "SELECT likes FROM workorder.mfc_data WHERE id = " . $id;
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    echo '{"likes": ' . json_encode($res) . '}';
+    $db = null;
+  } catch(PDOException $e) {
+    error_log('ERROR: '. $e->getMessage(), 0);
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function incrementLikes($id) {
+    // error_log('ERROR: '. "============", 0);
+    // error_log('ERROR: '. "incrementLikes()", 0);
+    // error_log('ERROR: '. print_r($id,true), 0);
+
+  $sql = "UPDATE workorder.mfc_data SET likes = Coalesce(likes,0) + 1 WHERE id = " . $id . " RETURNING likes";
+  try {
+    error_log('ERROR: '. print_r($sql,true), 0);
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    echo '{"likes": ' . json_encode($res) . '}';
+    $db = null;
+  } catch(PDOException $e) {
+    error_log('ERROR: '. $e->getMessage(), 0);
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
 function getComments($id) {
   $sql = "SELECT id, name, comment, \"timestamp\"::date AS date FROM workorder.mfc_comments WHERE feature_id = " . $id . " ORDER BY \"timestamp\" DESC";
   try {
@@ -275,6 +312,11 @@ function newFeature() {
         $values[] = trim($value);
       }
     }
+
+    error_log('ERROR: '. "============", 0);
+    error_log('ERROR: '. print_r($fields,true), 0);
+    error_log('ERROR: '. print_r($values,true), 0);
+
 
     try{
       $tableSplit = explode('.', $table);

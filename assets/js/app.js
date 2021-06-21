@@ -40,7 +40,8 @@ $(document).ready(function() {
     }
   });
   webshims.polyfill("forms forms-ext");
-});
+
+}); // end $(document).ready()
 
 if (location.search) {
   var parts = location.search.substring(1).split("&");
@@ -123,7 +124,14 @@ function buildApp() {
   });
 
   $(".new-item-btn").click(function() {
-    $("#questionModal").modal("show");
+    // questionModalPopup
+    if(config.map.questionModalPopup && config.map.questionModalPopup == true){
+      $("#questionModal").modal("show");
+    }else{
+      // drop marker on  the map
+      updateMarkerLocation(map.getCenter());
+    }
+    
     return false;
   });
 
@@ -221,6 +229,43 @@ function buildApp() {
     return false;
   });
 
+  $(document).on('click', '#ThumbsUpButton', function (e) {
+    e.preventDefault();
+    console.log("Add a thumbs up!");
+
+    // disable the thumbs up button 
+    document.getElementById("ThumbsUpButton").disabled = true;
+    // var element = $("form[name='second'] input[name='secondText']");
+
+    // var formData = new FormData($("form#data-form")[0]);
+    // var id = formData['id'];
+
+    let pid = $("#info-tab")[0].getAttribute('data-pid');
+    incrementLikes(pid);
+});
+
+  function updateMarkerLocation(location) {
+    newMarker.setLatLng(location).addTo(map).openPopup();
+    $("#lat").val(location.lat.toFixed(6));
+    $("#lng").val(location.lng.toFixed(6));
+    $("#loading").hide();
+    $(".modal-backdrop").remove();
+    $(".progress-bar").html("");
+
+    map.once("moveend", function(e) {
+      var timeoutID;
+      function stopLocate() {
+        timeoutID = window.setTimeout(locateStop, 500);
+      }
+      function locateStop() {
+        locateControl.stopLocate();
+      }
+      if (gpsActive === false) {
+        stopLocate();
+      }
+    });
+  }
+
   function newItem() {
     if (locateControl._active) {
       gpsActive = true;
@@ -231,27 +276,7 @@ function buildApp() {
     $("#loading").show();
     $(".progress-bar").html("Finding location...");
 
-    function updateMarkerLocation(location) {
-      newMarker.setLatLng(location).addTo(map).openPopup();
-      $("#lat").val(location.lat.toFixed(6));
-      $("#lng").val(location.lng.toFixed(6));
-      $("#loading").hide();
-      $(".modal-backdrop").remove();
-      $(".progress-bar").html("");
 
-      map.once("moveend", function(e) {
-        var timeoutID;
-        function stopLocate() {
-          timeoutID = window.setTimeout(locateStop, 500);
-        }
-        function locateStop() {
-          locateControl.stopLocate();
-        }
-        if (gpsActive === false) {
-          stopLocate();
-        }
-      });
-    }
     // If location found, use coordinates
     map.once("locationfound", function(e) {
       updateMarkerLocation(e.latlng);
@@ -300,6 +325,46 @@ function buildApp() {
       $("#loading").hide();
       $(".modal-backdrop").remove();
       $(".progress-bar").html("");
+    });
+  }
+
+  function fetchLikes(id) {
+    $("input[name=id]").val(id);
+    $.ajax({
+      cache: false,
+      url: "api/likes/"+id,
+      dataType: "json",
+      success: function (data) {
+        var content = "0";
+        if (data.likes) {
+          if(data.likes.length > 0){
+            if(data.likes[0].likes != null){
+              content = String(data.likes[0].likes);
+            }
+          }
+        }
+        $("#ThumbsUpNumber").html(content);
+      }
+    });
+  }
+
+  function incrementLikes(id) {
+    $("input[name=id]").val(id);
+    $.ajax({
+      cache: false,
+      url: "api/incrementlikes/"+id,
+      dataType: "json",
+      success: function (data) {
+        var content = "0";
+        if (data.likes) {
+          if(data.likes.length > 0){
+            if(data.likes[0].likes != null){
+              content = String(data.likes[0].likes);
+            }
+          }
+        }
+        $("#ThumbsUpNumber").html(content);
+      }
     });
   }
 
@@ -454,17 +519,24 @@ function buildApp() {
         delete feature.properties.lat;
         delete feature.properties.lng;
         var content = "<table class='table table-striped table-bordered table-condensed'>";
-        $.each(feature.properties, function(index, value) {
-          if (index === "Photos") {
-            value = formatPhotos(value);
-          }
-          if (index === "Link") {
-            value = formatLinks(value);
-          }
-          if (index !== "id") {
-            content += "<tr><th>" + index + "</th><td>" + value + "</td></tr>";
-          }
-        });
+        
+
+        // $.each(feature.properties, function(index, value) {
+        //   if (index === "Photos") {
+        //     value = formatPhotos(value);
+        //   }
+        //   if (index === "Link") {
+        //     value = formatLinks(value);
+        //   }
+        //   if (index !== "id") {
+        //     content += "<tr><th>" + index + "</th><td>" + value + "</td></tr>";
+        //   }
+        // });
+        let commentText = String(feature.properties['Comment']);
+
+        content += '<h3 style="width:100%;">' + commentText + '</h3>';
+
+
         content += "<table>";
         layer.on({
           click: function (e) {
@@ -472,7 +544,24 @@ function buildApp() {
             $("#info-tab").html(content);
             $("#feature-tabs a:first").tab("show");
             $("#featureModal").modal("show");
-            fetchComments(featureID);
+
+            $("#info-tab")[0].setAttribute('data-pid', featureID);
+
+            document.getElementById("ThumbsUpButton").disabled = false;
+
+            if(config.city[String(urlParams.city)].enableComments == true){
+              fetchComments(featureID);
+            }else{
+              $('#comments-tab-button').hide();
+              //$('#comments-tab').hide();
+            }
+            if(config.city[String(urlParams.city)].enableLikes == true){
+              fetchLikes(featureID);
+            }else{
+              $('#ThumbsUpButton').hide();
+              //$('#comments-tab').hide();
+            }
+            
             $("#share-btn").click(function() {
               var link = location.protocol + '//' + location.host + location.pathname + "?id=" + featureID;
               $("#share-hyperlink").attr("href", link);
@@ -482,7 +571,7 @@ function buildApp() {
             highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
           }
         });
-        $("#feature-list tbody").append('<tr class="feature-row" id="'+L.stamp(layer)+'" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img height="20" src="'+layer.options.icon.options.iconUrl+'"></td><td class="feature-name"><em><span class="text-muted">'+layer.feature.properties.Timestamp+'</span></em><br>'+layer.feature.properties["Issue Type"]+'</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="'+L.stamp(layer)+'" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img height="20" src="'+layer.options.icon.options.iconUrl+'"></td><td class="feature-name"><em><span class="text-muted">'+layer.feature.properties.Timestamp+'</span></em><br>'+layer.feature.properties["Comment"]+'</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -496,7 +585,7 @@ function buildApp() {
       var add_list = [];
       for (var i = 0; i < data.features.length; i++) {
         var pt = data.features[i];
-        console.log(pt.geometry.coordinates);
+        //console.log(pt.geometry.coordinates);
         if (pt.geometry.coordinates[0] !== null) {
           add_list.push(pt);
         }
@@ -526,7 +615,8 @@ function buildApp() {
     });
 
   map = L.map("map", {
-    layers: [baseOSM, highlight],
+    //layers: [baseOSM, highlight],
+    layers: [googleBaseRoad, highlight],
     //layers: [googleBaseRoad, googleBaseSatellite, googleBaseHybrid, highlight],
     zoomControl: false,
     attributionControl: false

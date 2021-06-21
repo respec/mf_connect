@@ -122,9 +122,9 @@
           <div class="modal-body">
             <div><?php echo $config["about"]["text"]; ?></div>
 	    <div class="well well-sm" id="about"><a href="<?php echo $config["city"][$_SESSION["form_city"]]["web"]; ?>" target="_city"><?php echo $config["city"][$_SESSION["form_city"]]["name"]; ?></a></div>
-	    <div class="well well-sm" id="help"><?php echo $config["about"]["help"]; ?></div>
-	    <div class="well well-sm" id="thanks"><?php echo $config["about"]["thanks"]; ?></div>
-	    <div class="well well-sm" id="attribution"></div>
+	    <div class="well well-sm hidden" id="help"><?php echo $config["about"]["help"]; ?></div>
+	    <div class="well well-sm hidden" id="thanks"><?php echo $config["about"]["thanks"]; ?></div>
+	    <div class="well well-sm hidden" id="attribution"></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -209,7 +209,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" id="feature-tabs">
               <li class="active"><a href="#info-tab" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i>&nbsp;Info</a></li>
-              <li><a href="#comments-tab" role="tab" data-toggle="tab"><i class="fa fa-comments"></i>&nbsp;Comments</a></li>
+              <li id="comments-tab-button"><a href="#comments-tab" role="tab" data-toggle="tab"><i class="fa fa-comments"></i>&nbsp;Comments</a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -259,6 +259,7 @@
             </div> <!-- /.tab-content -->
           </div> <!-- /.modal-body -->
           <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="ThumbsUpButton"><i class="fa fa-thumbs-up"></i><div id="ThumbsUpNumber"  style="float: right; margin-left: 6px;">0</div></button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div> <!-- /.modal-footer -->
         </div>

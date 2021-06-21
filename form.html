@@ -1,12 +1,13 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Issue Information</h3>
+    <h3 class="panel-title">Comment</h3>
   </div>
   <div class="panel-body">
-    <div class="form-group" data-role="fieldcontain">
+    <div class="form-group hidden" data-role="fieldcontain">
       <label for="issue_type">Issue Type</label>
       <select class="form-control" name="issue_type" id="issue_type" data-errormessage='{"valueMissing": "This is a required field"}' required>
         <option value=""></option>
+        <option value="PUBLIC_COMMENT" selected>Public Comment</option>
         <option value="STREETS">Streets (Ex: signs, potholes, plowing)</option>
         <option value="PARKS">Parks (Ex: playgrounds, trails, rink)</option>
         <option value="WATER">Water (Ex: hydrant, water line break)</option>
@@ -14,40 +15,43 @@
       </select>
     </div>
 
-    <div class="form-group" data-role="fieldcontain">
+    <div class="form-group " data-role="fieldcontain">
       <label for="date_reported">Date Reported</label>
-      <input type="date" class="form-control" name="date_reported" id="date_reported" data-errormessage='{"valueMissing": "This is a required field"}' required>
+      <input type="date" class="form-control" name="date_reported" id="date_reported" value="<?php echo date('Y-m-d'); ?>" data-errormessage='{"valueMissing": "This is a required field"}' >
     </div>
-    <div class="form-group" data-role="fieldcontain">
+    <div class="form-group hidden" data-role="fieldcontain">
       <label for="issue_address">Issue Address</label>
-      <input class="form-control" type="text" name="issue_address" id="issue_address" data-errormessage='{"valueMissing": "This is a required field"}' required>
+      <input class="form-control" type="text" name="issue_address" id="issue_address" data-errormessage='{"valueMissing": "This is a required field"}' >
     </div>
-    <div class="form-group" data-role="fieldcontain">
+    <div class="form-group hidden" data-role="fieldcontain">
+      
+      <!-- This list must be inclusive of the list found in the config.json for the app to work -->
       <label for="issue_city">Issue City</label>
-      <select class="form-control" name="issue_city" id="issue_city" data-errormessage='{"valueMissing": "This is a required field"}' required>
+      <select class="form-control" name="issue_city" id="issue_city" data-errormessage='{"valueMissing": "This is a required field"}' >
         <option value=""></option>
         <option value="Andover">Andover</option>
         <option value="Fridley">Fridley</option>
         <option value="St Paul">St Paul</option>
         <option value="Roseville">Roseville</option>
+        <option value="Fairbanks">Fairbanks</option>
       </select>
 
       <label for="issue_state">Issue State</label>
-      <input class="form-control" type="text" name="issue_state" id="issue_state" value="MN" readonly data-errormessage='{"valueMissing": "This is a required field"}' required>
+      <input class="form-control" type="text" name="issue_state" id="issue_state" value="MN" readonly data-errormessage='{"valueMissing": "This is a required field"}' >
     </div>
-    <div class="form-group" data-role="fieldcontain">
+    <div class="form-group hidden" data-role="fieldcontain">
       <label for="is_resident">Are you a resident of the city?</label>
-      <select class="form-control" name="is_resident" id="is_resident" data-errormessage='{"valueMissing": "This is a required field"}' required>
+      <select class="form-control" name="is_resident" id="is_resident" data-errormessage='{"valueMissing": "This is a required field"}' >
         <option value=""></option>
         <option value="No">No</option>
         <option value="Yes">Yes</option>
       </select>
     </div>
     <div class="form-group" data-role="fieldcontain">
-      <label for="notes">Describe the Issue</label>
+      <!-- <label for="notes">Comment</label> -->
       <textarea class="form-control" rows="3" name="notes" id="notes" data-errormessage='{"valueMissing": "This is a required field"}' required></textarea>
     </div>
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="uploads">Photos (photos are strongly encouraged!)</label>
       <input type="file" id="uploads" name="uploads[]" accept="image/*">
     </div>
@@ -65,7 +69,7 @@
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="submitter_email">Email</label>
-      <input class="form-control" type="email" name="submitter_email" id="submitter_email" data-errormessage='{"valueMissing": "This is a required field"}' required >
+      <input class="form-control" type="email" name="submitter_email" id="submitter_email" data-errormessage='{"valueMissing": "This is a required field"}' >
     </div>
 	<div class="form-group" data-role="fieldcontain">
       <label for="submitter_phone">Phone</label>
