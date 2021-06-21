@@ -712,4 +712,28 @@ function buildApp() {
   }).on("stopfollowing", function() {
     map.off("dragstart", locateControl.stopFollowing);
   });
+
+  // check if the city has any geojson layers to load
+  cityConfig = config.city[String(urlParams.city)];
+  if( cityConfig.layers &&  cityConfig.layers.length > 0){
+    for(let i = 0; i <  cityConfig.layers.length ; i++){
+      let theLayer =  cityConfig.layers[i];
+      // let theLayerJSON = JSON.parse(theLayer.path);
+      $.ajax({
+        dataType: "json",
+        url: theLayer.path,
+        success: function(data) {
+            let nLayer = {};
+            // check if it has style params
+            if(theLayer.style && theLayer.style != ''){
+              nLayer = L.geoJson(data, {style: theLayer.style});
+            }else{
+              nLayer = L.geoJson(data);
+            }
+            nLayer.addTo(map);
+            layerControl.addOverlay(nLayer, theLayer.name);
+        }
+        }).error(function() {});
+    }
+  }
 }
