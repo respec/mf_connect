@@ -259,7 +259,12 @@
             </div> <!-- /.tab-content -->
           </div> <!-- /.modal-body -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" id="ThumbsUpButton"><i class="fa fa-thumbs-up"></i><div id="ThumbsUpNumber"  style="float: right; margin-left: 6px;">0</div></button>
+            <button type="button" class="btn btn-default" id="ThumbsUpButton">
+              <i class="fa fa-thumbs-up"></i><div id="ThumbsUpNumber"  style="float: right; margin-left: 6px;">0</div>
+            </button>
+            <button type="button" class="btn btn-default" id="ThumbsDownButton">
+              <i class="fa fa-thumbs-down"></i><div id="ThumbsDownNumber"  style="float: right; margin-left: 6px;">0</div>
+            </button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div> <!-- /.modal-footer -->
         </div>

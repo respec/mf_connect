@@ -26,7 +26,8 @@ function reverseGeo(lat,lng) {
                 var zip = part[2].split(' ')[2];
                 $('#issue_address').val(part[0]);
             } else {
-                alert("Warning: MapFeeder Connect has not been deployed for " + city + ".");
+                console.log('Every city is allowed!');
+                // alert("Warning: MapFeeder Connect has not been deployed for " + city + ".");
         $('#issue_address').val('');
         $('#issue_city').val('');
             }

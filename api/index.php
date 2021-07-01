@@ -28,7 +28,8 @@ $app->get('/kml', 'getKML');
 $app->get('/gpx', 'getGPX');
 $app->get('/comments/:id', 'getComments');
 $app->get('/likes/:id', 'getLikes');
-$app->get('/incrementlikes/:id', 'incrementLikes');
+$app->get('/incrementlikes/:id', 'addLike');
+$app->get('/decrementlikes/:id', 'addDislike');
 $app->post('/comment', 'newComment');
 $app->post('/feature', 'newFeature');
 $app->run();
@@ -221,13 +222,16 @@ function getGPX() {
 }
 
 function getLikes($id) {
-  $sql = "SELECT likes FROM workorder.mfc_data WHERE id = " . $id;
+  error_log('ERROR: '. "getLikes()", 0);
+  $sql = "SELECT likes, dislikes FROM workorder.mfc_data WHERE id = " . $id;
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
-    echo '{"likes": ' . json_encode($res) . '}';
+
+    echo json_encode($res[0]);
+
     $db = null;
   } catch(PDOException $e) {
     error_log('ERROR: '. $e->getMessage(), 0);
@@ -235,20 +239,45 @@ function getLikes($id) {
   }
 }
 
-function incrementLikes($id) {
-    // error_log('ERROR: '. "============", 0);
-    // error_log('ERROR: '. "incrementLikes()", 0);
-    // error_log('ERROR: '. print_r($id,true), 0);
 
-  $sql = "UPDATE workorder.mfc_data SET likes = Coalesce(likes,0) + 1 WHERE id = " . $id . " RETURNING likes";
+function incrementAttribute($id,$attribute) {
+    error_log('ERROR: '. "============", 0);
+    error_log('ERROR: '. "incrementAttribute()", 0);
+    error_log('ERROR: '. print_r($id,true), 0);
+    error_log('ERROR: '. print_r($attribute,true), 0);
+
+  $sql = "UPDATE workorder.mfc_data SET " . $attribute . " = Coalesce(" . $attribute . ",0) + 1 WHERE id = " . $id;
   try {
     error_log('ERROR: '. print_r($sql,true), 0);
     $db = getConnection();
     $stmt = $db->prepare($sql);
     $stmt->execute();
-    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
-    echo '{"likes": ' . json_encode($res) . '}';
+
+    return getLikes($id);
+
     $db = null;
+  } catch(PDOException $e) {
+    error_log('ERROR: '. $e->getMessage(), 0);
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function addLike($id) {
+    error_log('ERROR: '. "addLike()", 0);
+  try {
+    return incrementAttribute($id, "likes");
+
+  } catch(PDOException $e) {
+    error_log('ERROR: '. $e->getMessage(), 0);
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function addDislike($id) {
+    error_log('ERROR: '. "addDislike()", 0);
+  try {
+    return incrementAttribute($id, "dislikes");
+
   } catch(PDOException $e) {
     error_log('ERROR: '. $e->getMessage(), 0);
     echo '{"error":{"text":'. $e->getMessage() .'}}';

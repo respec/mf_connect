@@ -229,19 +229,27 @@ function buildApp() {
     return false;
   });
 
-  $(document).on('click', '#ThumbsUpButton', function (e) {
+  $(document).on('click', '#ThumbsUpButton, #ThumbsDownButton', function (e) {
     e.preventDefault();
-    console.log("Add a thumbs up!");
 
     // disable the thumbs up button 
     document.getElementById("ThumbsUpButton").disabled = true;
+    document.getElementById("ThumbsDownButton").disabled = true;
     // var element = $("form[name='second'] input[name='secondText']");
 
     // var formData = new FormData($("form#data-form")[0]);
     // var id = formData['id'];
 
     let pid = $("#info-tab")[0].getAttribute('data-pid');
-    incrementLikes(pid);
+
+    let elementId = e.currentTarget.id;
+
+    let like = 1;
+    if(elementId == "ThumbsDownButton"){
+      like = -1;
+    }
+
+    updateLikes(pid, like);
 });
 
   function updateMarkerLocation(location) {
@@ -335,35 +343,45 @@ function buildApp() {
       url: "api/likes/"+id,
       dataType: "json",
       success: function (data) {
-        var content = "0";
-        if (data.likes) {
-          if(data.likes.length > 0){
-            if(data.likes[0].likes != null){
-              content = String(data.likes[0].likes);
-            }
-          }
+        var content_likes = "0";
+        var content_dislikes = "0";
+        if(data.likes != null){
+          content_likes = String(data.likes);
         }
-        $("#ThumbsUpNumber").html(content);
+        if(data.dislikes != null){
+          content_dislikes = String(data.dislikes);
+        }
+        $("#ThumbsUpNumber").html(content_likes);
+        $("#ThumbsDownNumber").html(content_dislikes);
       }
     });
   }
 
-  function incrementLikes(id) {
+  function updateLikes(id, like) {
     $("input[name=id]").val(id);
+
+    let endpoint = 'incrementlikes';
+    if(like == -1){
+      endpoint = 'decrementlikes';
+    }
+
+    let paramURL = "api/" + endpoint + "/" + id;
+
     $.ajax({
       cache: false,
-      url: "api/incrementlikes/"+id,
+      url: paramURL,
       dataType: "json",
       success: function (data) {
-        var content = "0";
-        if (data.likes) {
-          if(data.likes.length > 0){
-            if(data.likes[0].likes != null){
-              content = String(data.likes[0].likes);
-            }
-          }
+        var content_likes = "0";
+        var content_dislikes = "0";
+        if(data.likes != null){
+          content_likes = String(data.likes);
         }
-        $("#ThumbsUpNumber").html(content);
+        if(data.dislikes != null){
+          content_dislikes = String(data.dislikes);
+        }
+        $("#ThumbsUpNumber").html(content_likes);
+        $("#ThumbsDownNumber").html(content_dislikes);
       }
     });
   }
@@ -548,6 +566,7 @@ function buildApp() {
             $("#info-tab")[0].setAttribute('data-pid', featureID);
 
             document.getElementById("ThumbsUpButton").disabled = false;
+            document.getElementById("ThumbsDownButton").disabled = false;
 
             if(config.city[String(urlParams.city)].enableComments == true){
               fetchComments(featureID);
@@ -559,6 +578,7 @@ function buildApp() {
               fetchLikes(featureID);
             }else{
               $('#ThumbsUpButton').hide();
+              $('#ThumbsDownButton').hide();
               //$('#comments-tab').hide();
             }
             
