@@ -70,7 +70,7 @@
   },
   "navbar": {
     "icon": "",
-    "title": "Connect"
+    "title": "Fairbanks North Star Borough Comprehensive Roads Plan Comment Map"
   },
   "twitter": {
     "via": "fulcrumapp",
@@ -82,8 +82,8 @@
   },
   "about": {
     "showAtStartup": true,
-    "title": "Eielson Air Force Base Public Comment Interactive Web Map",
-    "text": "Eielson Air Force Base public comment web application. This tool will identify deficiencies in the existing system and create short term to long term project plans for the local area network.<br><br>Public involvement is a key component of this plan. If you live, work or travel in the area, we ask that you please share your observations on the transportation system. Your unique experiences are critical to the success of the project. The comments we receive will help us to (1) identify opportunities to better connect the existing system and (2) prioritize improvements to the system to ensure that funds are spent efficiently.<br><br>Please use the map to tell us about your experience with the transportation system. Please be as specific as possible, as this will help us to better understand your concerns.<br><br>",
+    "title": "Welcome to the FNSB Roads Plan Interactive Comment Map!",
+    "text": "<h2>Help Create a Safer and Better-Connected Road System in the Fairbanks North Star Borough!</h2><br><br>Use this COMMENT MAP to:<br>&emsp;• Share what you like or dislike about roads in your neighborhood and/or other locations in the borough.<br>&emsp;• Learn and share your level of support for what others like or dislike.<br><br><br>This interactive map is open for comment through Monday, September 13th.<br><br>Your responses will contribute to an update of the Fairbanks North Star Borough (FNSB) Comprehensive Roads Plan.<br><a href='https://fnsbroadsplan.com/'>Visit the project website to learn more.</a><br><br>THANK YOU for your time and contributions to the updated FNSB Comprehensive Roads Plan!<br><br><h2>Instructions</h2><br><h3>Get Familiar with the Map:</h3><br>&emsp;• Click drag the map to move around and use the “+” or “-“ buttons to zoom in or out.<br><h3>Check Out and Respond to Others’ Comments:</h3><br>&emsp;• Find a comment you agree with/support? Click the “thumb up”. <br><br>&emsp;• Find a comment you disagree with/do not support? Click the “thumb down”. <br><h3>Submit a New Comment:</h3><br>&emsp;• Select the location for your comment<br><br>&emsp;• Click on that location and write a comment about a safety, connectivity or other issue impacting your local/neighborhood roads<br><h3>Tell Us More:</h3><br>&emsp;• <a href='https://www.surveymonkey.com/r/FNSBRoadsPlan'>Take this short 10-minute survey to:</a><br>&emsp;o RATE the safety and connectivity of your local/neighborhood roads.<br>&emsp;o Share your ideas for the TOP 3 NEEDED CONNECTIONS.<br>&emsp;o Identify examples of “GOOD” or “POOR” quality roads in your neighborhood.<br>",
     "thanks": "Thanks to <a href='https://github.com/bmcbride/building-damage-reporter'>Brian McBride</a> and the great folks at <a href='https://www.fulcrumapp.com'>FulcrumApp</a>.",
     "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
   },
