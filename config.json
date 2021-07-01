@@ -32,20 +32,20 @@
   "enableLikes": true,
   "enableComments": false,
   "layers":[{
-    "name":"dummy data polylines",
-    "path":"./dummy_data_polylines.json",
+    "name":"Roads",
+    "path":"./fairbanks/Road_Plan_EPSG4326.geojson",
     "style":{
       "color": "#ff7800",
-      "weight": 5,
+      "weight": 2,
       "opacity": 0.65
       }
     },{
-    "name":"dummy data polygons",
-    "path":"./dummy_data_polygons.json",
+    "name":"FNSB Boundary",
+    "path":"./fairbanks/FNSB_boundary_ESPG4326.geojson",
     "style":{
       "color": "#0099aa",
       "weight": 2,
-      "opacity": 0.7
+      "opacity": 0.3
       }
     }
   ]
@@ -82,8 +82,8 @@
   },
   "about": {
     "showAtStartup": true,
-    "title": "Welcome!",
-    "text": "About modal text set in the config.json",
+    "title": "Eielson Air Force Base Public Comment Interactive Web Map",
+    "text": "Eielson Air Force Base public comment web application. This tool will identify deficiencies in the existing system and create short term to long term project plans for the local area network.<br><br>Public involvement is a key component of this plan. If you live, work or travel in the area, we ask that you please share your observations on the transportation system. Your unique experiences are critical to the success of the project. The comments we receive will help us to (1) identify opportunities to better connect the existing system and (2) prioritize improvements to the system to ensure that funds are spent efficiently.<br><br>Please use the map to tell us about your experience with the transportation system. Please be as specific as possible, as this will help us to better understand your concerns.<br><br>",
     "thanks": "Thanks to <a href='https://github.com/bmcbride/building-damage-reporter'>Brian McBride</a> and the great folks at <a href='https://www.fulcrumapp.com'>FulcrumApp</a>.",
     "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
   },
