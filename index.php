@@ -236,13 +236,13 @@
                       <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name:</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="name" data-errormessage='{"valueMissing": "This is a required field"}' required>
+                          <input type="text" class="form-control" name="name" data-errormessage='{"valueMissing": ""}'>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="email" class="col-sm-2 control-label">Email:</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" name="email" data-errormessage='{"valueMissing": "This is a required field", "typeMismatch": "Incorrect email format"}' required>
+                          <input type="email" class="form-control" name="email" data-errormessage='{"valueMissing": "", "typeMismatch": "Incorrect email format"}'>
                         </div>
                       </div>
                       <div class="form-group">
