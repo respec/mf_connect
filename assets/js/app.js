@@ -77,7 +77,19 @@ function buildApp() {
     sortOrder = "asc";
   }
 
-  if (config.about.showAtStartup && config.about.showAtStartup === true) {
+  let cityConfig = config.city[String(urlParams.city)];
+  if( cityConfig.about ){
+    let nTitle = String(cityConfig.about.title);
+    let nText = String(cityConfig.about.text);
+    $('#aboutModal .modal-title').html(nTitle);
+    $('#aboutModal .modal-body').html(nText);
+  }
+  if( cityConfig.navbar ){
+    let nTitle = String(cityConfig.navbar.title);
+    $('.navbar-brand').html(nTitle);
+  }
+
+  if (config.defaultAboutModal.showAtStartup && config.defaultAboutModal.showAtStartup === true) {
     $("#aboutModal").modal("show");
   }
 

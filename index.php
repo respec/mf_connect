@@ -47,7 +47,7 @@
             <a href="#" class="navbar-icon pull-right visible-xs search-btn"><i class="fa fa-search fa-lg fa-white"></i></a>
             <a href="#" class="navbar-icon pull-right visible-xs new-item-btn" style="margin-left: 5px;"><i class="fa fa-plus fa-lg fa-red"><span style="font-size:75%;font-weight:bold;"> Add</span></i></a>
           </div>
-          <div class="navbar-brand"><?php if ($config["navbar"]["icon"]) {echo "<img src='" . $config["navbar"]["icon"] . "'>";} echo $config["navbar"]["title"]; ?></div>
+          <div class="navbar-brand"><?php if ($config["defaultNavbar"]["icon"]) {echo "<img src='" . $config["defaultNavbar"]["icon"] . "'>";} echo $config["defaultNavbar"]["title"]; ?></div>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -117,13 +117,13 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-primary"><?php echo $config["about"]["title"]; ?></h4>
+            <h4 class="modal-title text-primary"><?php echo $config["defaultAboutModal"]["title"]; ?></h4>
           </div>
           <div class="modal-body">
-            <div><?php echo $config["about"]["text"]; ?></div>
+            <div><?php echo $config["defaultAboutModal"]["text"]; ?></div>
 	    <!-- <div class="well well-sm" id="about"><a href="<?php echo $config["city"][$_SESSION["form_city"]]["web"]; ?>" target="_city"><?php echo $config["city"][$_SESSION["form_city"]]["name"]; ?></a></div> -->
-	    <div class="well well-sm hidden" id="help"><?php echo $config["about"]["help"]; ?></div>
-	    <div class="well well-sm hidden" id="thanks"><?php echo $config["about"]["thanks"]; ?></div>
+	    <div class="well well-sm hidden" id="help"><?php echo $config["defaultAboutModal"]["help"]; ?></div>
+	    <div class="well well-sm hidden" id="thanks"><?php echo $config["defaultAboutModal"]["thanks"]; ?></div>
 	    <div class="well well-sm hidden" id="attribution"></div>
           </div>
           <div class="modal-footer">
@@ -288,7 +288,7 @@
 /*
     <script>
         // Parameterize the URL query string
-	var urlParams={};
+        var urlParams={};
         if (location.search) {
             var parts = location.search.substring(1).split('&');
 

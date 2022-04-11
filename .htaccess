@@ -6,8 +6,13 @@ RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 
-#
 #RedirectMatch ^/($|ima$|ima/$|ima/login$|ima/login/$) http://ima.respec.com
 #RedirectMatch ^/($|comment/fnsb$|comment/fnsb/$) https://www.mapfeeder.net/comment/index.php?city=Fairbanks
+
 RedirectMatch ^/($|comment/fnsb$|comment/fnsb/$) /comment/index.php?city=Fairbanks
+
+RedirectMatch ^/($|comment/kodiak$|comment/kodiak/$) /comment/index.php?city=Kodiak
+
+RedirectMatch ^/($|comment/msb$|comment/msb/$) /comment/index.php?city=Matsuborough
+
 

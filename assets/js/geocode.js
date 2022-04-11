@@ -85,7 +85,8 @@ function geocodeAddress() {
 */
 function checkCity(theCity) {
     if (!$('#issue_city option[value="' + theCity + '"]').prop("selected", true).length) {
-        alert('Warning: mapFeeder Connect has not been deployed for ' + theCity);;
+        alert('Warning: mapFeeder Connect has not been deployed for ' + theCity);
+        console.log('Check the city options list hard coded in form.html');
     }
     return true;
 }
