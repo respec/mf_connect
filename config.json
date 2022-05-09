@@ -134,9 +134,9 @@
       "name":"Separated Paths",
       "path":"./gis_data/matsuborough/Infrastructure_Separated_Paths_ESPG4326.geojson",
       "style":{
-        "color": "#b27c21",
+        "color": "#FFF819",
         "weight": 2,
-        "opacity": 0.65
+        "opacity": 0.8
       }
     },
     {
@@ -144,6 +144,36 @@
       "path":"./gis_data/matsuborough/Administrative_MSB_Boundary_EPSG4326.geojson",
       "style":{
         "color": "#000000",
+        "weight": 2,
+        "opacity": 0.8,
+        "fillOpacity": 0
+      }
+    },
+    {
+      "name":"Admin City Boundary Houson",
+      "path":"./gis_data/matsuborough/Administrative_MSB_City_Boundary_Houston_EPSG4326.geojson",
+      "style":{
+        "color": "#FF2B19",
+        "weight": 2,
+        "opacity": 0.8,
+        "fillOpacity": 0
+      }
+    },
+    {
+      "name":"Admin City Boundary Palmer",
+      "path":"./gis_data/matsuborough/Administrative_MSB_City_Boundary_Palmer_EPSG4326.geojson",
+      "style":{
+        "color": "#FF19FF",
+        "weight": 2,
+        "opacity": 0.8,
+        "fillOpacity": 0
+      }
+    },
+    {
+      "name":"Admin City Boundary Wasilla",
+      "path":"./gis_data/matsuborough/Administrative_MSB_City_Boundary_Wasilla_EPSG4326.geojson",
+      "style":{
+        "color": "#150EFF",
         "weight": 2,
         "opacity": 0.8,
         "fillOpacity": 0
@@ -162,14 +192,14 @@
   ],
   "about": {
     "showAtStartup": true,
-    "title": "Welcome to the Matanuska-Susitna Borough Interactive Comment Map!",
-    "text": "<h3><b>Help create a safer and better-connected bicycle and pedestrian network in the Mat-Su Borough!</b></h3><ul><li>Use this COMMENT MAP to:<ul><li>Share what you like or dislike about paths, trails, and sidewalks in your neighborhood and/or other locations in the borough.</li><li>Learn and share your level of support for what other community members like or dislike.</li></ul></li><li>The COMMENT MAP is <b>open for your feedback through the end of the summer.</b></li><li>Your responses will contribute to <b>the Mat-Su Borough (FNSB) Bicycle and Pedestrian Plan (BPP).</b></li><li><b>THANK YOU!</b></li></ul><br><h3><b><u>Instructions</u></b></h3><ol><li>Get Familiar with the Map:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click and drag the map to move around.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Use the “+” or “-” buttons in the lower right hand corner to zoom in or out.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click the view options in the upper right corner to see different basemaps and layers.<br></li><li>Check Out and Respond to Others’ Comments:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Make sure the box in the upper right corner has a check next to “Public Comments”.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Find a comment you agree with/support? Click the “thumb up”.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Find a comment you disagree with/do not support? Click the “thumb down”.<br></li><li>Submit a New Comment:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click on the “Add a Comment” button in upper right hand corner.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Follow the instructions to “Click here to enter information OR drag the marker to adjust location.”<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Write and submit a comment about a safety, connectivity, or other bicycle/pedestrian issue.<br></li></ol><br><p style=\"text-align: center;\"><b></b></p>",
+    "title": "Welcome to the Matanuska-Susitna Borough Bike and Pedestrian Plan Comment Map!",
+    "text": "<h3><b>Help create a safer and better-connected bicycle and pedestrian network in the Mat-Su Borough!</b></h3><ul><li>Use this COMMENT MAP to:<ul><li>Share what you like or dislike about paths, trails, and sidewalks in your neighborhood and/or other locations in the borough.</li><li>Learn and share your level of support for what other community members like or dislike.</li></ul></li><li>The COMMENT MAP is <b>open for your feedback through the end of the summer.</b></li><li>Your responses will contribute to <b>the Mat-Su Borough (MSB) Bicycle and Pedestrian Plan (BPP).</b></li><li><b>THANK YOU!</b></li></ul><br><h3><b><u>Instructions</u></b></h3><ol><li>Get Familiar with the Map:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click and drag the map to move around.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Use the “+” or “-” buttons in the lower right hand corner to zoom in or out.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click the view options in the upper right corner to see different basemaps and layers.<br></li><li>Check Out and Respond to Others’ Comments:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Make sure the box in the upper right corner has a check next to “Public Comments”.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Find a comment you agree with/support? Click the “thumb up”.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Find a comment you disagree with/do not support? Click the “thumb down”.<br></li><li>Submit a New Comment:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click on the “Add a Comment” button in upper right hand corner.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Follow the instructions to “Click here to enter information OR drag the marker to adjust location.”<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Write and submit a comment about a safety, connectivity, or other bicycle/pedestrian issue.<br></li></ol><br><p style=\"text-align: center;\"><b></b></p>",
     "thanks": "Thanks to ---",
     "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
   },
   "navbar": {
     "icon": "",
-    "title": "Matanuska-Susitna Borough Comprehensive Roads Plan Comment Map"
+    "title": "Matanuska-Susitna Borough Bike and Pedestrian Plan Comment Map"
   }
   }
   },

@@ -758,7 +758,13 @@ function buildApp() {
             let nLayer = {};
             // check if it has style params
             if(theLayer.style && theLayer.style != ''){
-              nLayer = L.geoJson(data, {style: theLayer.style});
+              nLayer = L.geoJson(data, {style: theLayer.style,
+                onEachFeature: function (feature, layer) {
+                  if(feature.properties.Name){
+                    layer.bindPopup(feature.properties.Name);
+                  }
+                }
+              });
             }else{
               nLayer = L.geoJson(data);
             }

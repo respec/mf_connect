@@ -60,7 +60,7 @@
               </ul>
             </li>
 
-            <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" class="search-btn"><i class="fa fa-search fa-white"></i>&nbsp;&nbsp;Search</a></li>
+            <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" class="search-btn"><i class="fa fa-search fa-white"></i>&nbsp;&nbsp;Search Comments</a></li>
           </ul>
           <div class="navbar-form navbar-right hidden-xs">
             <button type="submit" class="btn btn-primary new-item-btn"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php echo $config["text"]["newItem"]; ?></button>
@@ -79,7 +79,7 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-xs-8">
-                  <input type="text" class="form-control search" placeholder="Search" />
+                  <input type="text" class="form-control search" placeholder="Search Comments" />
                 </div>
                 <div class="col-xs-4">
                   <button type="button" class="btn btn-primary pull-right sort" data-sort="feature-name" id="sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
