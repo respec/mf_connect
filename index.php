@@ -304,6 +304,12 @@
         } else {
     	    checkCity(decodeURIComponent(urlParams.city));
         }
+
+        if(urlParams.city == 'Matsuborough'){
+          console.log('hide the new button for Matsuborough');
+          $('.new-item-btn').hide();
+        }
+
     </script>
 */
   </body>
