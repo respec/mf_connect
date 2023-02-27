@@ -17,33 +17,33 @@
       "likes as \"Likes\""
     ]
   },
-  "city":{
+  "city": {
     "Fairbanks": {
-    "database":"mfc_ak_fairbanks",
-    "name":"City of Fairbanks",
-    "web":"https://www.fairbanksalaska.us/",
-    "enableLikes": true,
-    "enableComments": false,
-       "layers":[{
-         "name":"Future corridors",
-         "path":"./gis_data/fairbanks/Road_Plan_EPSG4326.geojson",
-         "style":{
-           "color": "#ff7800",
-           "weight": 2,
-           "opacity": 0.65
-         }
-       },
-       {
-         "name":"FNSB Boundary",
-         "path":"./gis_data/fairbanks/FNSB_boundary_ESPG4326.geojson",
-         "style":{
-           "color": "#0099aa",
-           "weight": 2,
-           "opacity": 0.8,
-           "fillOpacity": 0
-         }
-       }
-     ],
+      "database": "mfc_ak_fairbanks",
+      "name": "City of Fairbanks",
+      "web": "https://www.fairbanksalaska.us/",
+      "enableLikes": true,
+      "enableComments": false,
+      "layers": [{
+          "name": "Future corridors",
+          "path": "./gis_data/fairbanks/Road_Plan_EPSG4326.geojson",
+          "style": {
+            "color": "#ff7800",
+            "weight": 2,
+            "opacity": 0.65
+          }
+        },
+        {
+          "name": "FNSB Boundary",
+          "path": "./gis_data/fairbanks/FNSB_boundary_ESPG4326.geojson",
+          "style": {
+            "color": "#0099aa",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0
+          }
+        }
+      ],
       "about": {
         "showAtStartup": true,
         "title": "Welcome to the FNSB Roads Plan Interactive Comment Map!",
@@ -55,63 +55,55 @@
         "icon": "",
         "title": "Fairbanks North Star Borough Comprehensive Roads Plan Comment Map"
       }
-  },
+    },
     "Kodiak": {
-    "database":"mfc_ak_kodiak",
-    "name":"City of kodiac",
-    "web":"https://www.city.kodiak.ak.us/",
-    "enableLikes": true,
-    "enableComments": false,
-       "layers":[{
-         "name":"--- layer name ---",
-         "path":"./gis_data/",
-         "style":{
-           "color": "#ff7800",
-           "weight": 2,
-           "opacity": 0.65
-         }
-       },{
-         "name":"Trails",
-         "path":"./gis_data/kodiak/KIB_Trails_simplified_6.geojson",
-         "style":{
-           "color": "#764b25",
-           "weight": 2,
-           "opacity": 0.8,
-           "fillOpacity": 0.0
-         }
-       },
-       {
-         "name":"Roads",
-         "path":"./gis_data/kodiak/KIB_Roads.geojson",
-         "style":{
-           "color": "#90a0c0",
-           "weight": 2,
-           "opacity": 0.8,
-           "fillOpacity": 0.0
-         }
-       },
-       {
-         "name":"Local Parks",
-         "path":"./gis_data/kodiak/KIB_Parks.geojson",
-         "style":{
-           "color": "#008947",
-           "weight": 2,
-           "opacity": 0.8,
-           "fillOpacity": 0.4
-         }
-       },
-       {
-         "name":"Parcels",
-         "path":"./gis_data/kodiak/KIB_Parcels_simplified_9_prj_area.geojson",
-         "style":{
-           "color": "#000000", 
-           "weight": 1,
-           "opacity": 0.8,
-           "fillOpacity": 0.1,
-           "fillColor": "#bdc884"
-         }
-       }
-     ],
+      "database": "mfc_ak_kodiak",
+      "name": "City of kodiac",
+      "web": "https://www.city.kodiak.ak.us/",
+      "enableLikes": true,
+      "enableComments": false,
+      "layers": [{
+          "name": "Trails",
+          "path": "./gis_data/kodiak/KIB_Trails_simplified_6.geojson",
+          "style": {
+            "color": "#764b25",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0.0
+          }
+        },
+        {
+          "name": "Roads",
+          "path": "./gis_data/kodiak/KIB_Roads.geojson",
+          "style": {
+            "color": "#90a0c0",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0.0
+          }
+        },
+        {
+          "name": "Local Parks",
+          "path": "./gis_data/kodiak/KIB_Parks.geojson",
+          "style": {
+            "color": "#008947",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0.4
+          }
+        },
+        {
+          "name": "Parcels",
+          "path": "./gis_data/kodiak/KIB_Parcels_simplified_9_prj_area.geojson",
+          "style": {
+            "color": "#000000",
+            "weight": 1,
+            "opacity": 0.8,
+            "fillOpacity": 0.1,
+            "fillColor": "#bdc884"
+          }
+        }
+      ],
       "about": {
         "showAtStartup": true,
         "title": "Welcome to the Kodiak Waterfront Plan Interactive Comment Map!",
@@ -123,85 +115,122 @@
         "icon": "",
         "title": "Kodiak Waterfront Plan Comment Map"
       }
-  },
+    },
+    "AlaskaAirports": {
+      "database": "mfc_ak_airports",
+      "name": "Alaska Airports",
+      "web": "https://www.alaskaasp.com/",
+      "enableLikes": true,
+      "enableComments": true,
+      "layers": [{
+        "name": "Airports",
+        "path": "./gis_data/airports/ak_airports.geojson"
+      },
+      {
+        "name": "Airport5mileBuffer",
+        "path": "./gis_data/airports/airport_5mile_buffers.geojson",
+        "style": {
+            "color": "#008947",
+            "weight": 2,
+            "opacity": 0.2,
+            "fillOpacity": 0.2
+          }
+      }],
+      "about": {
+        "showAtStartup": true,
+        "title": "Welcome to Alaska Aviation System Interactive Comment Map!",
+        "text": "Need Text to go here",
+        "thanks": "Thanks to ---",
+        "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
+      },
+      "navbar": {
+        "icon": "",
+        "title": "AK Airports Comment Map"
+      },
+      "defaultMapLoadParameters": {
+        "zoom": 5,
+        "lat": 63.971504,
+        "lng": -152.010604
+      }
+    },
     "Matsuborough": {
-    "database":"mfc_ak_matsuborough",
-    "name":"Matanuska-Susitna Borough",
-    "web":"https://matsugov.us/projects/bike-pedestrian-plan",
-    "enableLikes": true,
-    "enableComments": false,
-    "layers":[{
-      "name":"Separated Paths",
-      "path":"./gis_data/matsuborough/Infrastructure_Separated_Paths_ESPG4326.geojson",
-      "style":{
-        "color": "#FFF819",
-        "weight": 2,
-        "opacity": 0.8
-      }
-    },
-    {
-      "name":"Admin Boundary",
-      "path":"./gis_data/matsuborough/Administrative_MSB_Boundary_EPSG4326.geojson",
-      "style":{
-        "color": "#000000",
-        "weight": 2,
-        "opacity": 0.8,
-        "fillOpacity": 0
-      }
-    },
-    {
-      "name":"Admin City Boundary Houson",
-      "path":"./gis_data/matsuborough/Administrative_MSB_City_Boundary_Houston_EPSG4326.geojson",
-      "style":{
-        "color": "#FF2B19",
-        "weight": 2,
-        "opacity": 0.8,
-        "fillOpacity": 0
-      }
-    },
-    {
-      "name":"Admin City Boundary Palmer",
-      "path":"./gis_data/matsuborough/Administrative_MSB_City_Boundary_Palmer_EPSG4326.geojson",
-      "style":{
-        "color": "#FF19FF",
-        "weight": 2,
-        "opacity": 0.8,
-        "fillOpacity": 0
-      }
-    },
-    {
-      "name":"Admin City Boundary Wasilla",
-      "path":"./gis_data/matsuborough/Administrative_MSB_City_Boundary_Wasilla_EPSG4326.geojson",
-      "style":{
-        "color": "#150EFF",
-        "weight": 2,
-        "opacity": 0.8,
-        "fillOpacity": 0
-      }
-    },
-    {
-      "name":"Recreational Local Parks",
-      "path":"./gis_data/matsuborough/Recreational_Local_Parks_EPSG4326.geojson",
-      "style":{
-        "color": "#008947",
-        "weight": 2,
-        "opacity": 0.8,
-        "fillOpacity": 0.3
+      "database": "mfc_ak_matsuborough",
+      "name": "Matanuska-Susitna Borough",
+      "web": "https://matsugov.us/projects/bike-pedestrian-plan",
+      "enableLikes": true,
+      "enableComments": false,
+      "layers": [{
+          "name": "Separated Paths",
+          "path": "./gis_data/matsuborough/Infrastructure_Separated_Paths_ESPG4326.geojson",
+          "style": {
+            "color": "#FFF819",
+            "weight": 2,
+            "opacity": 0.8
+          }
+        },
+        {
+          "name": "Admin Boundary",
+          "path": "./gis_data/matsuborough/Administrative_MSB_Boundary_EPSG4326.geojson",
+          "style": {
+            "color": "#000000",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0
+          }
+        },
+        {
+          "name": "Admin City Boundary Houson",
+          "path": "./gis_data/matsuborough/Administrative_MSB_City_Boundary_Houston_EPSG4326.geojson",
+          "style": {
+            "color": "#FF2B19",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0
+          }
+        },
+        {
+          "name": "Admin City Boundary Palmer",
+          "path": "./gis_data/matsuborough/Administrative_MSB_City_Boundary_Palmer_EPSG4326.geojson",
+          "style": {
+            "color": "#FF19FF",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0
+          }
+        },
+        {
+          "name": "Admin City Boundary Wasilla",
+          "path": "./gis_data/matsuborough/Administrative_MSB_City_Boundary_Wasilla_EPSG4326.geojson",
+          "style": {
+            "color": "#150EFF",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0
+          }
+        },
+        {
+          "name": "Recreational Local Parks",
+          "path": "./gis_data/matsuborough/Recreational_Local_Parks_EPSG4326.geojson",
+          "style": {
+            "color": "#008947",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0.3
+          }
+        }
+      ],
+      "about": {
+        "showAtStartup": true,
+        "title": "Welcome to the Matanuska-Susitna Borough Bike and Pedestrian Plan Comment Map!",
+        "text": "<h3><b>Help create a safer and better-connected bicycle and pedestrian network in the Mat-Su Borough!</b></h3><ul><li>Use this COMMENT MAP to:<ul><li>Share what you like or dislike about paths, trails, and sidewalks in your neighborhood and/or other locations in the borough.</li><li>Learn and share your level of support for what other community members like or dislike.</li></ul></li><li>The COMMENT MAP is <b>open for your feedback through the end of the summer.</b></li><li>Your responses will contribute to <b>the Mat-Su Borough (MSB) Bicycle and Pedestrian Plan (BPP).</b></li><li><b>THANK YOU!</b></li></ul><br><h3><b><u>Instructions</u></b></h3><ol><li>Get Familiar with the Map:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click and drag the map to move around.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Use the “+” or “-” buttons in the lower right hand corner to zoom in or out.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click the view options in the upper right corner to see different basemaps and layers.<br></li><li>Check Out and Respond to Others’ Comments:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Make sure the box in the upper right corner has a check next to “Public Comments”.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Find a comment you agree with/support? Click the “thumb up”.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Find a comment you disagree with/do not support? Click the “thumb down”.<br></li><li>Submit a New Comment:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click on the “Add a Comment” button in upper right hand corner.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Follow the instructions to “Click here to enter information OR drag the marker to adjust location.”<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Write and submit a comment about a safety, connectivity, or other bicycle/pedestrian issue.<br></li></ol><br><p style=\"text-align: center;\"><b></b></p>",
+        "thanks": "Thanks to ---",
+        "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
+      },
+      "navbar": {
+        "icon": "",
+        "title": "Matanuska-Susitna Borough Bike and Pedestrian Plan Comment Map"
       }
     }
-  ],
-  "about": {
-    "showAtStartup": true,
-    "title": "Welcome to the Matanuska-Susitna Borough Bike and Pedestrian Plan Comment Map!",
-    "text": "<h3><b>Help create a safer and better-connected bicycle and pedestrian network in the Mat-Su Borough!</b></h3><ul><li>Use this COMMENT MAP to:<ul><li>Share what you like or dislike about paths, trails, and sidewalks in your neighborhood and/or other locations in the borough.</li><li>Learn and share your level of support for what other community members like or dislike.</li></ul></li><li>The COMMENT MAP is <b>open for your feedback through the end of the summer.</b></li><li>Your responses will contribute to <b>the Mat-Su Borough (MSB) Bicycle and Pedestrian Plan (BPP).</b></li><li><b>THANK YOU!</b></li></ul><br><h3><b><u>Instructions</u></b></h3><ol><li>Get Familiar with the Map:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click and drag the map to move around.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Use the “+” or “-” buttons in the lower right hand corner to zoom in or out.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click the view options in the upper right corner to see different basemaps and layers.<br></li><li>Check Out and Respond to Others’ Comments:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Make sure the box in the upper right corner has a check next to “Public Comments”.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Find a comment you agree with/support? Click the “thumb up”.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Find a comment you disagree with/do not support? Click the “thumb down”.<br></li><li>Submit a New Comment:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click on the “Add a Comment” button in upper right hand corner.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Follow the instructions to “Click here to enter information OR drag the marker to adjust location.”<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Write and submit a comment about a safety, connectivity, or other bicycle/pedestrian issue.<br></li></ol><br><p style=\"text-align: center;\"><b></b></p>",
-    "thanks": "Thanks to ---",
-    "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
-  },
-  "navbar": {
-    "icon": "",
-    "title": "Matanuska-Susitna Borough Bike and Pedestrian Plan Comment Map"
-  }
-  }
   },
   "app": {
     "title": "Comment",
@@ -249,69 +278,70 @@
     "status": {
       "field": "Issue Type",
       "values": [{
-        "name": "PUBLIC_COMMENT",
-        "icon": {
-          "iconUrl": "assets/img/markers/87d30f.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-      },{
-        "name": "PARKS",
-        "icon": {
-          "iconUrl": "assets/img/markers/87d30f.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-      },
-      {
-        "name": "SEWER",
-        "icon": {
-          "iconUrl": "assets/img/markers/cb0d0c.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-      },
-      {
-        "name": "WATER",
-        "icon": {
-          "iconUrl": "assets/img/markers/1891c9.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-      },
-      {
-        "name": "STREETS",
-        "icon": {
-          "iconUrl": "assets/img/markers/ff8819.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-          
-      },
-       {
-        "name": "Park",
-        "icon": {
-          "iconUrl": "assets/img/markers/ffd300.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
-        }
-       },
-                
-       {
-        "name": "Other",
-        "icon": {
-          "iconUrl": "assets/img/markers/704b10.png",
-          "iconSize": [30, 40],
-          "iconAnchor": [15, 32],
-          "popupAnchor": [0, -20]
+          "name": "PUBLIC_COMMENT",
+          "icon": {
+            "iconUrl": "assets/img/markers/87d30f.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
           }
-        }]
+        }, {
+          "name": "PARKS",
+          "icon": {
+            "iconUrl": "assets/img/markers/87d30f.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
+          }
+        },
+        {
+          "name": "SEWER",
+          "icon": {
+            "iconUrl": "assets/img/markers/cb0d0c.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
+          }
+        },
+        {
+          "name": "WATER",
+          "icon": {
+            "iconUrl": "assets/img/markers/1891c9.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
+          }
+        },
+        {
+          "name": "STREETS",
+          "icon": {
+            "iconUrl": "assets/img/markers/ff8819.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
+          }
+
+        },
+        {
+          "name": "Park",
+          "icon": {
+            "iconUrl": "assets/img/markers/ffd300.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
+          }
+        },
+
+        {
+          "name": "Other",
+          "icon": {
+            "iconUrl": "assets/img/markers/704b10.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
+          }
+        }
+      ]
     }
   }
 }

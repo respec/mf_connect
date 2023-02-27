@@ -190,3 +190,24 @@ body {
 .leaflet-control-locate.active.following a {
   background-image: url(../img/locate-control/crosshairs-following.png);
 }
+
+
+.airport-map-overlay-labels{
+  background-color: transparent;
+  border: transparent;
+  box-shadow: none;
+  text-shadow: -1px 1px 0 #FFF,
+          1px 1px 0 #FFF,
+         1px -1px 0 #FFF;
+        -1px -1px 0 #FFF;
+}
+
+.tt-menu{
+  padding: 5px;
+  border: 1px solid #999;
+  background-color: #FFF;
+}
+
+#AirportSelect .twitter-typeahead, #AirportSelect .tt-input{
+  width: 100%;
+}

@@ -7,7 +7,7 @@ use Slim\Slim;
 
 $json = file_get_contents('../config.json');
 $config = json_decode($json, true);
-$dbname = $config['city'][$_SESSION["form_city"]]["database"];;
+$dbname = $config['city'][$_SESSION["form_city"]]["database"];
 $table = $config['data']['table'];
 $table_mapfeeder_side = $config['data']['table_mapfeeder_side'];
 $table_mapfeeder_side_pid_col = $config['data']['table_mapfeeder_side_primary_id_column'];
@@ -328,6 +328,11 @@ function newFeature() {
   global $table_mapfeeder_side;
   global $table_mapfeeder_side_pid_col;
   global $dbname;
+  
+  error_log('ERROR: '. "============ newFeature ============", 0);
+  error_log(print_r($dbname,true), 0);
+  error_log(print_r($dbname,true), 0);
+  error_log(print_r($dbname,true), 0);
 
   if (verifyFormToken('form')) {
     $fields = array();
@@ -342,10 +347,13 @@ function newFeature() {
       }
     }
 
-    error_log('ERROR: '. "============", 0);
+    error_log(' ', 0);
+    error_log(' ', 0);
     error_log('ERROR: '. print_r($fields,true), 0);
     error_log('ERROR: '. print_r($values,true), 0);
 
+    error_log(' ', 0);
+    error_log(' ', 0);
 
     try{
       $tableSplit = explode('.', $table);
@@ -434,7 +442,6 @@ function newFeature() {
 
 function getConnection() {
   global $dbname;
-
   $dbh = new PDO('pgsql:host=localhost;port=5432;dbname=' . $dbname . '', 'mf_connect', 'mfconnect123');
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   return $dbh;

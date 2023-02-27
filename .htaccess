@@ -15,4 +15,6 @@ RedirectMatch ^/($|comment/kodiak$|comment/kodiak/$) /comment/index.php?city=Kod
 
 RedirectMatch ^/($|comment/msb$|comment/msb/$) /comment/index.php?city=Matsuborough
 
+RedirectMatch ^/($|comment/msb$|comment/ak_airports/$) /comment/index.php?city=AlaskaAirports
+
 

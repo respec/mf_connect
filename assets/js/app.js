@@ -1,12 +1,14 @@
-var config, map, featureList, sortOrder;
+var config, map, featureList, sortOrder,ak_airport_data;
 var gpsActive = false;
 var params = {};
 
 $(document).ready(function() {
-
   $.getJSON("config.json", function(data) {
     config = data;
-    buildApp();
+    $.getJSON('gis_data/airports/ak_airports.geojson', function(data) {
+      ak_airport_data = data;
+      buildApp();
+    });
   });
 
   webshims.setOptions("forms", {
@@ -77,7 +79,12 @@ function buildApp() {
     sortOrder = "asc";
   }
 
+  console.log(urlParams.city);
+  if((urlParams.city == undefined) && (urlParams.map !== undefined)){
+    urlParams.city = urlParams.map;
+  }
   let cityConfig = config.city[String(urlParams.city)];
+
   if( cityConfig.about ){
     let nTitle = String(cityConfig.about.title);
     let nText = String(cityConfig.about.text);
@@ -467,9 +474,31 @@ function buildApp() {
     attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
   });
 
-  var googleBaseRoad = new L.Google('ROADMAP');
-  var googleBaseSatellite = new L.Google('SATELLITE');
-  var googleBaseHybrid = new L.Google('HYBRID');
+  // var googleBaseRoad = new L.Google('ROADMAP');
+  // var googleBaseSatellite = new L.Google('SATELLITE');
+  // var googleBaseHybrid = new L.Google('HYBRID');
+
+
+  var googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+  });
+
+  var googleHybrid = L.tileLayer('http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+  });
+
+  var googleSat = L.tileLayer('http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+  });
+
+  var googleTerrain = L.tileLayer('http://{s}.google.com/vt?lyrs=p&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+  });
+
 
   /* Overlay Layers */
   var highlight = L.geoJson(null);
@@ -629,16 +658,21 @@ function buildApp() {
       featureList = new List("features", {valueNames: ["feature-name"]});
       featureList.sort("feature-name", {order: sortOrder});
       /* If id param passed in URL, zoom to feature, else fit to cluster bounds or fitWorld if no data */
-      if (params.id && params.id.length > 0) {
-        var id = parseInt(params.id);
-        zoomToFeature(id);
-      } else {
-        if (markerClusters.getLayers().length === 0) {
-          map.fitWorld();
+      let mParams = config.city[String(urlParams.city)].defaultMapLoadParameters;
+      if(mParams != undefined){
+        map.setView([mParams['lat'], mParams['lng']], mParams['zoom']);
+      }else{
+        if (params.id && params.id.length > 0) {
+          var id = parseInt(params.id);
+          zoomToFeature(id);
         } else {
-          map.fitBounds(markerClusters.getBounds(), {
-            maxZoom: 14
-          });
+          if (markerClusters.getLayers().length === 0) {
+            map.fitWorld();
+          } else {
+            map.fitBounds(markerClusters.getBounds(), {
+              maxZoom: 14
+            });
+          }
         }
       }
     }
@@ -648,11 +682,25 @@ function buildApp() {
 
   map = L.map("map", {
     //layers: [baseOSM, highlight],
-    layers: [googleBaseRoad, highlight],
+    layers: [googleStreets, highlight],
     //layers: [googleBaseRoad, googleBaseSatellite, googleBaseHybrid, highlight],
     zoomControl: false,
     attributionControl: false
-  }).fitWorld();
+  })
+
+  // if there are default map params
+  let mParams = config.city[String(urlParams.city)].defaultMapLoadParameters;
+  if(mParams != undefined){
+    map.setView([mParams['lat'], mParams['lng']], mParams['zoom']);
+  }else{
+    map.fitWorld();
+  }
+  // .setView([lat, lng], zoom);
+  // "defaultMapLoadParameters": {
+  //     "zoom": 5,
+  //     "lat": 63.971504,
+  //     "lng": -152.010604
+  //   }
 
   if (config.marker.cluster && config.marker.cluster === true) {
     map.addLayer(markerClusters);
@@ -679,9 +727,12 @@ function buildApp() {
 
   var baseLayers = {
     // "Street Map": baseOSM
-    "Google Road Basemap" : googleBaseRoad,
-    "Google Satellite Basemap" : googleBaseSatellite,
-    "Google Hybrid Basemap" : googleBaseHybrid
+    // "Google Road Basemap" : googleBaseRoad,
+    // "Google Satellite Basemap" : googleBaseSatellite,
+    // "Google Hybrid Basemap" : googleBaseHybrid
+    "Google Road Basemap" : googleStreets,
+    "Google Satellite Basemap" : googleSat,
+    "Google Hybrid Basemap" : googleHybrid
   };
 
   var overlayLayers = {};
@@ -708,36 +759,36 @@ function buildApp() {
   map.on("layeradd", updateAttribution);
   map.on("layerremove", updateAttribution);
 
-  var locateControl = L.control.locate({
-    position: "bottomright",
-    drawCircle: true,
-    follow: true,
-    setView: true,
-    keepCurrentZoomLevel: true,
-    markerStyle: {
-      weight: 1,
-      opacity: 0.8,
-      fillOpacity: 0.8
-    },
-    circleStyle: {
-      weight: 1,
-      clickable: false
-    },
-    icon: "icon-direction",
-    metric: false,
-    strings: {
-      title: "My location",
-      popup: "You are within {distance} {unit} from this point",
-      outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
-    },
-    locateOptions: {
-      maxZoom: 5,
-      watch: true,
-      enableHighAccuracy: true,
-      maximumAge: 10000,
-      timeout: 10000
-    }
-  }).addTo(map);
+  // var locateControl = L.control.locate({
+  //   position: "bottomright",
+  //   drawCircle: true,
+  //   follow: true,
+  //   setView: true,
+  //   keepCurrentZoomLevel: true,
+  //   markerStyle: {
+  //     weight: 1,
+  //     opacity: 0.8,
+  //     fillOpacity: 0.8
+  //   },
+  //   circleStyle: {
+  //     weight: 1,
+  //     clickable: false
+  //   },
+  //   icon: "icon-direction",
+  //   metric: false,
+  //   strings: {
+  //     title: "My location",
+  //     popup: "You are within {distance} {unit} from this point",
+  //     outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
+  //   },
+  //   locateOptions: {
+  //     maxZoom: 5,
+  //     watch: true,
+  //     enableHighAccuracy: true,
+  //     maximumAge: 10000,
+  //     timeout: 10000
+  //   }
+  // }).addTo(map);
 
   map.on("startfollowing", function() {
     map.on("dragstart", locateControl.stopFollowing);
@@ -767,11 +818,81 @@ function buildApp() {
               });
             }else{
               nLayer = L.geoJson(data);
+
+              if(theLayer.name == 'Airports'){
+
+                nLayer = L.geoJson(null, {
+                  pointToLayer: function(feature,latlng){
+                    label = String(feature.properties.NAME) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
+                    return new L.CircleMarker(latlng, {
+                      radius: 1,
+                    }).bindTooltip(label, {
+                      permanent: true,
+                      direction: "center",
+                      className: "airport-map-overlay-labels"
+                    }).openTooltip();
+                    }
+                  });
+                nLayer.addData(data);
+              }
             }
             nLayer.addTo(map);
             layerControl.addOverlay(nLayer, theLayer.name);
         }
-        }).error(function() {});
+      }).error(function() {});
     }
   }
+
+  var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+    var matches, substringRegex;
+
+    // an array that will be populated with substring matches
+    matches = [];
+
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) {
+      if (substrRegex.test(str)) {
+        matches.push(str);
+      }
+    });
+
+    cb(matches);
+  };
+};
+
+var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+];
+console.log('ak_airport_data');
+console.log(ak_airport_data['features']);
+
+var ttList = [];
+for (var i = 0; i < ak_airport_data['features'].length; i++) {
+  let airport_properties = ak_airport_data['features'][i]['properties'];
+  let air_str = airport_properties['NAME'] + ' (' + airport_properties['FAA_ID'] + ')'
+  ttList.push(air_str);
+}
+
+$('#AirportSelect .typeahead').typeahead({
+  hint: true,
+  highlight: true,
+  minLength: 1
+},
+{
+  name: 'airportsList',
+  source: substringMatcher(ttList)
+});
+
 }

@@ -3,17 +3,31 @@
     <h3 class="panel-title">Comment</h3>
   </div>
   <div class="panel-body">
-    <div class="form-group hidden" data-role="fieldcontain">
-      <label for="issue_type">Issue Type</label>
+    <div class="form-group" data-role="fieldcontain">
+      <label for="issue_type">Comment Type</label>
       <select class="form-control" name="issue_type" id="issue_type" data-errormessage='{"valueMissing": "This is a required field"}' required>
         <option value=""></option>
-        <option value="PUBLIC_COMMENT" selected>Public Comment</option>
-        <option value="STREETS">Streets (Ex: signs, potholes, plowing)</option>
-        <option value="PARKS">Parks (Ex: playgrounds, trails, rink)</option>
-        <option value="WATER">Water (Ex: hydrant, water line break)</option>
-        <option value="SEWER">Sewer (Ex: storm drain)</option>
+        <option value="COMMENT" selected>Public Comment</option>
+        <option value="DAMAGE">Runway Damage</option>
+        <option value="COMPLAINT">Public Complaint</option>
+        <option value="OTHER">Other</option>
+        <option value="WILD">Wildlife Related</option>
       </select>
     </div>
+
+
+    <!-- TODO - select airport - required field -->
+    <div class="form-group" data-role="fieldcontain">
+      <label for="airport_select">Select Airport</label>
+<!--       <select class="form-control" name="airport_select" id="airport_select" data-errormessage='{"valueMissing": "This is a required field"}' required>
+        <option value=""></option>
+      </select> -->
+
+      <div id="AirportSelect">
+        <input class="typeahead" type="text" placeholder="Must Select Airport" required>
+      </div>
+    </div>
+
 
     <div class="form-group " data-role="fieldcontain">
       <label for="date_reported">Date Reported</label>
@@ -36,6 +50,7 @@
         <option value="Fairbanks">Fairbanks</option>
         <option value="Kodiak">Kodiak</option>
         <option value="Matsuborough">Matsuborough</option>
+        <option value="AlaskaAirports">AlaskaAirports</option>
       </select>
 
       <label for="issue_state">Issue State</label>
@@ -51,7 +66,7 @@
     </div>
     <div class="form-group" data-role="fieldcontain">
       <!-- <label for="notes">Comment</label> -->
-      <textarea class="form-control" rows="3" name="notes" id="notes" data-errormessage='{"valueMissing": "This is a required field"}' required></textarea>
+      <textarea class="form-control" rows="3" name="notes" id="notes" data-errormessage='{"valueMissing": "Specific details required."}' required></textarea>
     </div>
     <div class="form-group hidden">
       <label for="uploads">Photos (photos are strongly encouraged!)</label>
