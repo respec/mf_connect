@@ -331,8 +331,6 @@ function newFeature() {
   
   error_log('ERROR: '. "============ newFeature ============", 0);
   error_log(print_r($dbname,true), 0);
-  error_log(print_r($dbname,true), 0);
-  error_log(print_r($dbname,true), 0);
 
   if (verifyFormToken('form')) {
     $fields = array();

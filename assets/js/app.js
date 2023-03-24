@@ -176,6 +176,32 @@ function buildApp() {
     if($('#lat').val()!== "" && $('#lng').val() !== ""){
       reverseGeo($('#lat').val(),$('#lng').val());
     }
+
+    let listOfOptions = []; // TODO - put this into the config
+    if(urlParams.city == 'AlaskaAirports'){
+      listOfOptions.push({'text':'Public Comment','value':'PUBLIC_COMMENT'});
+      listOfOptions.push({'text':'Runway Damage','value':'DAMAGE'});
+      listOfOptions.push({'text':'Public Complaint','value':'COMPLAINT'});
+      listOfOptions.push({'text':'Other','value':'OTHER'});
+      listOfOptions.push({'text':'Wildlife Related','value':'WILD'});
+    }else{
+      console.log('Delete the airport select field');
+      $('#AirportSelect')[0].parentElement.remove();
+      listOfOptions.push({'text':'Public Comment','value':'PUBLIC_COMMENT'});
+      listOfOptions.push({'text':'Streets (Ex: signs, potholes, plowing)','value':'STREETS'});
+      listOfOptions.push({'text':'Parks (Ex: playgrounds, trails, rink)','value':'PARKS'});
+      listOfOptions.push({'text':'Water (Ex: hydrant, water line break)','value':'WATER'});
+      listOfOptions.push({'text':'Sewer (Ex: storm drain)','value':'SEWER'});
+    }
+
+    let commentTypeSelectDropdown = $('#issue_type')[0];
+    for (var i = 0; i < listOfOptions.length; i++) {
+      let anOption = listOfOptions[i];
+      var option = document.createElement("option");
+      option.text = anOption['text'];
+      option.value = anOption['value'];
+      commentTypeSelectDropdown.add(option);
+    }
   });
 
   $("#issue_address, #issue_city, #issue_state").on("change", function (){
@@ -335,7 +361,7 @@ function buildApp() {
         var add_list = [];
         for (var i = 0; i < data.features.length; i++) {
           var pt = data.features[i];
-          console.log(pt.geometry.coordinates);
+          // console.log(pt.geometry.coordinates);
           if (pt.geometry.coordinates[0] !== null) {
             add_list.push(pt);
           }
@@ -759,36 +785,36 @@ function buildApp() {
   map.on("layeradd", updateAttribution);
   map.on("layerremove", updateAttribution);
 
-  // var locateControl = L.control.locate({
-  //   position: "bottomright",
-  //   drawCircle: true,
-  //   follow: true,
-  //   setView: true,
-  //   keepCurrentZoomLevel: true,
-  //   markerStyle: {
-  //     weight: 1,
-  //     opacity: 0.8,
-  //     fillOpacity: 0.8
-  //   },
-  //   circleStyle: {
-  //     weight: 1,
-  //     clickable: false
-  //   },
-  //   icon: "icon-direction",
-  //   metric: false,
-  //   strings: {
-  //     title: "My location",
-  //     popup: "You are within {distance} {unit} from this point",
-  //     outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
-  //   },
-  //   locateOptions: {
-  //     maxZoom: 5,
-  //     watch: true,
-  //     enableHighAccuracy: true,
-  //     maximumAge: 10000,
-  //     timeout: 10000
-  //   }
-  // }).addTo(map);
+  var locateControl = L.control.locate({
+    position: "bottomright",
+    drawCircle: true,
+    follow: true,
+    setView: true,
+    keepCurrentZoomLevel: true,
+    markerStyle: {
+      weight: 1,
+      opacity: 0.8,
+      fillOpacity: 0.8
+    },
+    circleStyle: {
+      weight: 1,
+      clickable: false
+    },
+    icon: "icon-direction",
+    metric: false,
+    strings: {
+      title: "My location",
+      popup: "You are within {distance} {unit} from this point",
+      outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
+    },
+    locateOptions: {
+      maxZoom: 5,
+      watch: true,
+      enableHighAccuracy: true,
+      maximumAge: 10000,
+      timeout: 10000
+    }
+  }).addTo(map);
 
   map.on("startfollowing", function() {
     map.on("dragstart", locateControl.stopFollowing);
@@ -865,18 +891,8 @@ function buildApp() {
   };
 };
 
-var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-];
-console.log('ak_airport_data');
-console.log(ak_airport_data['features']);
+// console.log('ak_airport_data');
+// console.log(ak_airport_data['features']);
 
 var ttList = [];
 for (var i = 0; i < ak_airport_data['features'].length; i++) {

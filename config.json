@@ -127,13 +127,13 @@
         "path": "./gis_data/airports/ak_airports.geojson"
       },
       {
-        "name": "Airport5mileBuffer",
-        "path": "./gis_data/airports/airport_5mile_buffers.geojson",
+        "name": "Airport_One_Mile_Buffer",
+        "path": "./gis_data/airports/airport_1mile_buffers.geojson",
         "style": {
             "color": "#008947",
             "weight": 2,
-            "opacity": 0.2,
-            "fillOpacity": 0.2
+            "opacity": 0.8,
+            "fillOpacity": 0.4
           }
       }],
       "about": {

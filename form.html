@@ -7,11 +7,7 @@
       <label for="issue_type">Comment Type</label>
       <select class="form-control" name="issue_type" id="issue_type" data-errormessage='{"valueMissing": "This is a required field"}' required>
         <option value=""></option>
-        <option value="COMMENT" selected>Public Comment</option>
-        <option value="DAMAGE">Runway Damage</option>
-        <option value="COMPLAINT">Public Complaint</option>
-        <option value="OTHER">Other</option>
-        <option value="WILD">Wildlife Related</option>
+        <!-- the options are being set in the app.js now since different instances have diff options, the db constraint has been removed as well -->
       </select>
     </div>
 
