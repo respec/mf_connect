@@ -18,6 +18,43 @@
     ]
   },
   "city": {
+    "MVPMPO": {
+      "database": "mfc_ak_mvpmpo",
+      "name": "City of MVPMPO",
+      "web": "",
+      "enableLikes": true,
+      "enableComments": false,
+      "layers": [
+        {
+          "name": "MPA boundary",
+          "path": "./gis_data/mvpmpo/MPO_boundary_ESPG4326.geojson",
+          "style": {
+            "color": "#0099aa",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0
+          }
+        }
+      ],
+      "about": {
+        "showAtStartup": true,
+        "title": "Welcome to the MVPMPO Interactive Comment Map!",
+        "text": "Text",
+        "thanks": "Thanks to <a href='https://github.com/bmcbride/building-damage-reporter'>Brian McBride</a> and the great folks at <a href='https://www.fulcrumapp.com'>FulcrumApp</a>.",
+        "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
+      },
+      "navbar": {
+        "icon": "",
+        "title": "MVPMPO Comment Map"
+      },
+      "defaultMapLoadParameters": {
+        "zoom": 10,
+        "lat": 61.583142,
+        "lng": -149.419773
+
+
+      }
+    },
     "Fairbanks": {
       "database": "mfc_ak_fairbanks",
       "name": "City of Fairbanks",

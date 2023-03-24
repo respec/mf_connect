@@ -53,34 +53,42 @@ function verifyFormToken($form) {
 }
 
 function formatGeoJSON($sql) {
+  global $dbname;
   try {
-    $db = getConnection();
-    $stmt = $db->prepare($sql);
-    $stmt->execute();
+    // Do not return comments for the MVPMPO map
+    error_log('ERROR: '. "============", 0);
+    error_log('ERROR: '. "formatGeoJSON()", 0);
+    error_log('dbname: '. print_r($dbname,true), 0);
     # Build GeoJSON feature collection array
     $geojson = array(
        'type'      => 'FeatureCollection',
        'features'  => array()
     );
-    # Loop through rows to build feature arrays
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $properties = $row;
-        # Remove x and y fields from properties (optional)
-        unset($properties['x']);
-        unset($properties['y']);
-        $feature = array(
-          'type' => 'Feature',
-          'geometry' => array(
-            'type' => 'Point',
-            'coordinates' => array(
-              $row['x'],
-              $row['y']
-            )
-          ),
-          'properties' => $properties
-        );
-        # Add feature arrays to feature collection array
-        array_push($geojson['features'], $feature);
+    // do not return comments to the user for the mfc_ak_mvpmpo map
+    if ($dbname != 'mfc_ak_mvpmpo') {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->execute();
+      # Loop through rows to build feature arrays
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          $properties = $row;
+          # Remove x and y fields from properties (optional)
+          unset($properties['x']);
+          unset($properties['y']);
+          $feature = array(
+            'type' => 'Feature',
+            'geometry' => array(
+              'type' => 'Point',
+              'coordinates' => array(
+                $row['x'],
+                $row['y']
+              )
+            ),
+            'properties' => $properties
+          );
+          # Add feature arrays to feature collection array
+          array_push($geojson['features'], $feature);
+      }
     }
     header('Access-Control-Allow-Origin: *');
     header('Content-type: application/json');
