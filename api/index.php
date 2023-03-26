@@ -64,31 +64,34 @@ function formatGeoJSON($sql) {
        'type'      => 'FeatureCollection',
        'features'  => array()
     );
-    // do not return comments to the user for the mfc_ak_mvpmpo map
-    if ($dbname != 'mfc_ak_mvpmpo') {
-      $db = getConnection();
-      $stmt = $db->prepare($sql);
-      $stmt->execute();
-      # Loop through rows to build feature arrays
-      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-          $properties = $row;
-          # Remove x and y fields from properties (optional)
-          unset($properties['x']);
-          unset($properties['y']);
-          $feature = array(
-            'type' => 'Feature',
-            'geometry' => array(
-              'type' => 'Point',
-              'coordinates' => array(
-                $row['x'],
-                $row['y']
-              )
-            ),
-            'properties' => $properties
-          );
-          # Add feature arrays to feature collection array
-          array_push($geojson['features'], $feature);
-      }
+    // do not return the comment text values for the mfc_ak_mvpmpo map
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    # Loop through rows to build feature arrays
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $properties = $row;
+        # Remove x and y fields from properties (optional)
+        unset($properties['x']);
+        unset($properties['y']);
+
+        if ($dbname == 'mfc_ak_mvpmpo'){
+          $properties['Comment'] = '';
+        }
+
+        $feature = array(
+          'type' => 'Feature',
+          'geometry' => array(
+            'type' => 'Point',
+            'coordinates' => array(
+              $row['x'],
+              $row['y']
+            )
+          ),
+          'properties' => $properties
+        );
+        # Add feature arrays to feature collection array
+        array_push($geojson['features'], $feature);
     }
     header('Access-Control-Allow-Origin: *');
     header('Content-type: application/json');

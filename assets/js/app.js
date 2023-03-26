@@ -202,6 +202,12 @@ function buildApp() {
       option.value = anOption['value'];
       commentTypeSelectDropdown.add(option);
     }
+
+    if(urlParams.city == 'MVPMPO'){
+      // For MVP MNO set the comment type to PUBLIC_COMMENT and hide the form field
+      $("#issue_type").val("PUBLIC_COMMENT").change();
+      $("#issue_type").hide();
+    }
   });
 
   $("#issue_address, #issue_city, #issue_state").on("change", function (){
@@ -767,6 +773,9 @@ function buildApp() {
     collapsed: isCollapsed
   }).addTo(map);
 
+  if(urlParams.city == 'MVPMPO'){
+    config.marker.layer.name = "Comment Locations";
+  }
 
   if (config.marker.cluster && config.marker.cluster === true) {
     layerControl.addOverlay(markerClusters, config.marker.layer.name);
