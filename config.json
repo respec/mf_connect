@@ -29,20 +29,20 @@
           "name": "Draft Minimum MPA boundary",
           "path": "./gis_data/mvpmpo/MPO_boundary_ESPG4326.geojson",
           "style": {
-            "color": "#FFBB33",
-            "weight": 3,
+            "color": "#990099",
+            "weight": 4,
             "opacity": 0.7,
-            "fillOpacity": 0.2
+            "fillOpacity": 0.1
           }
         },
         {
           "name": "Administrative City Boundaries",
           "path": "./gis_data/mvpmpo/admin_city_boundaries_epsg4326.geojson",
           "style": {
-            "color": "#443322",
-            "weight": 3,
-            "opacity": 0.7,
-            "fillOpacity": 0.1
+            "color": "#223322",
+            "weight": 0,
+            "opacity": 0.3,
+            "fillOpacity": 0.3
           }
         }
       ],
