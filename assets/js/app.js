@@ -173,6 +173,15 @@ function buildApp() {
 
   // Reverse geocode marker location when form modal is opened and prepopulate address fields
   $("#formModal").on("shown.bs.modal", function (e) {
+
+    if(urlParams.city == 'MVPMPO'){
+      // For MVP MNO set the comment type to PUBLIC_COMMENT and hide the form field
+      $("#issue_type").val("PUBLIC_COMMENT").change();
+      $("#issue_type").parent().hide();
+
+      $("#issue_type").attr('required',false);
+    }
+
     if($('#lat').val()!== "" && $('#lng').val() !== ""){
       reverseGeo($('#lat').val(),$('#lng').val());
     }
@@ -201,12 +210,6 @@ function buildApp() {
       option.text = anOption['text'];
       option.value = anOption['value'];
       commentTypeSelectDropdown.add(option);
-    }
-
-    if(urlParams.city == 'MVPMPO'){
-      // For MVP MNO set the comment type to PUBLIC_COMMENT and hide the form field
-      $("#issue_type").val("PUBLIC_COMMENT").change();
-      $("#issue_type").hide();
     }
   });
 
