@@ -172,38 +172,46 @@ function buildApp() {
   });
 
   // Reverse geocode marker location when form modal is opened and prepopulate address fields
-  $("#formModal").on("shown.bs.modal", function (e) {
+  //$("#formModal").on("show.bs.modal", function (e) {
+  $(document).on("show.bs.modal", "#formModal", function (e) {
 
-    if(urlParams.city == 'MVPMPO'){
-      // For MVP MNO set the comment type to PUBLIC_COMMENT and hide the form field
-      $("#issue_type").val("PUBLIC_COMMENT").change();
-      $("#issue_type").parent().hide();
+    let commentTypeSelectDropdown = $('#issue_type')[0];
 
-      $("#issue_type").attr('required',false);
-    }
+    $(commentTypeSelectDropdown).empty(); // clear any previous options
 
     if($('#lat').val()!== "" && $('#lng').val() !== ""){
       reverseGeo($('#lat').val(),$('#lng').val());
     }
 
     let listOfOptions = []; // TODO - put this into the config
-    if(urlParams.city == 'AlaskaAirports'){
-      listOfOptions.push({'text':'Public Comment','value':'PUBLIC_COMMENT'});
-      listOfOptions.push({'text':'Runway Damage','value':'DAMAGE'});
-      listOfOptions.push({'text':'Public Complaint','value':'COMPLAINT'});
-      listOfOptions.push({'text':'Other','value':'OTHER'});
-      listOfOptions.push({'text':'Wildlife Related','value':'WILD'});
-    }else{
-      console.log('Delete the airport select field');
-      $('#AirportSelect')[0].parentElement.remove();
-      listOfOptions.push({'text':'Public Comment','value':'PUBLIC_COMMENT'});
-      listOfOptions.push({'text':'Streets (Ex: signs, potholes, plowing)','value':'STREETS'});
-      listOfOptions.push({'text':'Parks (Ex: playgrounds, trails, rink)','value':'PARKS'});
-      listOfOptions.push({'text':'Water (Ex: hydrant, water line break)','value':'WATER'});
-      listOfOptions.push({'text':'Sewer (Ex: storm drain)','value':'SEWER'});
+    switch(urlParams.city){
+      case 'AlaskaAirports':
+        listOfOptions.push({'text':'Public Comment','value':'PUBLIC_COMMENT'});
+        listOfOptions.push({'text':'Runway Damage','value':'DAMAGE'});
+        listOfOptions.push({'text':'Public Complaint','value':'COMPLAINT'});
+        listOfOptions.push({'text':'Other','value':'OTHER'});
+        listOfOptions.push({'text':'Wildlife Related','value':'WILD'});
+        break;
+      case 'MVPMPO':
+        listOfOptions.push({'text':'General Public','value':'GENERAL_PUBLIC'});
+        listOfOptions.push({'text':'Developer','value':'DEVELOPER'});
+        listOfOptions.push({'text':'Realtor','value':'REALTOR'});
+        listOfOptions.push({'text':'Business Owner','value':'BUSINESS_OWNER'});
+        listOfOptions.push({'text':'Agency Staff','value':'AGENCY_STAFF'});
+        break;
+      default:
+        listOfOptions.push({'text':'Public Comment','value':'PUBLIC_COMMENT'});
+        listOfOptions.push({'text':'Streets (Ex: signs, potholes, plowing)','value':'STREETS'});
+        listOfOptions.push({'text':'Parks (Ex: playgrounds, trails, rink)','value':'PARKS'});
+        listOfOptions.push({'text':'Water (Ex: hydrant, water line break)','value':'WATER'});
+        listOfOptions.push({'text':'Sewer (Ex: storm drain)','value':'SEWER'});
     }
 
-    let commentTypeSelectDropdown = $('#issue_type')[0];
+    if(urlParams.city !== 'AlaskaAirports'){
+      console.log('Delete the airport select field');
+      $('#AirportSelect').first().parent().remove();
+    }
+
     for (var i = 0; i < listOfOptions.length; i++) {
       let anOption = listOfOptions[i];
       var option = document.createElement("option");
@@ -847,7 +855,8 @@ function buildApp() {
             let nLayer = {};
             // check if it has style params
             if(theLayer.style && theLayer.style != ''){
-              nLayer = L.geoJson(data, {style: theLayer.style,
+              nLayer = L.geoJson(data, {
+                style: theLayer.style,
                 onEachFeature: function (feature, layer) {
                   if(feature.properties.Name){
                     layer.bindPopup(feature.properties.Name);
@@ -856,9 +865,7 @@ function buildApp() {
               });
             }else{
               nLayer = L.geoJson(data);
-
               if(theLayer.name == 'Airports'){
-
                 nLayer = L.geoJson(null, {
                   pointToLayer: function(feature,latlng){
                     label = String(feature.properties.NAME) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
@@ -874,7 +881,9 @@ function buildApp() {
                 nLayer.addData(data);
               }
             }
-            nLayer.addTo(map);
+            if(theLayer.notVisibleByDefault !== true){
+              nLayer.addTo(map);
+            }
             layerControl.addOverlay(nLayer, theLayer.name);
         }
       }).error(function() {});
@@ -884,13 +893,10 @@ function buildApp() {
   var substringMatcher = function(strs) {
   return function findMatches(q, cb) {
     var matches, substringRegex;
-
     // an array that will be populated with substring matches
     matches = [];
-
     // regex used to determine if a string contains the substring `q`
     substrRegex = new RegExp(q, 'i');
-
     // iterate through the pool of strings and for any string that
     // contains the substring `q`, add it to the `matches` array
     $.each(strs, function(i, str) {
@@ -898,14 +904,13 @@ function buildApp() {
         matches.push(str);
       }
     });
-
     cb(matches);
   };
 };
 
+// TODO - put the instance specific datasets into unique js files that are only loaded as needed
 // console.log('ak_airport_data');
 // console.log(ak_airport_data['features']);
-
 var ttList = [];
 for (var i = 0; i < ak_airport_data['features'].length; i++) {
   let airport_properties = ak_airport_data['features'][i]['properties'];

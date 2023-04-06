@@ -335,117 +335,110 @@ function newComment() {
 }
 
 function newFeature() {
-  global $table;
-  global $table_mapfeeder_side;
-  global $table_mapfeeder_side_pid_col;
-  global $dbname;
-  
-  error_log('ERROR: '. "============ newFeature ============", 0);
-  error_log(print_r($dbname,true), 0);
-
-  if (verifyFormToken('form')) {
-    $fields = array();
-    $values = array();
-    foreach ($_POST as $key => $value) {
-      if ($key !== 'token') {
-        if (is_array($value)) {
-          $value = implode(', ', $value);
+  try{
+    global $table;
+    global $table_mapfeeder_side;
+    global $table_mapfeeder_side_pid_col;
+    global $dbname;
+    if (verifyFormToken('form')) {
+      $fields = array();
+      $values = array();
+      foreach ($_POST as $key => $value) {
+        if ($key !== 'token') {
+          if (is_array($value)) {
+            $value = implode(', ', $value);
+          }
+          $fields[] = trim($key);
+          $values[] = trim($value);
         }
-        $fields[] = trim($key);
-        $values[] = trim($value);
       }
-    }
+      // error_log('ERROR: '. print_r($fields,true), 0);
+      // error_log('ERROR: '. print_r($values,true), 0);
+      try{
+        $tableSplit = explode('.', $table);
+        $subscriberName = $dbname;
+        $moduleName = $tableSplit[0];
+        $tableName = $tableSplit[1];
+      } catch(Exception $e) {}
 
-    error_log(' ', 0);
-    error_log(' ', 0);
-    error_log('ERROR: '. print_r($fields,true), 0);
-    error_log('ERROR: '. print_r($values,true), 0);
-
-    error_log(' ', 0);
-    error_log(' ', 0);
-
-    try{
-      $tableSplit = explode('.', $table);
-      $subscriberName = $dbname;
-      $moduleName = $tableSplit[0];
-      $tableName = $tableSplit[1];
-    } catch(Exception $e) {}
-
-    $uploadsList = array();
-    foreach ($_FILES['uploads']['error'] as $key => $error) {
-      if ($error === UPLOAD_ERR_OK) {
-        $filename = $_FILES['uploads']['name'][$key];
-        $file_basename = substr($filename, 0, strripos($filename, '.'));
-        $file_ext = substr($filename, strripos($filename, '.'));
-        $newfilename = md5($file_basename) .rand() . $file_ext;
-        $uploaddir = 'uploads/';
-        $uploadfile = $uploaddir . $newfilename;
-        move_uploaded_file($_FILES['uploads']['tmp_name'][$key], $uploadfile);
-        $uploadsList[] = $newfilename;
+      $uploadsList = array();
+      foreach ($_FILES['uploads']['error'] as $key => $error) {
+        if ($error === UPLOAD_ERR_OK) {
+          $filename = $_FILES['uploads']['name'][$key];
+          $file_basename = substr($filename, 0, strripos($filename, '.'));
+          $file_ext = substr($filename, strripos($filename, '.'));
+          $newfilename = md5($file_basename) .rand() . $file_ext;
+          $uploaddir = 'uploads/';
+          $uploadfile = $uploaddir . $newfilename;
+          move_uploaded_file($_FILES['uploads']['tmp_name'][$key], $uploadfile);
+          $uploadsList[] = $newfilename;
+        }
       }
-    }
 
-    if (count($uploadsList) > 0) {
-      $fields[] = 'uploads';
-      $values[] = implode(',', $uploadsList);
-    }
-    
-    $sql_insert = "INSERT INTO $table (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
-    
-    $whereCondition = "";
-    $num = count($values);
-    $and = "";
-    for ($i=0; $i < $num; $i++) {
-      if ($i > 0) {
-        $and = "AND ";
+      if (count($uploadsList) > 0) {
+        $fields[] = 'uploads';
+        $values[] = implode(',', $uploadsList);
       }
-      $whereCondition .= $and . $fields[$i] . " ='" . $values[$i] . "' ";
-    }
+      
+      $sql_insert = "INSERT INTO $table (" . implode(', ', $fields) . ") VALUES (" . ':' . implode(', :', $fields) . ");";
+      
+      $whereCondition = "";
+      $num = count($values);
+      $and = "";
+      for ($i=0; $i < $num; $i++) {
+        if ($i > 0) {
+          $and = "AND ";
+        }
+        $whereCondition .= $and . $fields[$i] . " ='" . $values[$i] . "' ";
+      }
 
-    $newPID = false;
-    try {
-      // insert record
-      $db = getConnection();
-      $stmt = $db->prepare($sql_insert);
-      $stmt->execute($values);
+      $newPID = false;
+      try {
+        // insert record
+        $db = getConnection();
+        $stmt = $db->prepare($sql_insert);
+        $stmt->execute($values);
+        $db = null;
+
+        // select record to get new primary id
+        $sql_getPID = "SELECT id from $table WHERE " . $whereCondition;
+        $db = getConnection();
+        $re = $db->query($sql_getPID);
+        $retv = $re->execute();
+        $val = $re->fetch();
+        $newPID = $val[0];
+
+        // sleep for one second to give the database trigger a change to run
+        sleep(1);
+        // get the PID of the record created by the trigger in the table that Mapfeeder will be checking
+        $sql_get_mf_PID = "SELECT $table_mapfeeder_side_pid_col from $moduleName.$table_mapfeeder_side WHERE connect_id = $newPID";
+
+        $db = getConnection();
+        $re = $db->query($sql_get_mf_PID);
+        $retv = $re->execute();
+        $val = $re->fetch();
+
+        $newActualPID = $val[0];
+      } catch(Exception $e) {
+        error_log('ERROR: '. $e->getMessage(), 0);
+        $db = null;
+      }
       $db = null;
 
-      // select record to get new primary id
-      $sql_getPID = "SELECT id from $table WHERE " . $whereCondition;
-      $db = getConnection();
-      $re = $db->query($sql_getPID);
-      $retv = $re->execute();
-      $val = $re->fetch();
-      $newPID = $val[0];
+      $uploaddir = 'uploads/';
+      $mf_uploads_path = '/data2/mapfeeder-uploads/' . $subscriberName . "/" . $moduleName . "/" . $table_mapfeeder_side . "/" . $newActualPID;
+      if((! is_dir($mf_uploads_path)) && (count($uploadsList) > 0)){
+        mkdir($mf_uploads_path);
+      }
 
-      // sleep for one second to give the database trigger a change to run
-      sleep(1);
-      // get the PID of the record created by the trigger in the table that Mapfeeder will be checking
-      $sql_get_mf_PID = "SELECT $table_mapfeeder_side_pid_col from $moduleName.$table_mapfeeder_side WHERE connect_id = $newPID";
-
-      $db = getConnection();
-      $re = $db->query($sql_get_mf_PID);
-      $retv = $re->execute();
-      $val = $re->fetch();
-
-      $newActualPID = $val[0];
-    } catch(Exception $e) {
-      error_log('ERROR: '. $e->getMessage(), 0);
-      $db = null;
+      foreach ($uploadsList as $key => $value) {
+        # for each copy to mapfeeder uploads dir
+        $uploadfile = $uploaddir . $value;
+        copy($uploadfile, $mf_uploads_path . "/" . $value);
+      }
     }
-    $db = null;
-
-    $uploaddir = 'uploads/';
-    $mf_uploads_path = '/data2/mapfeeder-uploads/' . $subscriberName . "/" . $moduleName . "/" . $table_mapfeeder_side . "/" . $newActualPID;
-    if((! is_dir($mf_uploads_path)) && (count($uploadsList) > 0)){
-      mkdir($mf_uploads_path);
-    }
-
-    foreach ($uploadsList as $key => $value) {
-      # for each copy to mapfeeder uploads dir
-      $uploadfile = $uploaddir . $value;
-      copy($uploadfile, $mf_uploads_path . "/" . $value);
-    }
+  }catch (Exception $e) {
+    error_log('Caught exception: ' . print_r($e->getMessage(),true), 0);
   }
 }
 

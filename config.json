@@ -26,7 +26,7 @@
       "enableComments": false,
       "layers": [
         {
-          "name": "Draft Minimum MPA boundary",
+          "name": "Draft MPA Boundary",
           "path": "./gis_data/mvpmpo/MPO_boundary_ESPG4326.geojson",
           "style": {
             "color": "#990099",
@@ -44,12 +44,23 @@
             "opacity": 0.3,
             "fillOpacity": 0.3
           }
+        },
+        {
+          "name": "Census Designated Urbanized Area",
+          "path": "./gis_data/mvpmpo/msb_2020_urbanized_EPSG4326.geojson",
+          "style": {
+            "color": "#993399",
+            "weight": 2,
+            "opacity": 0.3,
+            "fillOpacity": 0.3
+          },
+          "notVisibleByDefault": true
         }
       ],
       "about": {
         "showAtStartup": true,
         "title": "Welcome to the MVP MPO Interactive Comment Map!",
-        "text": "<h2>Help determine the MVP for Transportation Metropolitan Planning Area Boundary!</h2><p>Per <a href='https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title23-section134&num=0&edition=prelim'>federal code 23 USC § 134</a>, the metropolitan planning area (MPA) must include <strong>at least the existing urbanized area (UZA) as defined by the U.S. Census Bureau and the contiguous area expected to become urbanized within the next 20 years.</strong> The Draft Minimum MPA Boundary displayed on the map meets these minimum criteria.</p><strong>Use this Comment Map to identify areas where you think the Draft Minimum MPA Boundary should be expanded to account for:</strong><ul> <li>Future residential growth (e.g., neighborhoods or areas where new residential development is expected)</li></ul><ul>  <li>Existing or future traffic generating destinations (e.g., business and commercial areas, recreational facilities and parks, community facilities such as schools and hospitals)</li></ul><ul> <li>Improved continuity and connectivity of the transportation network and modes (i.e., public transit, driving, walking, biking)</li></ul><strong>Things to Consider:</strong><ul> <li>The MPA boundary should be comprehensive enough to foster an effective planning process that ensures connectivity between different transportation modes, reduces access disadvantages, and promotes efficient transportation investment strategies.</li></ul><ul>  <li>You can see the <strong>locations</strong> of other people’s comments, but the content of the comments will not be displayed publicly on the map.</li></ul><ul> <li>The Comment Map is open for your feedback through <strong>April 28, 2023</strong>.</li></ul><p><strong>Thank you for your time and participation in the MPA boundary development process!</strong></p><p><strong>Visit the MVP for Transportation website <a href='https://www.mvpmpo.com/boundary-development'>Boundary Development page</a> and <a href='https://www.mvpmpo.com/_files/ugd/10f92f_3b84564eea2d497f96240f71cd0573bc.pdf'>FAQ</a> to learn more.</strong></p><br><h3><b><u>Instructions</u></b></h3>    <ol>        <li>Get Familiar with the Map:<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Click and drag the map to move around.<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Use the “+” or “-” buttons in the lower right hand corner to zoom in or out.<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Click the view options in the upper right corner to see different basemaps and layers.<br></li>        <li>Submit a New Comment:<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Click on the “Add a Comment” button in upper right hand corner.<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Follow the instructions to “Click here to enter information OR draft the marker to adjust location.”<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Write and submit a comment.<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Comments will be hidden from other members of the public.<br></li></ol>",
+        "text": "<h2>Help determine the MVP for Transportation Metropolitan Planning Area Boundary!</h2><p>Per <a href='https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title23-section134&num=0&edition=prelim'>federal code 23 USC § 134</a>, the metropolitan planning area (MPA) must include <strong>at least the existing urbanized area (UZA) as defined by the U.S. Census Bureau and the contiguous area expected to become urbanized within the next 20 years.</strong> The Draft MPA Boundary displayed on the map meets these minimum criteria.</p><strong>Use this Comment Map to identify areas where you think the Draft MPA Boundary should be expanded to account for:</strong><ul> <li>Future residential growth (e.g., neighborhoods or areas where new residential development is expected)</li></ul><ul>  <li>Existing or future traffic generating destinations (e.g., business and commercial areas, recreational facilities and parks, community facilities such as schools and hospitals)</li></ul><ul> <li>Improved continuity and connectivity of the transportation network and modes (i.e., public transit, driving, walking, biking)</li></ul><strong>Things to Consider:</strong><ul> <li>The MPA boundary should be comprehensive enough to foster an effective planning process that ensures connectivity between different transportation modes, reduces access disadvantages, and promotes efficient transportation investment strategies.</li></ul><ul>  <li>You can see the <strong>locations and content</strong> of other people’s comments on the map. All comments will be compiled and shared publicly at the conclusion of this process. Names and contact info will be kept confidential.</li></ul><ul> <li>The Comment Map is open for your feedback through <strong>April 28, 2023</strong>.</li></ul><p><strong>Thank you for your time and participation in the MPA boundary development process!</strong></p><p><strong>Visit the MVP for Transportation website <a href='https://www.mvpmpo.com/boundary-development'>Boundary Development page</a> and <a href='https://www.mvpmpo.com/_files/ugd/10f92f_3b84564eea2d497f96240f71cd0573bc.pdf'>FAQ</a> to learn more.</strong></p><br><h3><b><u>Instructions</u></b></h3>    <ol>        <li>Get Familiar with the Map:<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Click and drag the map to move around.<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Use the “+” or “-” buttons in the lower right hand corner to zoom in or out.<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Click the view options in the upper right corner to see different basemaps and layers.<br></li>        <li>Submit a New Comment:<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Click on the “Add a Comment” button in upper right hand corner.<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Follow the instructions to “Click here to enter information OR draft the marker to adjust location.”<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Write and submit a comment.<br><span style='color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;'>Ø</span>Comments will be hidden from other members of the public.<br></li></ol>",
         "thanks": "Thanks to <a href='https://github.com/bmcbride/building-damage-reporter'>Brian McBride</a> and the great folks at <a href='https://www.fulcrumapp.com'>FulcrumApp</a>.",
         "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
       },
@@ -383,6 +394,41 @@
           "name": "Other",
           "icon": {
             "iconUrl": "assets/img/markers/704b10.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
+          }
+        },
+        {
+          "name": "GENERAL_PUBLIC",
+          "icon": {
+            "iconUrl": "assets/img/markers/87d30f.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
+          }
+        }, {
+          "name": "DEVELOPER",
+          "icon": {
+            "iconUrl": "assets/img/markers/87d30f.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
+          }
+        },
+        {
+          "name": "BUSINESS_OWNER",
+          "icon": {
+            "iconUrl": "assets/img/markers/cb0d0c.png",
+            "iconSize": [30, 40],
+            "iconAnchor": [15, 32],
+            "popupAnchor": [0, -20]
+          }
+        },
+        {
+          "name": "AGENCY_STAFF",
+          "icon": {
+            "iconUrl": "assets/img/markers/1891c9.png",
             "iconSize": [30, 40],
             "iconAnchor": [15, 32],
             "popupAnchor": [0, -20]
