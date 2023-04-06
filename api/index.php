@@ -75,10 +75,6 @@ function formatGeoJSON($sql) {
         unset($properties['x']);
         unset($properties['y']);
 
-        if ($dbname == 'mfc_ak_mvpmpo'){
-          $properties['Comment'] = '';
-        }
-
         $feature = array(
           'type' => 'Feature',
           'geometry' => array(
