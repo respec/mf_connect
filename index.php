@@ -361,7 +361,7 @@
     	    checkCity(decodeURIComponent(urlParams.city));
         }
 
-        if(urlParams.city == 'Matsuborough'){
+        if(['Matsuborough','MVPMPO'].includes(urlParams.city)){
           console.log('hide the new button for Matsuborough');
           $('.new-item-btn').hide();
         }
