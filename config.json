@@ -23,7 +23,9 @@
       "name": "City of MVP MPO",
       "web": "",
       "enableLikes": false,
+      "disableDislikes": false,
       "enableComments": false,
+      "hideNewItemButton": true,
       "layers": [
         {
           "name": "Draft MPA Boundary",
@@ -81,7 +83,9 @@
       "name": "City of Fairbanks",
       "web": "https://www.fairbanksalaska.us/",
       "enableLikes": true,
+      "disableDislikes": false,
       "enableComments": false,
+      "hideNewItemButton": false,
       "layers": [{
           "name": "Future corridors",
           "path": "./gis_data/fairbanks/Road_Plan_EPSG4326.geojson",
@@ -114,12 +118,40 @@
         "title": "Fairbanks North Star Borough Comprehensive Roads Plan Comment Map"
       }
     },
+    "Haines": {
+      "database": "mfc_ak_haines",
+      "name": "City of Haines, AK Comment Map",
+      "web": "",
+      "enableLikes": true,
+      "disableDislikes": true,
+      "enableComments": false,
+      "hideNewItemButton": false,
+      "layers": [],
+      "about": {
+        "showAtStartup": true,
+        "title": "City of Haines, AK Comment Map!",
+        "text": "<div><p style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><b><span style=\"font-size:12pt;\">Welcome to the Haines Borough Comprehensive Plan Revision Comment Map</span></b></p><p style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><b><span style=\"font-size:12pt;\">We need more of your feedback, Haines!</span></b><span style=\"font-size:12pt;\"> We’ve been listening and we want to get it right as we develop the revised Haines Comprehensive Plan. The revised plan will be a combination of long-term vision, goals, and practical strategies that will guide decisions about land use, transportation, utilities, economic development,&nbsp;housing, and more. It will provide a roadmap for implementation, with clear priorities and actions.</span></p><ul type=\"disc\" style=\"margin-top:0;margin-bottom:0;\"><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">Check out what we’ve learned through the community survey, meetings, and other events. </span></li><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">What do you think? Do you agree with these suggestions? <b>What are <i>your</i> ideas? </b></span></li></ul><ul type=\"disc\" style=\"margin-top:0;margin-bottom:0;\"><ul type=\"circle\" style=\"margin-top:0;margin-bottom:0;\"><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">What do you want to preserve and/or change about Haines? </span></li><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">What are your land use, transportation, housing, economic development, utilities, or other priorities? </span></li></ul></ul><ul type=\"disc\" style=\"margin-top:0;margin-bottom:0;\"><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">Use this Comment Map to tell us! </span></li><li style=\"color:#C00000;font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><b><span style=\"font-size:12pt;\">The Comment Map will close on December 31<sup>st</sup>. </span></b></li><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">Comments? Questions? Contact Project Team Manager, Shelly Wade, <a href=\"mailto:shelly@agnewbeck.com\" data-linkindex=\"6\">shelly@agnewbeck.com</a>, 907-242-5326.</span></li><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">Check out the community survey results, snapshot, and other community input to date on <a href=\"https://urldefense.com/v3/__https:/hainescompplanrevision.com/__;!!GzRj30k!SiXBKU4K9tGnh3i6by8GNXY_1wo-TYiTpXZOEjlJfkqbN0MVFOzEXT31PBjZI9MRFAFLnKLRdjivuriHSxK4zA$\" target=\"_blank\" rel=\"noopener noreferrer\" data-auth=\"NotApplicable\" data-linkindex=\"7\">the project website</a>. </span></li></ul><p style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><b><u><span style=\"font-size:12pt;\">Instructions </span></u></b></p><p style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><b><span style=\"font-size:12pt;\">Get Familiar with the Map:</span></b></p><ul type=\"disc\" style=\"margin-top:0;margin-bottom:0;\"><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">Click and drag the map to move around. </span></li><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">Use the “+” or “-” buttons in the lower right-hand corner to zoom in or out. </span></li><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">Click the view options in the upper right corner to see different basemaps and layers.</span></li></ul><p style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><b><span style=\"font-size:12pt;\">Check Out and Respond to Others’ Comments:</span></b></p><ul type=\"disc\" style=\"margin-top:0;margin-bottom:0;\"><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">Make sure the box in the upper right corner has a check next to “Public Comments”.</span></li><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0 0 4pt 0;\"><span style=\"font-size:12pt;\">Find a comment you agree with/support? Click the “thumb up”.</span></li></ul><p style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0;\"><b><span style=\"font-size:12pt;\">Submit a New Comment:</span></b></p><ul type=\"disc\" style=\"margin-top:0;margin-bottom:0;\"><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0;\"><span style=\"font-size:12pt;\">Click on the “Add a Comment” button in the upper right-hand corner. </span></li><li style=\"font-size:10pt;font-family:Calibri,sans-serif;margin:0;\"><span style=\"font-size:12pt;\">Follow the instructions to “Click here to enter information OR drag the marker to adjust in what location you want to add a comment. </span></li><li style=\"color:#2F5496;font-size:10pt;font-family:Calibri,sans-serif;margin:0;\"><span style=\"color:windowtext;font-size:12pt;\">Write and submit a comment about something you would like to preserve or change about that location, or other comments/questions.&nbsp;&nbsp;</span></li></ul></div>",
+        "thanks": "",
+        "help": " "
+      },
+      "navbar": {
+        "icon": "",
+        "title": "Haines Comment Map"
+      },
+      "defaultMapLoadParameters": {
+        "zoom": 11,
+        "lat": 59.234743,
+        "lng": -135.447504
+      }
+    },
     "Kodiak": {
       "database": "mfc_ak_kodiak",
       "name": "City of kodiac",
       "web": "https://www.city.kodiak.ak.us/",
       "enableLikes": true,
+      "disableDislikes": false,
       "enableComments": false,
+      "hideNewItemButton": false,
       "layers": [{
           "name": "Trails",
           "path": "./gis_data/kodiak/KIB_Trails_simplified_6.geojson",
@@ -179,7 +211,9 @@
       "name": "Alaska Airports",
       "web": "https://www.alaskaasp.com/",
       "enableLikes": true,
+      "disableDislikes": false,
       "enableComments": true,
+      "hideNewItemButton": false,
       "layers": [{
         "name": "Airports",
         "path": "./gis_data/airports/ak_airports.geojson"
@@ -216,7 +250,9 @@
       "name": "Matanuska-Susitna Borough",
       "web": "https://matsugov.us/projects/bike-pedestrian-plan",
       "enableLikes": true,
+      "disableDislikes": false,
       "enableComments": false,
+      "hideNewItemButton": true,
       "layers": [{
           "name": "Separated Paths",
           "path": "./gis_data/matsuborough/Infrastructure_Separated_Paths_ESPG4326.geojson",

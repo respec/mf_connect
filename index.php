@@ -337,6 +337,14 @@
     <!-- fails because of mixed content type error, cannot get the file via https and http fails -->
     <!-- <script src="//matchingnotes.com/javascripts/leaflet-google.js"></script> -->
     <script src="assets/js/leaflet-google.js"></script>
+
+
+    <?php
+      $urlCityName = $_SESSION["form_city"];
+      $configCity = json_encode($config["city"][$_SESSION["form_city"]]);
+      echo "<script>window.urlCityName = '$urlCityName';window.configCity = $configCity;</script>";
+    ?>
+
 /*
     <script>
         // Parameterize the URL query string
@@ -361,8 +369,9 @@
     	    checkCity(decodeURIComponent(urlParams.city));
         }
 
-        if(['Matsuborough','MVPMPO'].includes(urlParams.city)){
-          console.log('hide the new button for Matsuborough');
+        console.log(window.urlCityName);
+        console.log(window.configCity);
+        if(window.configCity.hideNewItemButton == true){
           $('.new-item-btn').hide();
         }
 

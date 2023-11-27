@@ -665,6 +665,9 @@ function buildApp() {
               $('#ThumbsDownButton').hide();
               //$('#comments-tab').hide();
             }
+            if(config.city[String(urlParams.city)].disableDislikes == true){
+              $('#ThumbsDownButton').hide();
+            }
             
             $("#share-btn").click(function() {
               var link = location.protocol + '//' + location.host + location.pathname + "?id=" + featureID;
