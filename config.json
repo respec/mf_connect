@@ -26,6 +26,7 @@
       "disableDislikes": false,
       "enableComments": false,
       "hideNewItemButton": true,
+      "hideCommentTypeSelect": false,
       "layers": [
         {
           "name": "Draft MPA Boundary",
@@ -86,6 +87,7 @@
       "disableDislikes": false,
       "enableComments": false,
       "hideNewItemButton": false,
+      "hideCommentTypeSelect": false,
       "layers": [{
           "name": "Future corridors",
           "path": "./gis_data/fairbanks/Road_Plan_EPSG4326.geojson",
@@ -126,6 +128,7 @@
       "disableDislikes": true,
       "enableComments": false,
       "hideNewItemButton": false,
+      "hideCommentTypeSelect": true,
       "layers": [],
       "about": {
         "showAtStartup": true,
@@ -152,6 +155,7 @@
       "disableDislikes": false,
       "enableComments": false,
       "hideNewItemButton": false,
+      "hideCommentTypeSelect": false,
       "layers": [{
           "name": "Trails",
           "path": "./gis_data/kodiak/KIB_Trails_simplified_6.geojson",
@@ -214,6 +218,7 @@
       "disableDislikes": false,
       "enableComments": true,
       "hideNewItemButton": false,
+      "hideCommentTypeSelect": false,
       "layers": [{
         "name": "Airports",
         "path": "./gis_data/airports/ak_airports.geojson"
@@ -253,6 +258,7 @@
       "disableDislikes": false,
       "enableComments": false,
       "hideNewItemButton": true,
+      "hideCommentTypeSelect": false,
       "layers": [{
           "name": "Separated Paths",
           "path": "./gis_data/matsuborough/Infrastructure_Separated_Paths_ESPG4326.geojson",

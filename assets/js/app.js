@@ -171,6 +171,7 @@ function buildApp() {
     
   });
 
+  // New Comment on modal open logic
   // Reverse geocode marker location when form modal is opened and prepopulate address fields
   //$("#formModal").on("show.bs.modal", function (e) {
   $(document).on("show.bs.modal", "#formModal", function (e) {
@@ -218,6 +219,10 @@ function buildApp() {
       option.text = anOption['text'];
       option.value = anOption['value'];
       commentTypeSelectDropdown.add(option);
+    }
+
+    if(config.city[String(urlParams.city)].hideCommentTypeSelect == true){
+      $(commentTypeSelectDropdown).parent().hide();
     }
   });
 
