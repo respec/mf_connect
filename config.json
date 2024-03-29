@@ -147,6 +147,57 @@
         "lng": -135.447504
       }
     },
+    "HainesFLU": {
+      "database": "mfc_ak_haines_flu",
+      "name": "Haines Future Land Use Comment Map",
+      "web": "",
+      "enableLikes": true,
+      "disableDislikes": true,
+      "enableComments": true,
+      "hideNewItemButton": false,
+      "hideCommentTypeSelect": true,
+      "layers": [{
+          "name": "Land Use Areas",
+          "path": "./gis_data/hainesflu/haines_future_land_use_epsg4326.geojson",
+          "stylePolygonOverride": true,
+          "style": {
+            "color": "#ff7800",
+            "weight": 2,
+            "opacity": 0.45
+          },
+          "styleColorCodes":
+          [
+            {"name": "Commercial", "code": "comm", "color":"#a6cee3"},
+            {"name": "Developed Open Space / Park", "code": "devopen", "color":"#1f78b4"},
+            {"name": "Industrial", "code": "ind", "color":"#b2df8a"},
+            {"name": "Light Industrial Waterfront Development", "code": "lindw", "color":"#33a02c"},
+            {"name": "Open Space / Natural Area", "code": "opennat", "color":"#fb9a99"},
+            {"name": "Public Multi-Use", "code": "pubm", "color":"#e31a1c"},
+            {"name": "River Corridor", "code": "riv", "color":"#fdbf6f"},
+            {"name": "Rural Mixed Use", "code": "rmix", "color":"#ff7f00"},
+            {"name": "Rural Residential", "code": "rres", "color":"#cab2d6"},
+            {"name": "Townsite / Downtown Core", "code": "tcore", "color":"#6a3d9a"},
+            {"name": "Townsite Residential", "code": "tres", "color":"#ffff99"}
+          ]
+        }
+      ],
+      "about": {
+        "showAtStartup": true,
+        "title": "Haines Future Land Use Comment Map",
+        "text": "<div>About Page Text</div>",
+        "thanks": "",
+        "help": " "
+      },
+      "navbar": {
+        "icon": "",
+        "title": "Haines Future Land Use Comment Map"
+      },
+      "defaultMapLoadParameters": {
+        "zoom": 11,
+        "lat": 59.234743,
+        "lng": -135.447504
+      }
+    },
     "Kodiak": {
       "database": "mfc_ak_kodiak",
       "name": "City of kodiac",

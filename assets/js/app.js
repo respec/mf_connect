@@ -862,6 +862,9 @@ function buildApp() {
         success: function(data) {
             let nLayer = {};
             // check if it has style params
+            if(theLayer.stylePolygonOverride == true){
+              theLayer.style = undefined;
+            }
             if(theLayer.style && theLayer.style != ''){
               nLayer = L.geoJson(data, {
                 style: theLayer.style,
@@ -888,6 +891,51 @@ function buildApp() {
                   });
                 nLayer.addData(data);
               }
+
+              // if it is a polygon layer apply color styles
+              if(theLayer.stylePolygonOverride == true){
+                function getCodeColor(codeStr) {
+                  for (var i = theLayer.styleColorCodes.length - 1; i >= 0; i--) {
+                    let item = theLayer.styleColorCodes[i];
+                    if (item.code == codeStr) {
+                      return item.color;
+                    }
+                  }
+                }
+                function style_cat_colors(feature) {
+                    return {
+                        fillColor: getCodeColor(feature.properties.code),
+                        weight: 1,
+                        opacity: 1,
+                        color: 'white',
+                        fillOpacity: 0.5
+                    };
+                }
+                nLayer.setStyle(style_cat_colors);
+
+                var legend = L.control({position: 'bottomright'});
+
+                legend.onAdd = function (map) {
+
+                    var div = L.DomUtil.create('div', 'info legend'),
+                        labels = [];
+
+                    // loop through our density intervals and generate a label with a colored square for each interval
+                    for (var i = 0; i < theLayer.styleColorCodes.length; i++) {
+                      aCodeColor = theLayer.styleColorCodes[i];
+                        div.innerHTML +=
+                            '<i style="background:' + aCodeColor.color + '"></i> ' + aCodeColor.name + '<br>';
+                    }
+
+                    return div;
+                };
+
+                legend.addTo(map);
+
+              }
+
+              //   // {color: "blue", weight: 0, fillColor: fillColor, fillOpacity: .6};
+              //   // {"color": "#ff7800", "weight": 2, "opacity": 0.45}
             }
             if(theLayer.notVisibleByDefault !== true){
               nLayer.addTo(map);
