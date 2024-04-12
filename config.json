@@ -167,17 +167,17 @@
           },
           "styleColorCodes":
           [
-            {"name": "Commercial", "code": "comm", "color":"#a6cee3"},
-            {"name": "Developed Open Space / Park", "code": "devopen", "color":"#1f78b4"},
-            {"name": "Industrial", "code": "ind", "color":"#b2df8a"},
-            {"name": "Light Industrial Waterfront Development", "code": "lindw", "color":"#33a02c"},
-            {"name": "Open Space / Natural Area", "code": "opennat", "color":"#fb9a99"},
-            {"name": "Public Multi-Use", "code": "pubm", "color":"#e31a1c"},
-            {"name": "River Corridor", "code": "riv", "color":"#fdbf6f"},
-            {"name": "Rural Mixed Use", "code": "rmix", "color":"#ff7f00"},
-            {"name": "Rural Residential", "code": "rres", "color":"#cab2d6"},
-            {"name": "Townsite / Downtown Core", "code": "tcore", "color":"#6a3d9a"},
-            {"name": "Townsite Residential", "code": "tres", "color":"#ffff99"}
+            {"name": "Commercial", "code": "comm", "color":"#FFBFC0", "description":"Areas for commercial and higher density residential uses; compact, walkable, and diverse."},
+            {"name": "Developed Open Space / Park", "code": "devopen", "color":"#5FFBAF", "description":"Areas developed for parks, campgrounds, cemeteries, or indoor recreation, not managed by State or Federal governments."},
+            {"name": "Industrial", "code": "ind", "color":"#B381D9", "description":"Areas devoted to light and heavy industrial uses."},
+            {"name": "Light Industrial Waterfront Development", "code": "lindw", "color":"#009FC2", "description":"Waterfront dependent uses that combine light industrial, recreation, and commercial uses, balancing working waterfronts with community spaces."},
+            {"name": "Open Space / Natural Area", "code": "opennat", "color":"#00B050", "description":"Areas to remain in a natural state due to conservation value or hazard potential, not managed by State or Federal governments."},
+            {"name": "Public Multi-Use", "code": "pubm", "color":"#D9F8E0", "description":"State and federal lands with multiple uses, to remain in public ownership, including flood protection, habitat value, traditional use, recreation, tourism, timber extraction, and mining. State and federal land agencies to set land use priorities."},
+            {"name": "River Corridor", "code": "riv", "color":"#0A3168", "description":"Key rivers and riverfront areas. Includes suggested setbacks to protect riparian habitat (actual regulations will vary by location)."},
+            {"name": "Rural Mixed Use", "code": "rmix", "color":"#72CCC1", "description":"A variety of uses allowed, including residential, commercial, and light industrial with the general goal of preserving the residential character of surrounding neighborhoods."},
+            {"name": "Rural Residential", "code": "rres", "color":"#FDDC6A", "description":"Predominantly residential areas that do not have access to public water utilities. Mostly low density, and larger lot sizes (1 acre+). Includes some commercial uses."},
+            {"name": "Townsite / Downtown Core", "code": "tcore", "color":"#FF8021", "description":"Areas for continuing infill and densification, with a focus on mixed use development, walkability, redevelopment, and policies for compatibility between differing uses. This is the primary downtown business district in Haines."},
+            {"name": "Townsite Residential", "code": "tres", "color":"#FEF3CD", "description":"Predominately residential areas with compatible public and commercial uses; areas for infill and densification, including neighborhoods that currently have access to public water utilities, typically less than one acre."}
           ]
         }
       ],
