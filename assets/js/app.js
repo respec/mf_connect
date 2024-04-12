@@ -924,7 +924,7 @@ function buildApp() {
                     for (var i = 0; i < theLayer.styleColorCodes.length; i++) {
                       aCodeColor = theLayer.styleColorCodes[i];
                         div.innerHTML +=
-                            '<i style="background:' + aCodeColor.color + '"></i> ' + aCodeColor.name + '<br>';
+                            '<div class="legend-item" data-description="' + aCodeColor.description + '" title="' + aCodeColor.description + '" ><i style="background:' + aCodeColor.color + '"></i> ' + aCodeColor.name + '</div>';
                     }
 
                     return div;
