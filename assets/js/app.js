@@ -184,7 +184,8 @@ function buildApp() {
       reverseGeo($('#lat').val(),$('#lng').val());
     }
 
-    let listOfOptions = []; // TODO - put this into the config
+    let listOfOptions = []; // TODO - put this into the config or store in the database, maybe make it editable by an admin user
+
     switch(urlParams.city){
       case 'AlaskaAirports':
         listOfOptions.push({'text':'Public Comment','value':'PUBLIC_COMMENT'});
@@ -890,6 +891,12 @@ function buildApp() {
                     }
                   });
                 nLayer.addData(data);
+              }
+
+              if(theLayer.layerClickPopupAttributeName != undefined){
+                nLayer.bindPopup((layer) => {
+                    return layer.feature.properties[String(theLayer.layerClickPopupAttributeName)];
+                });
               }
 
               // if it is a polygon layer apply color styles
