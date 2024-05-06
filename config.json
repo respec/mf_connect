@@ -147,6 +147,58 @@
         "lng": -135.447504
       }
     },
+    "HainesFLU": {
+      "database": "mfc_ak_haines_flu",
+      "name": "Haines Future Land Use Comment Map",
+      "web": "",
+      "enableLikes": true,
+      "disableDislikes": true,
+      "enableComments": false,
+      "hideNewItemButton": true,
+      "hideCommentTypeSelect": true,
+      "layers": [{
+          "name": "Land Use Areas",
+          "path": "./gis_data/hainesflu/haines_future_land_use_epsg4326.geojson",
+          "stylePolygonOverride": true,
+          "style": {
+            "color": "#ff7800",
+            "weight": 2,
+            "opacity": 0.45
+          },
+          "layerClickPopupAttributeName":"Designatio",
+          "styleColorCodes":
+          [
+            {"name": "Commercial", "code": "comm", "color":"#FFBFC0", "description":"Areas for commercial and higher density residential uses; compact, walkable, and diverse."},
+            {"name": "Developed Open Space / Park", "code": "devopen", "color":"#5FFBAF", "description":"Areas developed for parks, campgrounds, cemeteries, or indoor recreation, not managed by State or Federal governments."},
+            {"name": "Industrial", "code": "ind", "color":"#B381D9", "description":"Areas devoted to light and heavy industrial uses."},
+            {"name": "Light Industrial Waterfront Development", "code": "lindw", "color":"#009FC2", "description":"Waterfront dependent uses that combine light industrial, recreation, and commercial uses, balancing working waterfronts with community spaces."},
+            {"name": "Open Space / Natural Area", "code": "opennat", "color":"#00B050", "description":"Areas to remain in a natural state due to conservation value or hazard potential, not managed by State or Federal governments."},
+            {"name": "Public Multi-Use", "code": "pubm", "color":"#D9F8E0", "description":"State and federal lands with multiple uses, to remain in public ownership, including flood protection, habitat value, traditional use, recreation, tourism, timber extraction, and mining. State and federal land agencies to set land use priorities."},
+            {"name": "River Corridor", "code": "riv", "color":"#0A3168", "description":"Key rivers and riverfront areas. Includes suggested setbacks to protect riparian habitat (actual regulations will vary by location)."},
+            {"name": "Rural Mixed Use", "code": "rmix", "color":"#72CCC1", "description":"A variety of uses allowed, including residential, commercial, and light industrial with the general goal of preserving the residential character of surrounding neighborhoods."},
+            {"name": "Rural Residential", "code": "rres", "color":"#FDDC6A", "description":"Predominantly residential areas that do not have access to public water utilities. Mostly low density, and larger lot sizes (1 acre+). Includes some commercial uses."},
+            {"name": "Townsite / Downtown Core", "code": "tcore", "color":"#FF8021", "description":"Areas for continuing infill and densification, with a focus on mixed use development, walkability, redevelopment, and policies for compatibility between differing uses. This is the primary downtown business district in Haines."},
+            {"name": "Townsite Residential", "code": "tres", "color":"#FEF3CD", "description":"Predominately residential areas with compatible public and commercial uses; areas for infill and densification, including neighborhoods that currently have access to public water utilities, typically less than one acre."}
+          ]
+        }
+      ],
+      "about": {
+        "showAtStartup": true,
+        "title": "Haines Future Land Use Comment Map",
+        "text": "<div><h3  style=\"color:blue;\">Haines Borough Comp Plan Revision: Public Review Draft Comment Map (April 2024)</h3><p><strong>Welcome to the Haines Borough Comprehensive Plan Revision Public Review Draft Comment Map</strong></p><p><strong>We need your feedback on the Draft Plan Future Land Use Map!</strong></p><ul>  <li>Check It Out.  <ul>    <li>Click around and get familiar with the Draft Future Land Use Map and related land use categories and definitions.     <ul>      <li>What is a FUTURE LAND USE MAP? The future land use map considers how land in the borough is used today, what community members value most about their community and neighborhoods, and anticipates future development needs, constraints, and establishes policies to guide development and/or conservation of lands in the Haines Borough. The Future Land Use Map is not zoning – this map does not change existing zoning code.</li>   </ul>   </li> </ul>  </li>  <li>Tell Us What You Think. <ul>    <li>Use this Interactive Comment Map to tell us.</li>   <li>What do you like or not like about the proposed land use categories?</li>   <li>What other feedback do you have about proposed land use and environment, transportation, housing, economic development, utilities, or other priorities proposed in the Draft Plan? Use the map or send us an email (see below) to share your comments.</li> </ul>  </li>  <li>Need more maps/context before you comment?  <ul>    <li><a href=\"https://hainescompplanrevision.com/wp-content/uploads/2024/02/02-22-24_HBCU_COMBINED_ES_COREPLAN_DRAFT_forWeb.pdf\">Click here</a> to review the full Public Review Draft, including related Land Use & Environment draft policies.</li>    <li><a href='https://hainescompplanrevision.com/wp-content/uploads/2024/04/2035HainesCompPlan_Appendix_D_LandUseEnvironment.pdf'>Click here</a> to review the Draft Land Use & Environment Appendix – the appendix include additional information on potential land use policies and “overlays”.     <ul>      <li>What is an OVERLAY? Future Land Use Map Overlays identify areas that, in addition to the base future land use category, require other special considerations when planning for future development (e.g., areas that should be recognized for having cultural significance to Indigenous Peoples of the area).</li>    </ul>   </li> </ul>   </li>  <li><p style=\"color:red;\">The Comment Map will close on Friday, April 26th.</p></li>  <li>Questions? Contact Project Team Manager, Shelly Wade, <a href=\"mailto:shelly@agnewbeck.com\">shelly@agnewbeck.com</a>, 907-242-5326.</li>  <li>Find more information on the project <a href=\"https://hainescompplanrevision.com/\">website</a>.</li></ul><p><strong><ins>Instructions</ins></strong></p><p><strong>Get Familiar with the Map:</strong></p><ul>  <li>Click and drag the map to move around.</li>  <li>Use the “+” or “-” buttons in the lower right-hand corner to zoom in or out.</li>  <li>Click the view options in the upper right corner to see different basemaps and layers.</li></ul><p><strong>Check Out the Future Land Use Categories & Definitions</strong></p><strong>Check Out and Respond to Others’ Comments:</strong><ul>  <li>Make sure the box in the upper right corner has a check next to “Public Comments”.</li>  <li>Find a comment you agree with/support? Click the “thumb up”.</li></ul><strong>Submit a New Comment:</strong><ul>  <li>Click on the “Add a Comment” button in the upper right-hand corner.</li>  <li>Follow the instructions to “Click here to enter information OR drag the marker to adjust in what location you want to add a comment.</li>  <li>Write and submit a comment about something you would like to preserve or change about that location, or other comments/questions.</li></ul></div>",
+        "thanks": "",
+        "help": " "
+      },
+      "navbar": {
+        "icon": "",
+        "title": "Haines Future Land Use Comment Map"
+      },
+      "defaultMapLoadParameters": {
+        "zoom": 11,
+        "lat": 59.234743,
+        "lng": -135.447504
+      }
+    },
     "Kodiak": {
       "database": "mfc_ak_kodiak",
       "name": "City of kodiac",
