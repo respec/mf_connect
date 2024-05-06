@@ -153,8 +153,8 @@
       "web": "",
       "enableLikes": true,
       "disableDislikes": true,
-      "enableComments": true,
-      "hideNewItemButton": false,
+      "enableComments": false,
+      "hideNewItemButton": true,
       "hideCommentTypeSelect": true,
       "layers": [{
           "name": "Land Use Areas",
