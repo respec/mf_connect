@@ -124,10 +124,10 @@
       "database": "mfc_ak_haines",
       "name": "Haines Borough Comp Plan Comment Map",
       "web": "",
-      "enableLikes": true,
+      "enableLikes": false,
       "disableDislikes": true,
       "enableComments": false,
-      "hideNewItemButton": false,
+      "hideNewItemButton": true,
       "hideCommentTypeSelect": true,
       "layers": [],
       "about": {
