@@ -199,6 +199,54 @@
         "lng": -135.447504
       }
     },
+    "HomerPlan": {
+      "database": "mfc_ak_homer_plan",
+      "name": "Homer Comprehensive Plan Rewrite Comment Map",
+      "web": "",
+      "enableLikes": true,
+      "disableDislikes": true,
+      "enableComments": false,
+      "hideNewItemButton": false,
+      "hideCommentTypeSelect": true,
+      "layers": [{
+          "name": "City Limits",
+          "path": "./gis_data/homerplan/city_limits_epsg4326.geojson",
+          "style": {
+            "color": "#FF2222",
+            "weight": 2,
+            "opacity": 0.6,
+            "fillOpacity": 0.1,
+            "dashArray": "4,4"
+          }
+        },
+        {
+          "name": "Roads",
+          "path": "./gis_data/homerplan/roads_epsg4326.geojson",
+          "style": {
+            "color": "#111111",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0
+          }
+        }
+      ],
+      "about": {
+        "showAtStartup": true,
+        "title": "Homer Comprehensive Plan Rewrite Comment Map",
+        "text": "./about_pages/homerplan.html",
+        "thanks": "",
+        "help": " "
+      },
+      "navbar": {
+        "icon": "./assets/img/logo/logo_homer.png",
+        "title": "Homer Comprehensive Plan Rewrite Comment Map"
+      },
+      "defaultMapLoadParameters": {
+        "zoom": 13,
+        "lat": 59.64797,
+        "lng": -151.5359
+      }
+    },
     "Kodiak": {
       "database": "mfc_ak_kodiak",
       "name": "City of kodiac",
@@ -402,11 +450,11 @@
   },
   "defaultNavbar": {
     "icon": "",
-    "title": "Fairbanks North Star Borough Comprehensive Roads Plan Comment Map"
+    "title": "Comment Map"
   },
   "defaultAboutModal": {
     "showAtStartup": true,
-    "title": "Welcome to the FNSB Roads Plan Interactive Comment Map!",
+    "title": "Welcome to the Interactive Comment Map!",
     "text": "<h3><b>Help Create a Safer and Better-Connected Road System in the Fairbanks North Star Borough!</b></h3><ul><li>Use this COMMENT MAP to:<ul><li>Share what you like or dislike about roads in your neighborhood and/or other locations in the borough.</li><li> Learn and share your level of support for what other community members like or dislike.</li></ul></li><li>The COMMENT MAP is <b>open for your feedback through the end of the year.</b></li><li>Your responses will contribute to an <b>update of the Fairbanks North Star Borough (FNSB) Comprehensive Roads Plan.</b></li><li><b>THANK YOU</b> for your time and contributions to the updated FNSB Comprehensive Roads Plan!</li><li><a href=\"https://fnsbroadsplan.com\">Visit the project website to learn more.</a></li></ul><br><h3><b><u>Instructions</u></b></h3><ol><li>Get Familiar with the Map:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click and drag the map to move around.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Use the “+” or “-” buttons in the lower right hand corner to zoom in or out.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click the view options in the upper right corner to see different basemaps and layers.<br></li><li>Check Out and Respond to Others’ Comments:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Make sure the box in the upper right corner has a check next to “Public Comments”.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Find a comment you agree with/support? Click the “thumb up”.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Find a comment you disagree with/do not support? Click the “thumb down”.<br></li><li>Submit a New Comment:<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Click on the “Add a Comment” button in upper right hand corner.<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Follow the instructions to “Click here to enter information OR draft the marker to adjust location.”<br><span style=\"color:#333333;font-size:14pt;font-family:Wingdings;font-weight:normal;\">Ø</span>Write and submit a comment about a safety, connectivity or other issue impacting your local/neighborhood roads.<br></li></ol> <h3><u>Tell Us More</u></h3><ul><li><a href=\"https://www.surveymonkey.com/r/FNSBRoadsPlan\">Take this short 10-minute survey to:</a><ul><li>RATE the safety and connectivity of your local/neighborhood roads.</li><li>Share your ideas for the TOP 3 NEEDED CONNECTIONS.</li><li>Identify examples of \"GOOD\" or \"POOR\" quality roads in your neighborhood.</li></ul></li></ul><br><p style=\"text-align: center;\"><b><a href\"https://www.fnsb.gov\">Fairbanks North Star Borough</a></b></p>",
     "thanks": "Thanks to <a href='https://github.com/bmcbride/building-damage-reporter'>Brian McBride</a> and the great folks at <a href='https://www.fulcrumapp.com'>FulcrumApp</a>.",
     "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"

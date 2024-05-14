@@ -5,6 +5,8 @@ var params = {};
 $(document).ready(function() {
   $.getJSON("config.json", function(data) {
     config = data;
+
+    // TODO - move this out of here
     $.getJSON('gis_data/airports/ak_airports.geojson', function(data) {
       ak_airport_data = data;
       buildApp();
@@ -90,10 +92,23 @@ function buildApp() {
     let nText = String(cityConfig.about.text);
     $('#aboutModal .modal-title').html(nTitle);
     $('#aboutModal .modal-body').html(nText);
+
+    if(String(nText).endsWith('.html')){
+      fetch(nText)
+      .then(response => response.text())
+      .then(text => $('#aboutModal .modal-body').html(text))
+      .catch((e) => console.error(e));
+    }
+
+
   }
   if( cityConfig.navbar ){
     let nTitle = String(cityConfig.navbar.title);
     $('.navbar-brand').html(nTitle);
+    if(cityConfig.navbar.icon != ''){
+      let iconStr = '<img src="'+ String(cityConfig.navbar.icon) + '" />';
+      $('.navbar-brand').prepend(iconStr);
+    }
   }
 
   if (config.defaultAboutModal.showAtStartup && config.defaultAboutModal.showAtStartup === true) {
@@ -787,6 +802,10 @@ function buildApp() {
     "Google Hybrid Basemap" : googleHybrid
   };
 
+
+
+
+
   var overlayLayers = {};
 
   var layerControl = L.control.layers(baseLayers, null, {
@@ -796,6 +815,13 @@ function buildApp() {
   if(urlParams.city == 'MVPMPO'){
     config.marker.layer.name = "Comment Locations";
   }
+
+
+  // Set default map for HomerPlan setup to the hybrid basemap
+  if(urlParams.city == 'HomerPlan'){
+    map.addLayer(googleHybrid);
+  }
+
 
   if (config.marker.cluster && config.marker.cluster === true) {
     layerControl.addOverlay(markerClusters, config.marker.layer.name);

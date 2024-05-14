@@ -151,7 +151,7 @@
     </div>
 
     <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -333,6 +333,7 @@
 
     <script src="assets/js/geocode.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="assets/plugins/jquery.cookie.js"></script>
 
     <!-- fails because of mixed content type error, cannot get the file via https and http fails -->
     <!-- <script src="//matchingnotes.com/javascripts/leaflet-google.js"></script> -->
