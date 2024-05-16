@@ -242,7 +242,7 @@
         "title": "Homer Comprehensive Plan Rewrite Comment Map"
       },
       "defaultMapLoadParameters": {
-        "zoom": 13,
+        "zoom": 10,
         "lat": 59.64797,
         "lng": -151.5359
       }
