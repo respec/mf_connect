@@ -225,7 +225,6 @@ function buildApp() {
     }
 
     if(urlParams.city !== 'AlaskaAirports'){
-      console.log('Delete the airport select field');
       $('#AirportSelect').first().parent().remove();
     }
 
@@ -240,6 +239,32 @@ function buildApp() {
     if(config.city[String(urlParams.city)].hideCommentTypeSelect == true){
       $(commentTypeSelectDropdown).parent().hide();
     }
+
+    if(config.city[String(urlParams.city)].noteSectionLabel){
+      var newLabelStr = String(config.city[String(urlParams.city)].noteSectionLabel);
+      $( "<h4>" + newLabelStr + "</h4>" ).insertBefore( "#notes" );
+      config.city[String(urlParams.city)].noteSectionLabel = false;
+    }
+
+    if(config.city[String(urlParams.city)].submitterInfoTypes){
+      var submitterInfoTypes = config.city[String(urlParams.city)].submitterInfoTypes;
+      try{
+        $('.submitter_input_field').parent().hide();
+        submitterInfoTypes.forEach((element) => {
+          var className = '#submitter_' + element;
+          $(className).parent().show()
+      });
+
+
+      }catch(err) {
+        console.log(err);
+      }
+
+
+      $( ".submitter_name" ).hide();
+    }
+
+
   });
 
   $("#issue_address, #issue_city, #issue_state").on("change", function (){
@@ -892,6 +917,8 @@ function buildApp() {
             if(theLayer.stylePolygonOverride == true){
               theLayer.style = undefined;
             }
+
+            // TODO - this should not be organized like this, a bunch of not style related code is in the else {}
             if(theLayer.style && theLayer.style != ''){
               nLayer = L.geoJson(data, {
                 style: theLayer.style,
@@ -902,21 +929,26 @@ function buildApp() {
                 }
               });
             }else{
-              nLayer = L.geoJson(data);
-              if(theLayer.name == 'Airports'){
-                nLayer = L.geoJson(null, {
-                  pointToLayer: function(feature,latlng){
-                    label = String(feature.properties.NAME) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
-                    return new L.CircleMarker(latlng, {
-                      radius: 1,
-                    }).bindTooltip(label, {
-                      permanent: true,
-                      direction: "center",
-                      className: "airport-map-overlay-labels"
-                    }).openTooltip();
-                    }
-                  });
-                nLayer.addData(data);
+              nLayer = false;
+              if(theLayer.path.includes('_use-geojsonvt')){
+                console.log('render geojson layer with geojson-vt');
+                nLayer = L.vectorGrid.slicer(data);
+
+                // nLayer = L.geoJson(null, {
+                //   pointToLayer: function(feature,latlng){
+                //     label = String(feature.properties.NAME) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
+                //     return new L.CircleMarker(latlng, {
+                //       radius: 1,
+                //     }).bindTooltip(label, {
+                //       permanent: true,
+                //       direction: "center",
+                //       className: "airport-map-overlay-labels"
+                //     }).openTooltip();
+                //     }
+                //   });
+                // nLayer.addData(data);
+              }else{
+                nLayer = L.geoJson(data);
               }
 
               if(theLayer.layerClickPopupAttributeName != undefined){

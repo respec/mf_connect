@@ -328,6 +328,8 @@
     <!-- <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script> -->
     <!-- <script src="https://unpkg.com/leaflet.markercluster@1.3. 0/dist/leaflet.markercluster.js"></script> -->
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
+
+    <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.bundled.js"></script>
     
     <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
 

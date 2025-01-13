@@ -51,6 +51,7 @@
         <option value="Matsuborough">Matsuborough</option>
         <option value="AlaskaAirports">AlaskaAirports</option>
         <option value="MVPMPO">MVPMPO</option>
+        <option value="Juneau">Juneau</option>
       </select>
 
       <label for="issue_state">Issue State</label>
@@ -79,18 +80,18 @@
     <h3 class="panel-title">Submitter Information</h3>
   </div>
   <div class="panel-body">
-    <p>Please provide your name and contact information. Everything is confidential and will never be shared.</p>
+    <p>Please provide your name and email address if you would like to stay up-to-date about this project. Everything is confidential and will never be shared.</p>
 	<div class="form-group" data-role="fieldcontain">
       <label for="submitter_name">Name</label>
-      <input class="form-control" type="text" name="submitter_name" id="submitter_name" placeholder="(Optional)">
+      <input class="form-control submitter_input_field" type="text" name="submitter_name" id="submitter_name" placeholder="(Optional)">
     </div>
     <div class="form-group" data-role="fieldcontain">
       <label for="submitter_email">Email</label>
-      <input class="form-control" type="email" name="submitter_email" id="submitter_email" placeholder="(Optional)" data-errormessage='{"valueMissing": ""}' >
+      <input class="form-control submitter_input_field" type="email" name="submitter_email" id="submitter_email" placeholder="(Optional)" data-errormessage='{"valueMissing": ""}' >
     </div>
 	<div class="form-group" data-role="fieldcontain">
       <label for="submitter_phone">Phone</label>
-      <input class="form-control" type="text" name="submitter_phone" id="submitter_phone" placeholder="(Optional)" >
+      <input class="form-control submitter_input_field" type="text" name="submitter_phone" id="submitter_phone" placeholder="(Optional)" >
     </div>
   </div>
 </div>

@@ -75,8 +75,6 @@
         "zoom": 11,
         "lat": 61.583142,
         "lng": -149.419773
-
-
       }
     },
     "Fairbanks": {
@@ -118,6 +116,46 @@
       "navbar": {
         "icon": "",
         "title": "Fairbanks North Star Borough Comprehensive Roads Plan Comment Map"
+      }
+    },
+    "Juneau": {
+      "database": "mfc_ak_juneau",
+      "name": "City of Juneau",
+      "web": "",
+      "enableLikes": true,
+      "disableDislikes": true,
+      "enableComments": false,
+      "hideNewItemButton": false,
+      "hideCommentTypeSelect": true,
+      "noteSectionLabel": "Please describe your concern about this location?",
+      "submitterInfoTypes": ["name","email"],
+      "layers": [
+        {
+          "name": "Roads",
+          "path": "./gis_data/juneau/roads_epsg4326.geojson",
+          "style": {
+            "color": "#111111",
+            "weight": 2,
+            "opacity": 0.8,
+            "fillOpacity": 0
+          }
+        }
+      ],
+      "about": {
+        "showAtStartup": true,
+        "title": "",
+        "text": "./about_pages/juneau_cbj_safe_streets.html",
+        "thanks": "",
+        "help": "<a href='/connect/help_video.mp4' target='_mfcvid'>Watch Video To Learn More!</a>"
+      },
+      "navbar": {
+        "icon": "",
+        "title": "CBJ Safe Streets for All Comment Map"
+      },
+      "defaultMapLoadParameters": {
+        "zoom": 11,
+        "lat": 58.3005626708,
+        "lng": -134.4201683845
       }
     },
     "Haines": {
