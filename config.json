@@ -241,10 +241,10 @@
       "database": "mfc_ak_homer_plan",
       "name": "Homer Comprehensive Plan Rewrite Comment Map",
       "web": "",
-      "enableLikes": true,
+      "enableLikes": false,
       "disableDislikes": true,
       "enableComments": false,
-      "hideNewItemButton": false,
+      "hideNewItemButton": true,
       "hideCommentTypeSelect": true,
       "layers": [{
           "name": "City Limits",
